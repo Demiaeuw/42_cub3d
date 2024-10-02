@@ -1,0 +1,23 @@
+/* XPM */
+static char * floor_texture[] =
+{
+"16 16 2 1",              /* 16x16 pixels, 2 couleurs, 1 caractère par pixel */
+" 	c None",              /* Couleur de fond (transparente) */
+"G	c #808080",           /* Couleur gris pour le sol */
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG",
+"GGGGGGGGGGGGGGGG"
+};

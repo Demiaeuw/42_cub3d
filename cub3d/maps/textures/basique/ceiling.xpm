@@ -1,0 +1,23 @@
+/* XPM */
+static char * ceiling_texture[] =
+{
+"16 16 2 1",              /* 16x16 pixels, 2 couleurs, 1 caractère par pixel */
+" 	c None",              /* Couleur de fond (transparente) */
+"B	c #87CEEB",           /* Couleur bleu ciel pour le plafond */
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB",
+"BBBBBBBBBBBBBBBB"
+};
