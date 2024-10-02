@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/02 18:16:46 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:42:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,21 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-typedef enum e_texture_type
+# define WALL '1'
+# define GROUND '0'
+# define NORTH 'N'
+# define SOUTH 'S'
+# define EAST 'E'
+# define WEST 'W'
+
+typedef struct s_map //peut etre pour diviser les infos passé par une liste chainé ?
 {
-	FLOOR,
-	CEILING,
-	WALL_NORTH,
-	WALL_SOUTH,
-	WALL_EAST,
-	WALL_WEST
-}	t_texture_type;
+	char	**tab;
+}	t_map;
+
+void	main_error(char *str);
+void	main_mapcheck(t_map *map);
+void	check_mapcontent(t_map *map);
 
 
 

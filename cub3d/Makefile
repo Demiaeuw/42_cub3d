@@ -4,7 +4,7 @@ SRCS	=	/srcs/error.c\
 			/srcs/parsing.c
 OBJS	= $(SRCS:srcs/%.c=objets/%.o)
 
-MLX_DIR	= minilibx-linux
+MLX_DIR	= include/minilibx-linux
 MLX_LIB	= $(MLX_DIR)/libmlx.a
 
 CC	= gcc

@@ -6,9 +6,15 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:42:58 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/02 17:43:16 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:28:11 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
+void	main_error(char *str)
+{
+	printf("\n\033[31mError\033[0m\n\n");
+	printf("%s\n");
+	//ajouter les free au besoin
+}
