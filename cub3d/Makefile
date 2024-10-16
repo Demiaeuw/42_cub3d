@@ -1,7 +1,8 @@
 NAME	= cub3d
 
-SRCS	=	/srcs/error.c\
-			/srcs/parsing.c
+SRCS	=	main.c\
+			srcs/error.c\
+			srcs/parsing.c
 OBJS	= $(SRCS:srcs/%.c=objets/%.o)
 
 MLX_DIR	= include/minilibx-linux
