@@ -190,7 +190,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 								!(tab = mlx_int_str_to_wordtab(line+cpp)) )
 						RETURN;
 				j = 0;
-				while (tab[j] && strcmp(tab[j++],"c"));
+				while (tab[j] && ft_strcmp(tab[j++],"c"));
 
 				if (!tab[j])
 						RETURN;

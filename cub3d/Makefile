@@ -1,12 +1,20 @@
 NAME	= cub3d
 
 SRCS	=	main.c\
-			srcs/error.c\
-			srcs/parsing.c
+			srcs/00_error.c\
+			srcs/01_parsing.c\
+			srcs/02_parsing_file01.c\
+			srcs/02_parsing_file02.c\
+			include/utils/utils00.c\
+			include/utils/utils01.c\
+			include/utils/utils_parsing.c\
+			include/utils/gnl/00_gnl.c\
+			include/utils/gnl/01_gnl.c
+
 OBJS	= $(SRCS:srcs/%.c=objets/%.o)
 
-MLX_DIR	= include/minilibx-linux
-MLX_LIB	= $(MLX_DIR)/libmlx.a
+# MLX_DIR	= include/minilibx-linux
+# MLX_LIB	= $(MLX_DIR)/libmlx.a
 
 CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
