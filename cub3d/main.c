@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:10:40 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:28:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 	main_parsing(argc, argv, &game);
 
 	// Le reste du programme continue ici...
-	main_free(&game);
+	// main_free(&game);
 	return (0);
 }

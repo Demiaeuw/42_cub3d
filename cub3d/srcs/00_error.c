@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:42:58 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 18:32:59 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:22:09 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ void	main_free(t_game *game)
 {
 	if (game->infos)
 	{
-		free(game->infos->path_north);
-		free(game->infos->path_south);
-		free(game->infos->path_west);
-		free(game->infos->path_east);
+		if (game->infos->path_north != NULL)
+			free(game->infos->path_north);
+		if (game->infos->path_south != NULL)
+			free(game->infos->path_south);
+		if (game->infos->path_west != NULL)
+			free(game->infos->path_west);
+		if (game->infos->path_east != NULL)
+			free(game->infos->path_east);
 		free(game->infos);
 		game->infos = NULL;
 	}

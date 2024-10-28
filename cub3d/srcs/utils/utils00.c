@@ -6,11 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:01:38 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:59:26 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:00:07 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../include/cub.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

@@ -6,11 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 00:36:26 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 00:39:34 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:59:58 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../include/cub.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

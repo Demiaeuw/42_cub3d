@@ -6,11 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:33:42 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 00:41:43 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:00:02 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../include/cub.h"
 
 size_t	ft_strlen(const char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:50:17 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/22 00:56:40 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:00:11 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../../include/cub.h"
 
 // Main pour afficher le parsing
 void	display_parsed_info(char *filename, t_game *game)

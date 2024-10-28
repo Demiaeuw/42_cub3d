@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:25:03 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/20 23:52:03 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:50:06 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void parsing_file(char *filename, t_game *game)
 {
-	get_texture_paths(game->infos, filename); 									// Récupération des chemins des textures
+	get_texture_paths(game->infos, filename);									// Récupération des chemins des textures
+	verify_texture_paths(game->infos, filename);
 	get_colors(game->map, filename); 											// Récupération des couleurs du sol et du plafond
 	get_map(game->map, filename); 												// Récupération de la carte
 }
@@ -38,6 +39,45 @@ void	get_texture_paths(t_info *infos, char *filename)
 			infos->path_west = ft_dup(line + 3);
 		else if (ft_strncmp(line, "EA ", 3) == 0)
 			infos->path_east = ft_dup(line + 3);
+		free(line);
+	}
+	close(fd);
+}
+
+// Fonction qui verifie si les paths on bien ete copie (neednorme)
+void	verify_texture_paths(t_info *infos, char *filename)
+{
+	int fd;
+	char *line;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1) 
+		main_error("Failed to open file for verification");
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		char *trimmed_line = ft_strtrim(line, " \t\n");
+		
+		if (ft_strncmp(trimmed_line, "NO ", 3) == 0)
+		{
+			if (ft_strncmp(infos->path_north, trimmed_line + 3, ft_strlen(trimmed_line + 3)) != 0)
+				main_error("Mismatch in North texture path during parsing");
+		}
+		else if (ft_strncmp(trimmed_line, "SO ", 3) == 0)
+		{
+			if (ft_strncmp(infos->path_south, trimmed_line + 3, ft_strlen(trimmed_line + 3)) != 0)
+				main_error("Mismatch in South texture path during parsing");
+		}
+		else if (ft_strncmp(trimmed_line, "WE ", 3) == 0)
+		{
+			if (ft_strncmp(infos->path_west, trimmed_line + 3, ft_strlen(trimmed_line + 3)) != 0)
+				main_error("Mismatch in West texture path during parsing");
+		}
+		else if (ft_strncmp(trimmed_line, "EA ", 3) == 0)
+		{
+			if (ft_strncmp(infos->path_east, trimmed_line + 3, ft_strlen(trimmed_line + 3)) != 0)
+				main_error("Mismatch in East texture path during parsing");
+		}
+		free(trimmed_line);
 		free(line);
 	}
 	close(fd);
@@ -78,7 +118,6 @@ long	get_ceiling_color(char *line)
 }
 
 // Fonction pour recuperer les couleurs du ciel et du sol 
-
 void	get_colors(t_map *map, char *filename)
 {
 	long	fd;

@@ -6,11 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:16:48 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:16:59 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:00:15 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub.h"
+#include "../../../include/cub.h"
 
 char	*gnl_strchr(const char *s, int c)
 {

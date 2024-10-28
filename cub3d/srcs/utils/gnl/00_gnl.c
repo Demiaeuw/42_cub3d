@@ -6,21 +6,24 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:15:53 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:22:50 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:00:23 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub.h"
+#include "../../../include/cub.h"
 
 char	*get_next_line(int fd)
 {
 	static char	*stash[4096];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE_GNL <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd >= 4096 || BUFFER_SIZE_GNL <= 0 || read(fd, 0, 0) < 0)
 	{
-		free(stash[fd]);
-		stash[fd] = NULL;
+		if (fd >= 0 && fd < 4096)
+		{
+			free(stash[fd]);
+			stash[fd] = NULL;
+		}
 		return (NULL);
 	}
 	stash[fd] = gnl_ad_to_stash(fd, stash[fd]);
@@ -39,6 +42,8 @@ char	*gnl_ad_to_stash(int fd, char *stash)
 
 	readed = 1;
 	s = gnl_calloc(BUFFER_SIZE_GNL + 1, sizeof(char));
+	if (!s)
+		return (NULL);
 	while (readed != 0)
 	{
 		readed = read(fd, s, BUFFER_SIZE_GNL);
@@ -49,6 +54,11 @@ char	*gnl_ad_to_stash(int fd, char *stash)
 		}
 		s[readed] = 0;
 		stash = gnl_strjoin(stash, s);
+		if (!stash)
+		{
+			free(s);
+			return (NULL);
+		}
 		if (gnl_strchr(s, '\n'))
 			break ;
 	}
@@ -62,9 +72,9 @@ char	*gnl_line(char *stash)
 	char	*line;
 	int		i;
 
-	i = 0;
-	if (!stash[i])
+	if (!stash || !*stash)
 		return (NULL);
+	i = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
 	line = gnl_calloc(i + 2, sizeof(char));
@@ -84,10 +94,10 @@ char	*gnl_line(char *stash)
 //fonction qui clean la static et garde de '\n' a la fin 
 char	*create_new_stash(char *stash, int i)
 {
-	int		j;
 	char	*new_stash;
+	int		j;
 
-	new_stash = gnl_calloc((gnl_strlen(stash) - i + 1), sizeof(char));
+	new_stash = gnl_calloc(gnl_strlen(stash) - i + 1, sizeof(char));
 	if (!new_stash)
 		return (NULL);
 	i++;
@@ -116,7 +126,7 @@ char	*gnl_clean_static(char *stash)
 	}
 	new_stash = create_new_stash(stash, i);
 	free(stash);
-	if (new_stash[0] == '\0')
+	if (!new_stash || new_stash[0] == '\0')
 	{
 		free(new_stash);
 		return (NULL);

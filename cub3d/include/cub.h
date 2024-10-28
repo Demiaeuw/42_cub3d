@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 18:47:04 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:42:41 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int			get_map_size(char *filename);
 //02
 void 		parsing_file(char *filename, t_game *game);
 void		get_texture_paths(t_info *infos, char *filename);
+void		verify_texture_paths(t_info *infos, char *filename);
 long		get_floor_color(char *line);
 long		get_ceiling_color(char *line);
 void		get_colors(t_map *map, char *filename);

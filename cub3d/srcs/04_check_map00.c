@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:13:17 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/22 00:55:21 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:53:13 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	check_mapcontent(t_map *map)
 }
 
 // Fonction qui vérifie si le contenue de la map est bon
-void	validate_map_cell(char cell, int *count_player, t_map *map, int row, int col)
+void	validate_map_cell(char cell, int *count_player, t_map *map,
+	int row, int col)
 {
 	if (cell != '0' && cell != '1' &&
 		cell != 'N' && cell != 'S' &&
