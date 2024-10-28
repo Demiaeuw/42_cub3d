@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:59:34 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:47:04 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_map
 	int		heinght;
 	int		color_floor;
 	int		color_ceiling;
+	char	direction_start;
+	int		position_start_x;
+	int		position_start_y;
 }	t_map;
 
 // structure principale 
@@ -72,12 +75,13 @@ char		*ft_dup(char *src);
 int			split_count_word(char *str, char sep);
 char		**split_create_tab(char *str, char sep, char **dest);
 char		**ft_split(char const *s, char c);
-void		display_parsed_info(char *filename, t_game *game);
-int			ft_strlen(char *str);
+size_t		ft_strlen(const char *str);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *str);
-
+void		ft_putnbr_fd(long n, int fd);
+char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strchr(const char *s, int c);
 
 //gnl
 char		*get_next_line(int fd);
@@ -90,6 +94,13 @@ size_t		gnl_strlen(const char *c);
 void		gnl_bzero(void *s, size_t n);
 void		*gnl_calloc(size_t nmemb, size_t size);
 char		*gnl_strjoin(char *s1, char *s2);
+// utils_parsing
+void		display_parsed_info(char *filename, t_game *game);
+void		display_texture_info(t_game *game);
+void		display_color_info(t_game *game);
+void		display_map_info(t_game *game);
+
+//---------------------------------------------------------//
 //00
 void		main_error(char *str);
 void		main_free(t_game *game);
@@ -103,10 +114,23 @@ int			get_map_size(char *filename);
 //02
 void 		parsing_file(char *filename, t_game *game);
 void		get_texture_paths(t_info *infos, char *filename);
-void		get_floor_color(t_map *map, char *line);
-void		get_ceiling_color(t_map *map, char *line);
+long		get_floor_color(char *line);
+long		get_ceiling_color(char *line);
 void		get_colors(t_map *map, char *filename);
 int			get_map_width(char *filename);
 void		get_map(t_map *map, char *filename);
+void		open_file(t_map *map, char *filename, int *fd);
+
+//03
+void		check_infofile(char *filename);
+void		check_file_empty(char *filename);
+void		check_pathfile(char *filename);
+void		check_colors(char *filename);
+void		check_map_presence(char *filename);
+
+//04
+void		check_mapcontent(t_map *map);
+void		validate_map_cell(char cell, int *count_player, t_map *map, int row, int col);
+void		record_player_position(t_map *map, int row, int col, char player);
 
 #endif

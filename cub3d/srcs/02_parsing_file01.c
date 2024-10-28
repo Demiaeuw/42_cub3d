@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:25:03 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:46:22 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/20 23:52:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,39 +44,45 @@ void	get_texture_paths(t_info *infos, char *filename)
 }
 
 // Fonction pour récupérer la couleur du sol
-void	get_floor_color(t_map *map, char *line)
+long	get_floor_color(char *line)
 {
 	char	**colors;
+	long	color;
 
 	colors = ft_split(line + 2, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2])
 		main_error("Invalid floor color format");
-	map->color_floor = (ft_atoi(colors[0]) << 16) | (ft_atoi(colors[1]) << 8) | ft_atoi(colors[2]);
+	color = (ft_atoi(colors[0]) << 16) | (ft_atoi(colors[1]) << 8) | ft_atoi(colors[2]);
 	free(colors[0]);
 	free(colors[1]);
 	free(colors[2]);
 	free(colors);
+	return (color);
 }
 
 // Fonction pour récupérer la couleur du plafond
-void	get_ceiling_color(t_map *map, char *line)
+long	get_ceiling_color(char *line)
 {
 	char	**colors;
+	int	color;
 
 	colors = ft_split(line + 2, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2])
 		main_error("Invalid ceiling color format");
-	map->color_ceiling = (ft_atoi(colors[0]) << 16) | (ft_atoi(colors[1]) << 8) | ft_atoi(colors[2]);
+	color = (ft_atoi(colors[0]) << 16) | (ft_atoi(colors[1]) << 8) | ft_atoi(colors[2]);
 	free(colors[0]);
 	free(colors[1]);
 	free(colors[2]);
 	free(colors);
+	return (color);
 }
+
+// Fonction pour recuperer les couleurs du ciel et du sol 
 
 void	get_colors(t_map *map, char *filename)
 {
-	int		fd;
-	char	*line;
+	long	fd;
+	char		*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -84,9 +90,15 @@ void	get_colors(t_map *map, char *filename)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		if (ft_strncmp(line, "F ", 2) == 0)
-			get_floor_color(map, line);
+		{
+			long color_floor = get_floor_color(line);
+			map->color_floor = color_floor;
+		}
 		else if (ft_strncmp(line, "C ", 2) == 0)
-			get_ceiling_color(map, line);
+		{
+			long color_ceiling = get_ceiling_color(line);
+			map->color_ceiling = color_ceiling;
+		}
 		free(line);
 	}
 	close(fd);

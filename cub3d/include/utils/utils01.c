@@ -6,20 +6,20 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:33:42 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 15:44:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/21 00:41:43 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -69,4 +69,14 @@ int	ft_atoi(const char *str)
 	}
 	result = result * sign;
 	return (result);
+}
+
+void	ft_putnbr_fd(long n, int fd)
+{
+	char c;
+
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
 }

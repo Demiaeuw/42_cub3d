@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:42:58 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 16:00:02 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:32:59 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,29 @@ void	main_error(char *str)
 // Fonction pour libérer toutes les allocations
 void	main_free(t_game *game)
 {
-	int	i;
-
 	if (game->infos)
 	{
 		free(game->infos->path_north);
 		free(game->infos->path_south);
 		free(game->infos->path_west);
 		free(game->infos->path_east);
+		free(game->infos);
+		game->infos = NULL;
 	}
-	if (game->map && game->map->tab)
+	if (game->map)
 	{
-		i = 0;
-		while (game->map->tab[i])
+		int i = 0;
+		if (game->map->tab)
 		{
-			free(game->map->tab[i]);
-			i++;
+			while (game->map->tab[i])
+			{
+				free(game->map->tab[i]);
+				i++;
+			}
+			free(game->map->tab);
+			game->map->tab = NULL;
 		}
-		free(game->map->tab);
+		free(game->map);
+		game->map = NULL;
 	}
 }

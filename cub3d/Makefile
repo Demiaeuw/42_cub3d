@@ -5,8 +5,11 @@ SRCS	=	main.c\
 			srcs/01_parsing.c\
 			srcs/02_parsing_file01.c\
 			srcs/02_parsing_file02.c\
+			srcs/03_check_infofile.c\
+			srcs/04_check_map00.c\
 			include/utils/utils00.c\
 			include/utils/utils01.c\
+			include/utils/utils02.c\
 			include/utils/utils_parsing.c\
 			include/utils/gnl/00_gnl.c\
 			include/utils/gnl/01_gnl.c
@@ -39,10 +42,10 @@ objets/%.o: srcs/%.c
 
 clean:
 	$(RM) $(OBJDIR)
-	$(MAKE) -C $(MLX_DIR) clean
+# $(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) -C $(MLX_DIR) fclean
+# $(MAKE) -C $(MLX_DIR) fclean
 
 re: fclean all

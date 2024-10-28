@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:43:20 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/17 16:00:30 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/22 00:57:28 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	main_parsing(int ac, char **av, t_game *game)
 	if (!check_file_extension(av[1])) 
 		main_error("Invalid file extension. The file must have a .cub");  		// Vérification de l'extension du fichier
 
-	// check_infomap();  // Vérification des informations de la map
-	// check_mapcontent();  // Vérification du contenu de la map
-	// check_wall();  // Vérification que la map est entourée de murs
+	check_infofile(av[1]);  													// Vérification des informations dans le fichier 
 	parsing_file(av[1], game); 													// Ajout des infos aux structures
-	display_parsed_info(av[1], game);  											// Affichage du parsing
+	check_mapcontent(game->map);  												// Vérification du contenu de la map
+	// display_parsed_info(av[1], game);  										// Affichage du parsing
 }
+
 // Fonction d'initialisation des malloc
 void	initialize_game(t_game *game)
 {
@@ -46,9 +46,12 @@ void	initialize_game(t_game *game)
 	game->map->heinght = 0;
 	game->map->color_floor = 0;
 	game->map->color_ceiling = 0;
+	game->map->direction_start = '\0';
+	game->map->position_start_x = -1;
+	game->map->position_start_y = -1;
 }
 
-// Fonction qui vérifie si le fichier passé en argument a bien l'extension ".cub"
+// Fonction qui vérifie si le fichier passé en argument a bien l'extension .cub
 int	check_file_extension(char *filename)
 {
 	int	len;
