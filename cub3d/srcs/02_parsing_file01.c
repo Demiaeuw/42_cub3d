@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:25:03 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/28 09:50:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:59:46 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void parsing_file(char *filename, t_game *game)
 {
 	get_texture_paths(game->infos, filename);									// Récupération des chemins des textures
-	verify_texture_paths(game->infos, filename);
+	// verify_texture_paths(game->infos, filename);
 	get_colors(game->map, filename); 											// Récupération des couleurs du sol et du plafond
 	get_map(game->map, filename); 												// Récupération de la carte
 }

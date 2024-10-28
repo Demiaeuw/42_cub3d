@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:13:17 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/28 09:53:13 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:26:27 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	check_mapcontent(t_map *map)
 	}
 	if (count_player != 1)
 		main_error("The map must contain exactly one player.");
+	map_check_wall(map->tab);
 }
 
 // Fonction qui vérifie si le contenue de la map est bon
@@ -60,32 +61,55 @@ void	record_player_position(t_map *map, int row, int col, char player)
 }
 
 // Fonction qui vérifie si il y a des troue dans la map 
-void	check_map_boundaries(t_map *map)
+void	map_check_wall(char **tab)
 {
-	int		row;
-	int		col;
+    int i, j;
+    int height = 0;
+    int width;
 
-	row = 0;
-	while (map->tab[row])
-	{
-		col = 0;
-		while (map->tab[row][col])
-		{
-			if (map->tab[row][col] == ' ' || map->tab[row][col] == '	' || map->tab[row][col] == '\n')
-			{
-				if ((row > 0 && (map->tab[row - 1][col] != '1'
-					&& map->tab[row - 1][col] != ' ' && map->tab[row - 1][col] != '	'))
-					|| (map->tab[row + 1] && (map->tab[row + 1][col] != '1'
-					&& map->tab[row + 1][col] != ' ' && map->tab[row + 1][col] != '	'))
-					|| (col > 0 && (map->tab[row][col - 1] != '1'
-					&& map->tab[row][col - 1] != ' ' && map->tab[row][col - 1] != '	'))
-					|| (map->tab[row][col + 1] != ' '))
-					{
-					main_error("Map contains holes. Spaces or tabs must be surrounded by '1' or other spaces/tabs.");
-				}
-			}
-			col++;
-		}
-		row++;
-	}
+    // Calculer la hauteur de la carte
+    while (tab[height])
+        height++;
+
+    // Vérifier si la carte est vide
+    if (height == 0)
+        main_error("Map is empty");
+
+    // Calculer la largeur de la carte (on suppose que toutes les lignes ont la même longueur)
+    width = ft_strlen(tab[0]);
+
+    // Vérifier les bords supérieurs et inférieurs
+    for (j = 0; j < width; j++)
+    {
+        if (tab[0][j] != '1' && tab[0][j] != ' ')
+            main_error("Top border is not enclosed by walls");
+        if (tab[height - 1][j] != '1' && tab[height - 1][j] != ' ')
+            main_error("Bottom border is not enclosed by walls");
+    }
+
+    // Vérifier les bords gauche et droit, ainsi que les cases intérieures
+    for (i = 0; i < height; i++)
+    {
+        if (tab[i][0] != '1' && tab[i][0] != ' ')
+            main_error("Left border is not enclosed by walls");
+        if (tab[i][width - 1] != '1' && tab[i][width - 1] != ' ')
+            main_error("Right border is not enclosed by walls");
+
+        for (j = 0; j < width; j++)
+        {
+            if (tab[i][j] == '0' || tab[i][j] == 'N' || tab[i][j] == 'S' || tab[i][j] == 'E' || tab[i][j] == 'W')
+            {
+                // Vérifier si la case est bien entourée de murs
+                if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+                    main_error("Map is not enclosed by walls");
+                if (tab[i - 1][j] == ' ' || tab[i + 1][j] == ' ' || tab[i][j - 1] == ' ' || tab[i][j + 1] == ' ')
+                    main_error("Map has a hole or is not properly enclosed");
+                if (tab[i - 1][j] != '1' && tab[i - 1][j] != '0' && tab[i - 1][j] != 'N' && tab[i - 1][j] != 'S' && tab[i - 1][j] != 'E' && tab[i - 1][j] != 'W' &&
+                    tab[i + 1][j] != '1' && tab[i + 1][j] != '0' && tab[i + 1][j] != 'N' && tab[i + 1][j] != 'S' && tab[i + 1][j] != 'E' && tab[i + 1][j] != 'W' &&
+                    tab[i][j - 1] != '1' && tab[i][j - 1] != '0' && tab[i][j - 1] != 'N' && tab[i][j - 1] != 'S' && tab[i][j - 1] != 'E' && tab[i][j - 1] != 'W' &&
+                    tab[i][j + 1] != '1' && tab[i][j + 1] != '0' && tab[i][j + 1] != 'N' && tab[i][j + 1] != 'S' && tab[i][j + 1] != 'E' && tab[i][j + 1] != 'W')
+                    main_error("Map is not properly enclosed by walls");
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/28 09:42:41 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:26:00 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,7 @@ void		check_map_presence(char *filename);
 void		check_mapcontent(t_map *map);
 void		validate_map_cell(char cell, int *count_player, t_map *map, int row, int col);
 void		record_player_position(t_map *map, int row, int col, char player);
+void 		map_check_wall(char **tab);
+
 
 #endif
