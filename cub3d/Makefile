@@ -7,6 +7,7 @@ SRCS	=	main.c\
 			srcs/02_parsing_file02.c\
 			srcs/03_check_infofile.c\
 			srcs/04_check_map00.c\
+			srcs/04_check_map01.c\
 			srcs/utils/utils00.c\
 			srcs/utils/utils01.c\
 			srcs/utils/utils02.c\

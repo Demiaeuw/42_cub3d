@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/28 15:26:00 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:37:36 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,14 @@ void		check_map_presence(char *filename);
 void		check_mapcontent(t_map *map);
 void		validate_map_cell(char cell, int *count_player, t_map *map, int row, int col);
 void		record_player_position(t_map *map, int row, int col, char player);
-void 		map_check_wall(char **tab);
+//04
+void 		check_position(int x, int y, int height, int width);
+int 		is_invalid_cell(char c, char replacement);
+int 		is_valid_target(char c, char target);
+void 		flood_fill(char **tab, int x, int y, int height, int width, char target, char replacement);
+void 		allocate_map_copy(char **tab, char ***map_copy, int height);
+void 		check_map_surrounded_by_walls(char **tab, int height, int width);
+void 		map_check_wall(char **tab, int start_x, int start_y);
 
 
 #endif
