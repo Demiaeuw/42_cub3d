@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/29 11:37:36 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:01:29 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_map
 {
 	char	**tab;
 	int		width;
-	int		heinght;
+	int		height;
 	int		color_floor;
 	int		color_ceiling;
 	char	direction_start;
@@ -130,17 +130,13 @@ void		check_colors(char *filename);
 void		check_map_presence(char *filename);
 
 //04
-void		check_mapcontent(t_map *map);
+void		check_mapcontent(t_game *game);
 void		validate_map_cell(char cell, int *count_player, t_map *map, int row, int col);
 void		record_player_position(t_map *map, int row, int col, char player);
 //04
-void 		check_position(int x, int y, int height, int width);
-int 		is_invalid_cell(char c, char replacement);
-int 		is_valid_target(char c, char target);
-void 		flood_fill(char **tab, int x, int y, int height, int width, char target, char replacement);
-void 		allocate_map_copy(char **tab, char ***map_copy, int height);
-void 		check_map_surrounded_by_walls(char **tab, int height, int width);
-void 		map_check_wall(char **tab, int start_x, int start_y);
+int is_valid_neighbor(char **map, int row, int col, int max_width, int max_height);
+void check_map(t_game *game);
 
+//test 
 
 #endif

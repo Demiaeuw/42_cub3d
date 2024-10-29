@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:33:21 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 00:19:10 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:01:24 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	open_file(t_map *map, char *filename, int *fd)
 	*fd = open(filename, O_RDONLY);
 	if (*fd == -1)
 		main_error("Failed to open file");
-	map->heinght = get_map_size(filename);
-	map->tab = (char **)malloc(sizeof(char *) * (map->heinght + 1));
+	map->height = get_map_size(filename);
+	map->tab = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->tab)
 		main_error("Memory allocation failed for map->tab");
 }

@@ -6,14 +6,14 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:13:17 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/29 11:18:16 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:16:46 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
 // Fonction de vérification du contenue de la map 
-void	check_mapcontent(t_map *map)
+void	check_mapcontent(t_game *game)
 {
 	int row;
 	int col;
@@ -21,12 +21,12 @@ void	check_mapcontent(t_map *map)
 
 	row = 0;
 	count_player = 0;
-	while (map->tab[row])
+	while (game->map->tab[row])
 	{
 		col = 0;
-		while (map->tab[row][col])
+		while (game->map->tab[row][col])
 		{
-			validate_map_cell(map->tab[row][col], &count_player, map, row, col);
+			validate_map_cell(game->map->tab[row][col], &count_player, game->map, row, col);
 			col++;
 		}
 		row++;
@@ -35,7 +35,7 @@ void	check_mapcontent(t_map *map)
 		main_error("The map must contain exactly one player.");
 
 	// Appeler la fonction de vérification des murs après avoir validé le contenu de la map
-	map_check_wall(map->tab, map->position_start_x, map->position_start_y);
+	check_map(game);
 }
 
 void validate_map_cell(char cell, int *count_player, t_map *map, int row, int col)

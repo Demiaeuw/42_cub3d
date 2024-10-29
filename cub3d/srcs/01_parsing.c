@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:43:20 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/28 10:03:18 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:36:09 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	main_parsing(int ac, char **av, t_game *game)
 
 	check_infofile(av[1]);  													// Vérification des informations dans le fichier 
 	parsing_file(av[1], game); 													// Ajout des infos aux structures
-	check_mapcontent(game->map);  												// Vérification du contenu de la map
+	display_map_info(game);
+	check_mapcontent(game);  												// Vérification du contenu de la map
 	display_parsed_info(av[1], game);  											// Affichage du parsing
 }
 
@@ -43,7 +44,7 @@ void	initialize_game(t_game *game)
 	
 	game->map->tab = NULL;
 	game->map->width = 0;
-	game->map->heinght = 0;
+	game->map->height = 0;
 	game->map->color_floor = 0;
 	game->map->color_ceiling = 0;
 	game->map->direction_start = '\0';
