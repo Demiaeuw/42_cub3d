@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_safe_malloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/10/15 18:34:23 by kpourcel          #+#    #+#             */
+/*   Updated: 2024/10/15 19:11:38 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+/**
+ * Fonction de création de Malloc avec la vérification
+ */
+void	*safe_malloc(size_t bytes)
 {
-	t_game	*game;
+	void	*ptr;
 
-	main_parsing(ac, av, &game);
+	ptr = malloc(bytes);
+	if (ptr == NULL)
+	{
+		write(1, "Error : malloc\n\n", 17);
+	}
+	return (ptr);
 }

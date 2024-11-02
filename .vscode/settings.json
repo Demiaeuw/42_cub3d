@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"*.c": "c",
-		"cub.h": "c"
+		"cub.h": "c",
+		"memory_resource": "c"
 	}
 }

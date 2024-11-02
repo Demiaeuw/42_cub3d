@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/10/30 10:19:48 by acabarba          #+#    #+#             */
+/*   Updated: 2024/10/30 10:45:36 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "../../include/cub.h"
 
-int	main(int ac, char **av)
+void	message_error(char *str)
 {
-	t_game	*game;
-
-	main_parsing(ac, av, &game);
+	write(2, "\n\033[31mError\033[0m\n\n", 18);
+	write(2, str, ft_strlen(str));
+	write(2, "\n\n", 2);
+	exit(EXIT_FAILURE);
 }

@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/07/19 17:43:17 by acabarba          #+#    #+#             */
+/*   Updated: 2024/07/19 17:44:00 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	t_game	*game;
+	size_t	i;
 
-	main_parsing(ac, av, &game);
+	i = 0;
+	while (i < n && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

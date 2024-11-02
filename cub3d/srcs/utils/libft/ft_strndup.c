@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/08/12 14:04:24 by acabarba          #+#    #+#             */
+/*   Updated: 2024/08/14 00:09:04 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	t_game	*game;
+	char	*copy;
+	size_t	i;
 
-	main_parsing(ac, av, &game);
+	copy = malloc(sizeof(char) * (n + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < n && s1[i])
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
 }

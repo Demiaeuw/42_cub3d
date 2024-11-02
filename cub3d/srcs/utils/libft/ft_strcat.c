@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/07/19 17:39:59 by acabarba          #+#    #+#             */
+/*   Updated: 2024/07/30 12:02:39 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strcat(char *dest, const char *src)
 {
-	t_game	*game;
+	size_t	i;
+	size_t	j;
 
-	main_parsing(ac, av, &game);
+	i = 0;
+	while (dest[i])
+		i++;
+	j = 0;
+	while (src[j])
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }

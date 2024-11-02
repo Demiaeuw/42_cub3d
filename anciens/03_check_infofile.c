@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 00:20:29 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/21 01:12:12 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:48:50 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	check_file_empty(char *filename)
 // Fonction qui check si le fichier contient les paths
 void	check_pathfile(char *filename)
 {
+	//verifier que les path son bien des .xpm
 	int		fd;
 	char	*line;
 	int		north_found = 0;

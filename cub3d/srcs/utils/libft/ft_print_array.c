@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/07/19 18:31:49 by acabarba          #+#    #+#             */
+/*   Updated: 2024/07/30 12:05:45 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
-
-int	main(int ac, char **av)
+#include "libft.h"
+/**
+ * Fonction pour afficher le tableau de char
+ */
+void	ft_print_array(char **array)
 {
-	t_game	*game;
+	int	i;
 
-	main_parsing(ac, av, &game);
+	if (array == NULL)
+	{
+		printf("Aucun argument à afficher.\n");
+		return ;
+	}
+	i = 0;
+	while (array[i])
+	{
+		printf("Argument %d: %s\n", i, array[i]);
+		i++;
+	}
 }

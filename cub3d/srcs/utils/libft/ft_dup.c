@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_dup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <kpourcel@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 11:41:17 by acabarba         ###   ########.fr       */
+/*   Created: 2024/07/23 14:51:30 by acabarba          #+#    #+#             */
+/*   Updated: 2024/10/15 18:57:20 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_dup(int fildes)
 {
-	t_game	*game;
+	int	ret;
 
-	main_parsing(ac, av, &game);
+	ret = dup(fildes);
+	if (ret == -1)
+	{
+		perror("dup error occurred");
+		exit(EXIT_FAILURE);
+	}
+	return (ret);
 }
