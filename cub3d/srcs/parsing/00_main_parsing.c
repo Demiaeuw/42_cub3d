@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:39 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 12:21:50 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:58:58 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void	main_parsing(int ac, char **av, t_game **game)
 	//check fichier existe														ok
 	//check fichier vide														ok
 	check_file(av[1]);
+	//check que la map est bien le dernier element du fichier					ok
+	check_struct_file(av[1]);
 	//init des structures														ok
 	init_game(game);
 	//check presence des 4 path avec les bonnes extension + ajout				ok
 	path_gestion(av[1], game);
-	//check presence des couleur au bon format + ajout
+	//check presence des couleur au bon format + ajout							ok
 	color_gestion(av[1], game);
 	//check map correct + ajout
 	//check si que rien apres la map

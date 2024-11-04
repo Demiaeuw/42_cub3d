@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:56:10 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 10:56:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:36:44 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,66 @@ void	check_file(char *filename)
 	{
 		close(file);
 		message_error("The file is empty");
+	}
+	close(file);
+}
+
+int		its_map(char *line)
+{
+	int	i;
+	
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' '
+			&& line[i] != '1'
+			&& line[i] != '0'
+			&& line[i] != 'N'
+			&& line[i] != 'S'
+			&& line[i] != 'E'
+			&& line[i] != 'W')
+			return (0);
+		return (1);
+	}
+}
+
+void	check_struct_file(char *filename)
+{
+	int		file;
+	char	buffer[BUFFER_SIZE];
+	int		map_start;
+	ssize_t	bytes_read;
+	int		bytes_read;
+	char	*line_start;
+	char	*line_end;
+	
+	file = open(filename, O_RDONLY);
+	
+	map_start = 0;
+	while ((bytes_read = read(file, buffer, sizeof(buffer) - 1)) > 0)
+	{
+		buffer[bytes_read] = '\0';
+		line_start = buffer;\
+		while ((line_end = ft_strchr(line_start, '\n')) != NULL)
+		{
+			*line_end = '\0';
+			if (!map_start)
+			{
+				if (its_map(line_end))
+					map_start = 1;
+			}
+			else
+			{
+				if (ft_strlen(line_start) > 0 && !its_map(line_end))
+					message_error("Extra content found after map");
+			}
+			line_start = line_end + 1;
+		}
+		if (map_start && *line_start != '\0' && !its_map(line_start))
+		{
+			close(file);
+			message_error("Extra content found after map");
+		}
 	}
 	close(file);
 }

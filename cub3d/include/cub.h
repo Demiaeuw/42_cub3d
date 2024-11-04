@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 20:31:36 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:37:09 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	main_parsing(int ac, char **av, t_game **game);
 void	check_argument(int i);
 void	check_fileextension(char *filename);
 void	check_file(char *filename);
+int		its_map(char *line);
+void	check_struct_file(char *filename);
 //02
 void	init_game(t_game **game);
 void	init_info(t_info **info);

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:21:11 by acabarba          #+#    #+#             */
-/*   Updated: 2024/10/30 20:15:37 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:02:35 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	color_gestion(char *filename, t_game **game)
 {
-	//verifier la presence de deux couleurs
-	//verification du format des 2 couleurs
+	//verifier la presence de deux couleurs										ok
+	//verification du format des 2 couleurs										ok
 	check_color(filename);
-	//ajout + mise au format des 2 couleurs pour la mlx
+	//ajout + mise au format des 2 couleurs pour la mlx							ok
 	add_color(filename, game);
 }
 
