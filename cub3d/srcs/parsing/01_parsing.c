@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:23:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:40:44 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	main_parsing(int ac, char **av, t_game **game)
 		message_error("Failed to initialize game structures");
 	//check presence des 4 path avec les bonnes extension + ajout				ok
 	path_gestion(av[1], *game);
-	//check presence des couleur au bon format + ajout							
+	//check presence des couleur au bon format + ajout							ok
 	color_gestion(av[1], *game);
 	// //check map correct + ajout
 	// //check si que rien apres la map

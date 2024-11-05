@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 15:40:34 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:41:54 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_info	*init_info(void)
 {
-	t_info *infos;
+	t_info	*infos;
 
 	infos = (t_info *)malloc(sizeof(t_info));
 	if (!infos)
@@ -28,7 +28,7 @@ t_info	*init_info(void)
 
 t_map	*init_map(void)
 {
-	t_map *map;
+	t_map	*map;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
@@ -45,7 +45,7 @@ t_map	*init_map(void)
 
 t_game	*init_game(void)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)

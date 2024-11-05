@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:11:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:15:16 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:31:43 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_is_overflow(long result, int digit, int sign)
 {
 	if (sign == 1 && result > (LONG_MAX - digit) / 10)
 		return (1);
-	if (sign == -1 && -result < (LONG_MIN + digit) / 10)
+	if (sign == -1 && - result < (LONG_MIN + digit) / 10)
 		return (1);
 	return (0);
 }

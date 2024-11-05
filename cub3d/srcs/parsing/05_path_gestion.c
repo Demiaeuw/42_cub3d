@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:42:40 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:29:11 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:43:53 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	path_gestion(char *filename, t_game *game)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		message_error("Failed to open file");
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		remove_newline(line);
 		if (ft_strncmp(line, "NO ", 3) == 0 && check_extension(line + 3))
@@ -64,10 +65,10 @@ void	path_gestion(char *filename, t_game *game)
 		else if (ft_strncmp(line, "WE ", 3) == 0 && check_extension(line + 3))
 			set_texture_path(&game->infos->path_west, line + 3);
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
-	if (!game->infos->path_north || !game->infos->path_south || 
-		!game->infos->path_east || !game->infos->path_west)
+	if (!game->infos->path_north || !game->infos->path_south
+		|| !game->infos->path_east || !game->infos->path_west)
 		message_error("Missing one or more texture paths");
 }
-

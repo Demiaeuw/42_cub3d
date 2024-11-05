@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:09:43 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:24:59 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:52:10 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int	convert_rgb_to_hex(int r, int g, int b)
 
 void	trim_trailing_whitespace(char *str)
 {
-	int len = strlen(str);
-	while (len > 0 && (str[len - 1] == ' ' || str[len - 1] == '\n' || str[len - 1] == '\t'))
+	int	len;
+
+	len = strlen(str);
+	while (len > 0 && (str[len - 1] == ' ' || str[len - 1] == '\n'
+			|| str[len - 1] == '\t'))
 	{
 		str[len - 1] = '\0';
 		len--;
@@ -29,12 +32,11 @@ void	trim_trailing_whitespace(char *str)
 
 int	validate_and_parse_color(char *color_str)
 {
-	int 	r;
+	int		r;
 	int		g;
 	int		b;
 	char	*endptr;
 
-	// Supprime les espaces en fin de chaîne
 	trim_trailing_whitespace(color_str);
 	r = ft_strtol(color_str, &endptr, 10);
 	if (*endptr != ',' || r < 0 || r > 255)
@@ -50,7 +52,7 @@ int	validate_and_parse_color(char *color_str)
 	return (convert_rgb_to_hex(r, g, b));
 }
 
-static void	check_and_set_color(char *line, int *color, int *is_set, char *type)
+static void	check_set_color(char *line, int *color, int *is_set, char *type)
 {
 	if (ft_strncmp(line, type, 2) == 0 && !*is_set)
 	{
@@ -73,12 +75,13 @@ void	color_gestion(char *filename, t_game *game)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		message_error("Failed to open file");
-
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		check_and_set_color(line, &game->map->color_floor, &floor_set, "F ");
-		check_and_set_color(line, &game->map->color_ceiling, &ceiling_set, "C ");
+		check_set_color(line, &game->map->color_floor, &floor_set, "F ");
+		check_set_color(line, &game->map->color_ceiling, &ceiling_set, "C ");
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!floor_set || !ceiling_set)
