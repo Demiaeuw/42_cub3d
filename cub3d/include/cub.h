@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:21:35 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:12:47 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ int		convert_rgb_to_hex(int r, int g, int b);
 void	trim_trailing_whitespace(char *str);
 int		validate_and_parse_color(char *color_str);
 void	color_gestion(char *filename, t_game *game);
+void	map_gestion(char *filename, t_game *game);
+int		is_valid_map_character(char c);
+void	check_map_characters(char *filename);
+int		count_map_lines(int fd);
+void	copy_map(char *filename, t_game *game);
 
 void 	print_info(t_info *infos);
 void 	print_map(t_map *map);

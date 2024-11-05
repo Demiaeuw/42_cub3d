@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:40:44 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:10:21 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	main_parsing(int ac, char **av, t_game **game)
 	path_gestion(av[1], *game);
 	//check presence des couleur au bon format + ajout							ok
 	color_gestion(av[1], *game);
-	// //check map correct + ajout
-	// //check si que rien apres la map
-	// map_gestion(av[1], game);
-	// //Affichage des infos des structures
+	//check map correct + ajout													ok
+	//check que map valide														
+	map_gestion(av[1], *game);
+	//Affichage des infos des structures
 	print_game_info(*game);
 }

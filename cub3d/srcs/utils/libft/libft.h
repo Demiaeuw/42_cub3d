@@ -22,6 +22,12 @@
 #  define BUFFER_SIZE_GNL 1
 # endif
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 /*				VERIF					*/
 int		ft_isalpha(int c);
 int		ft_is_not_alpha(int c);
@@ -78,11 +84,6 @@ char	*ft_strdup(const char *s);
 void	*safe_malloc(size_t bytes);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 /*				STRUCT					*/
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
 
 /*				LINK TO STRUCTURES			*/
 t_list	*ft_lstnew(void *content);
@@ -95,6 +96,11 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+/*			GET_NEXT_LINE					*/
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+int		ft_strlen_endl(char	*str);
+
 /*			FILES DESCRIPTOR HANDLING		*/
 int		ft_dup(int fildes);
 int		ft_dup2(int fildes, int fildes2);
@@ -106,11 +112,6 @@ char	*ft_strtok(char *str, const char *delim, char **saveptr);
 
 /*			RAJOUT DURANT CUB3D				*/
 int		ft_max(int a, int b);
-
-/*			GET_NEXT_LINE					*/
-char	*get_next_line(int fd);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-int		ft_strlen_endl(char	*str);
 int		ft_isspace(char c);
 long	ft_strtol(const char *str, char **endptr, int base);
 

@@ -8,6 +8,7 @@ SRCS    =   main.c\
 			srcs/parsing/04_init_game.c\
 			srcs/parsing/05_path_gestion.c\
 			srcs/parsing/06_color_gestion.c\
+			srcs/parsing/07_map_gestion.c\
 			srcs/parsing/100_print_struct.c
 
 OBJDIR  = objets

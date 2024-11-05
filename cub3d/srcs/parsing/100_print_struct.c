@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 15:41:54 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:14:49 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void print_map(t_map *map)
 	{
 		printf("  Map Layout:\n");
 		for (int i = 0; map->tab[i] != NULL; i++)
-			printf("    %s\n", map->tab[i]);
+			printf("	%s", map->tab[i]);
 	}
 	else
 	{
 		printf("  Map Layout: (null)\n");
 	}
-	printf("\n");
+	printf("\n\n");
 }
 
 void print_game_info(t_game *game)
