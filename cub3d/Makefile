@@ -1,47 +1,63 @@
-NAME	= cub3d
+NAME    = cub3d
 
-SRCS	=	main.c\
-			srcs/00_error.c\
-			srcs/01_parsing.c\
-			srcs/02_parsing_file01.c\
-			srcs/02_parsing_file02.c\
-			srcs/03_check_infofile.c\
-			srcs/04_check_map00.c\
-			srcs/04_check_map01.c\
-			srcs/utils/utils00.c\
-			srcs/utils/utils01.c\
-			srcs/utils/utils02.c\
-			srcs/utils/utils_parsing.c\
-			srcs/utils/gnl/00_gnl.c\
-			srcs/utils/gnl/01_gnl.c
+SRCS    =   main.c\
+            srcs/parsing/00_parsing_error.c\
+            srcs/parsing/01_parsing.c\
+            srcs/parsing/02_check_argument.c\
+            srcs/parsing/03_check_struct_file.c
 
-OBJDIR	= objets
-OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
+OBJDIR  = objets
+OBJS    = $(SRCS:%.c=$(OBJDIR)/%.o)
 
-# MLX_DIR	= include/minilibx-linux
-# MLX_LIB	= $(MLX_DIR)/libmlx.a
+# Répertoires des librairies
+LIBFT_DIR = srcs/utils/libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-RM		= rm -rf
+MLX_DIR = include/minilibx-linux
+MLX_LIB = $(MLX_DIR)/libmlx.a
 
+# Compilation
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror
+RM      = rm -rf
+
+# Flags pour la minilibX et libft
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
-all: $(NAME)
+all: $(LIBFT) $(MLX_LIB) $(NAME)
+	@echo "✅ Compilation terminée avec succès pour $(NAME)"
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)/srcs/utils/gnl $(OBJDIR)/srcs/utils
+	@mkdir -p $(OBJDIR)/srcs/parsing $(OBJDIR)/srcs/utils
 
 $(OBJS): $(OBJDIR)/%.o : %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJDIR) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
+# Compilation du programme principal
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS)
+
+# Compilation de la libft
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR) > /dev/null
+	@echo "📚 Libft compilée"
+
+# Compilation de la minilibx
+$(MLX_LIB):
+	@$(MAKE) -C $(MLX_DIR) > /dev/null
+	@echo "🎨 MinilibX compilée"
 
 clean:
-	$(RM) $(OBJDIR)
+	@$(RM) $(OBJDIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean > /dev/null
+	@$(MAKE) -C $(MLX_DIR) clean > /dev/null
+	@echo "🧹 Fichiers objets supprimés"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean > /dev/null
+	@$(RM) $(MLX_LIB)
+	@echo "🧼 Nettoyage complet effectué"
 
 re: fclean all

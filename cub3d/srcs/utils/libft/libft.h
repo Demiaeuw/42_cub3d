@@ -17,6 +17,10 @@
 # include <string.h>
 # include <stdio.h>
 
+# ifndef BUFFER_SIZE_GNL
+#  define BUFFER_SIZE_GNL 1
+# endif
+
 /*				VERIF					*/
 int		ft_isalpha(int c);
 int		ft_is_not_alpha(int c);
@@ -101,5 +105,10 @@ char	*ft_strtok(char *str, const char *delim, char **saveptr);
 
 /*			RAJOUT DURANT CUB3D				*/
 int		ft_max(int a, int b);
+
+/*			GET_NEXT_LINE					*/
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+int		ft_strlen_endl(char	*str);
 
 #endif
