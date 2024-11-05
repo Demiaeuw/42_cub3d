@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 15:12:26 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:21:35 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_info
 typedef struct s_map
 {
 	char	**tab;
-	int		width;
 	int		height;
 	int		color_floor;
 	int		color_ceiling;
@@ -69,5 +68,20 @@ void	check_argument(int i);
 void	check_fileextension(char *filename);
 void	check_file(char *filename);
 void	check_struct_file(char *filename);
+t_info	*init_info(void);
+t_map	*init_map(void);
+t_game	*init_game(void);
+int		check_extension(char *path);
+void	set_texture_path(char **destination, char *path);
+void	remove_newline(char *line);
+void	path_gestion(char *filename, t_game *game);
+int		convert_rgb_to_hex(int r, int g, int b);
+void	trim_trailing_whitespace(char *str);
+int		validate_and_parse_color(char *color_str);
+void	color_gestion(char *filename, t_game *game);
+
+void 	print_info(t_info *infos);
+void 	print_map(t_map *map);
+void 	print_game_info(t_game *game);
 
 #endif

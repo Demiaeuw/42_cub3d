@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE_GNL
 #  define BUFFER_SIZE_GNL 1
@@ -110,5 +111,7 @@ int		ft_max(int a, int b);
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 int		ft_strlen_endl(char	*str);
+int		ft_isspace(char c);
+long	ft_strtol(const char *str, char **endptr, int base);
 
 #endif
