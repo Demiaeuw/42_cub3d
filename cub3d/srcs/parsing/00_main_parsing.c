@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:39 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/04 16:58:58 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:22:24 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	main_parsing(int ac, char **av, t_game **game)
 	color_gestion(av[1], game);
 	//check map correct + ajout
 	//check si que rien apres la map
+	map_gestion(av[1], game);
 }

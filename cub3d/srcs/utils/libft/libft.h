@@ -98,4 +98,8 @@ int		ft_dup2(int fildes, int fildes2);
 size_t	ft_strspn(const char *s, const char *accept);
 char	*ft_strpbrk(const char *s, const char *accept);
 char	*ft_strtok(char *str, const char *delim, char **saveptr);
+
+/*			RAJOUT DURANT CUB3D				*/
+int		ft_max(int a, int b);
+
 #endif

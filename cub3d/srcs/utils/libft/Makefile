@@ -61,7 +61,8 @@ SRCS =	ft_atoi.c\
 	ft_strspn.c\
 	ft_strpbrk.c\
 	ft_strtok.c\
-	ft_realloc.c
+	ft_realloc.c\
+	ft_max.c
 
 # Fichiers objets
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
