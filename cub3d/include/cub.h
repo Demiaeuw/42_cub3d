@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 17:12:47 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:13:01 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_map
 	char	direction_start;
 	int		position_start_x;
 	int		position_start_y;
+	int		player_count;
 }	t_map;
 
 // structure principale 
@@ -81,11 +82,23 @@ int		validate_and_parse_color(char *color_str);
 void	color_gestion(char *filename, t_game *game);
 void	map_gestion(char *filename, t_game *game);
 int		is_valid_map_character(char c);
+void	validate_map_line(char *line);
 void	check_map_characters(char *filename);
 int		count_map_lines(int fd);
+void	init_map_space(char *filename, t_game *game);
+void	copy_map_line(t_game *game, char *line, int i, int fd);
+void	fill_map_tab(int fd, t_game *game);
 void	copy_map(char *filename, t_game *game);
+void	check_adjacent(char **tab, int x, int y, int height);
+void	check_map_surrounded_by_walls(t_game *game);
+int		is_player_character(char c);
+void	check_player_position(t_map *map);
+void	update_player_position(char c, int x, int y, t_map *map);
+void	validate_and_save_player_position(t_map *map);
+void	validate_and_save_player_position(t_map *map);
 
 void 	print_info(t_info *infos);
+void	print_map_layout(char **tab);
 void 	print_map(t_map *map);
 void 	print_game_info(t_game *game);
 
