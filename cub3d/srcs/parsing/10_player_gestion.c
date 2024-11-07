@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:15:14 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 14:15:24 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:00:06 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,31 @@ void	validate_and_save_player_position(t_map *map)
 	if (map->player_count == 0)
 		message_error("No player found in the map");
 }
+
+void	player_struct_start(t_game *game)
+{
+	game->player->x = (float)game->map->position_start_x + 0.5;
+	game->player->y = (float)game->map->position_start_y + 0.5;
+
+	if (game->map->direction_start == 'N')
+	{
+		game->player->direction_x = 0.0;
+		game->player->direction_y = -1.0;
+	}
+	else if (game->map->direction_start == 'S')
+	{
+		game->player->direction_x = 0.0;
+		game->player->direction_y = 1.0;
+	}
+	else if (game->map->direction_start == 'E')
+	{
+		game->player->direction_x = 1.0;
+		game->player->direction_y = 0.0;
+	}
+	else if (game->map->direction_start == 'W')
+	{
+		game->player->direction_x = -1.0;
+		game->player->direction_y = 0.0;
+	}
+}
+

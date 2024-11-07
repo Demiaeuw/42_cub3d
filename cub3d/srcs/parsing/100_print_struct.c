@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 14:14:18 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:56:38 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ void	print_map_layout(char **tab)
 	}
 }
 
+void	print_player(t_player *player)
+{
+	printf(GREEN "Player:\n" RESET);
+	printf("  Position X: %.2f\n", player->x);
+	printf("  Position Y: %.2f\n", player->y);
+	printf("  Direction X: %.2f\n", player->direction_x);
+	printf("  Direction Y: %.2f\n", player->direction_y);
+	printf("\n");
+}
+
 void	print_map(t_map *map)
 {
 	printf(GREEN "Map:\n" RESET);
@@ -85,11 +95,19 @@ void	print_game_info(t_game *game)
 		printf("  Map Address: %p\n", (void *)game->map);
 	else
 		printf("  Map Address: (null)\n");
+	if (game->player != NULL)
+		printf("  Player Address: %p\n", (void *)game->player);
+	else
+		printf("  Player Address: (null)\n");
 	printf("\n");
 	if (game->infos != NULL)
 		print_info(game->infos);
 	else
 		printf(GREEN "Infos:\n" RESET "  Infos: (null)\n");
+	if (game->player != NULL)
+		print_player(game->player);
+	else
+		printf(GREEN "Player:\n" RESET "  Player: (null)\n");
 	if (game->map != NULL)
 		print_map(game->map);
 	else

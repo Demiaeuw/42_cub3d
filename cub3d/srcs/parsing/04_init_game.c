@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 14:11:45 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:52:19 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,31 @@ t_game	*init_game(void)
 		return (NULL);
 	game->infos = init_info();
 	game->map = init_map();
-	if (!game->infos || !game->map)
+	game->player = init_player();
+	if (!game->infos || !game->map || !game->player)
 	{
 		free(game->infos);
 		free(game->map);
+		free(game->player);
 		free(game);
 		return (NULL);
 	}
 	return (game);
+}
+
+t_player	*init_player(void)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player));
+	if (!player)
+	{
+		message_error("allocation mémoire pour le joueur");
+		return (NULL);
+	}
+	player->x = 0.0;
+	player->y = 0.0;
+	player->direction_x = 1.0;
+	player->direction_y = 0.0;
+	return (player);
 }

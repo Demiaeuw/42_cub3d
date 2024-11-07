@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 14:17:52 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:01:01 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	main_parsing(int ac, char **av, t_game **game)
 	//check map correct + ajout													ok
 	//check que map valide														ok								
 	map_gestion(av[1], *game);
+	//maj des infos du player (position / direction)							ok
+	player_struct_start(*game);
 	//Affichage des infos des structures
 	print_game_info(*game);
 }
