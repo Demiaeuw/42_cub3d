@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:09:43 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:52:10 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:56:06 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	validate_and_parse_color(char *color_str)
 	return (convert_rgb_to_hex(r, g, b));
 }
 
-static void	check_set_color(char *line, int *color, int *is_set, char *type)
+void	check_set_color(char *line, int *color, int *is_set, char *type)
 {
 	if (ft_strncmp(line, type, 2) == 0 && !*is_set)
 	{
 		*color = validate_and_parse_color(line + 2);
 		if (*color == -1)
-			message_error("Invalid color format");
+			message_error("Invalid color format", NULL);
 		*is_set = 1;
 	}
 }
@@ -74,7 +74,7 @@ void	color_gestion(char *filename, t_game *game)
 	ceiling_set = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to open file");
+		message_error("Failed to open file", game);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -85,5 +85,5 @@ void	color_gestion(char *filename, t_game *game)
 	}
 	close(fd);
 	if (!floor_set || !ceiling_set)
-		message_error("Missing floor or ceiling color in file");
+		message_error("Missing floor or ceiling color in file", game);
 }

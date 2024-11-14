@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:55:45 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:36:21 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:41:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_struct_file(char *filename)
 	found_map = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to open file");
+		message_error("Failed to open file", NULL);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -32,12 +32,12 @@ void	check_struct_file(char *filename)
 		{
 			free(line);
 			close(fd);
-			message_error("Map is not the last element");
+			message_error("Map is not the last element", NULL);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!found_map)
-		message_error("Map not found in file");
+		message_error("Map not found in file", NULL);
 }

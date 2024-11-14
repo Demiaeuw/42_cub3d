@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 17:14:23 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:05:39 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,24 @@
 # ifdef __linux__
 #  include <X11/X.h>
 #  include <X11/keysym.h>
+#  define KEY_W 119
+#  define KEY_A 97
+#  define KEY_S 115
+#  define KEY_D 100
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
 # elif __APPLE__
 #  include <ApplicationServices/ApplicationServices.h>
-#  define KEY_LEFT 123
-#  define KEY_RIGHT 124
+#  define KEY_W 13
+#  define KEY_A 0
+#  define KEY_S 1
+#  define KEY_D 2
+#  define KEY_LEFT
+#  define KEY_RIGHT
+#  define KEY_UP
+#  define KEY_DOWN
 # endif
 
 # define BUFFER_SIZE 1024
@@ -75,11 +87,17 @@ typedef struct s_game
 }	t_game;
 
 //GAMEPLAY
-void	move_player(t_player *player, float delta_x, float delta_y);
-void	handle_movement(int keycode, t_game *game);
+void		gameplay(t_event_list *game);
+void		move_player(t_player *player, float delta_x, float delta_y);
+void		handle_movement(int keycode, t_game *game);
+void		rotate_camera(t_player *player, float angle);
+void		handle_camera_rotation(int keycode, t_game *game);
+void		cleanup_and_exit(t_game *game);
 
 //PARSING
-void		message_error(char *str);
+void		message_error(char *str, t_game *game);
+void		free_map_tab(t_map *map);
+void		error_clean_exit(t_game *game);
 void		main_parsing(int ac, char **av, t_game **game);
 void		check_argument(int i);
 void		check_fileextension(char *filename);
@@ -90,17 +108,18 @@ t_map		*init_map(void);
 t_game		*init_game(void);
 t_player	*init_player(void);
 int			check_extension(char *path);
-void		set_texture_path(char **destination, char *path);
+void		set_texture_path(char **destination, char *path, t_game *game);
 void		remove_newline(char *line);
 void		path_gestion(char *filename, t_game *game);
 int			convert_rgb_to_hex(int r, int g, int b);
 void		trim_trailing_whitespace(char *str);
 int			validate_and_parse_color(char *color_str);
+void		check_set_color(char *line, int *color, int *is_set, char *type);
 void		color_gestion(char *filename, t_game *game);
 void		map_gestion(char *filename, t_game *game);
 int			is_valid_map_character(char c);
-void		validate_map_line(char *line);
-void		check_map_characters(char *filename);
+void		validate_map_line(char *line, t_game *game);
+void		check_map_characters(char *filename, t_game *game);
 int			count_map_lines(int fd);
 void		init_map_space(char *filename, t_game *game);
 void		copy_map_line(t_game *game, char *line, int i, int fd);
@@ -109,10 +128,10 @@ void		copy_map(char *filename, t_game *game);
 void		check_adjacent(char **tab, int x, int y, int height);
 void		check_map_surrounded_by_walls(t_game *game);
 int			is_player_character(char c);
-void		check_player_position(t_map *map);
-void		update_player_position(char c, int x, int y, t_map *map);
-void		validate_and_save_player_position(t_map *map);
-void		validate_and_save_player_position(t_map *map);
+void		check_player_position(t_game *game);
+void		update_player_position(char c, int x, int y, t_game *game);
+void		validate_and_save_player_position(t_game *game);
+void		validate_and_save_player_position(t_game *game);
 void		player_struct_start(t_game *game);
 
 void 		print_info(t_info *infos);

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 16:52:19 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:40:18 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_player	*init_player(void)
 	player = malloc(sizeof(t_player));
 	if (!player)
 	{
-		message_error("allocation mémoire pour le joueur");
+		message_error("allocation mémoire pour le joueur", NULL);
 		return (NULL);
 	}
 	player->x = 0.0;

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:42:40 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:43:53 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:42:18 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_extension(char *path)
 	return (1);
 }
 
-void	set_texture_path(char **destination, char *path)
+void	set_texture_path(char **destination, char *path, t_game *game)
 {
 	if (*destination != NULL)
 	{
@@ -31,7 +31,7 @@ void	set_texture_path(char **destination, char *path)
 	*destination = ft_strdup(path);
 	if (*destination == NULL)
 	{
-		message_error("Failed to allocate memory for texture path");
+		message_error("Failed to allocate memory for texture path", game);
 	}
 }
 
@@ -51,24 +51,24 @@ void	path_gestion(char *filename, t_game *game)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to open file");
+		message_error("Failed to open file", game);
 	line = get_next_line(fd);
 	while (line)
 	{
 		remove_newline(line);
 		if (ft_strncmp(line, "NO ", 3) == 0 && check_extension(line + 3))
-			set_texture_path(&game->infos->path_north, line + 3);
+			set_texture_path(&game->infos->path_north, line + 3, game);
 		else if (ft_strncmp(line, "SO ", 3) == 0 && check_extension(line + 3))
-			set_texture_path(&game->infos->path_south, line + 3);
+			set_texture_path(&game->infos->path_south, line + 3, game);
 		else if (ft_strncmp(line, "EA ", 3) == 0 && check_extension(line + 3))
-			set_texture_path(&game->infos->path_east, line + 3);
+			set_texture_path(&game->infos->path_east, line + 3, game);
 		else if (ft_strncmp(line, "WE ", 3) == 0 && check_extension(line + 3))
-			set_texture_path(&game->infos->path_west, line + 3);
+			set_texture_path(&game->infos->path_west, line + 3, game);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!game->infos->path_north || !game->infos->path_south
 		|| !game->infos->path_east || !game->infos->path_west)
-		message_error("Missing one or more texture paths");
+		message_error("Missing one or more texture paths", game);
 }

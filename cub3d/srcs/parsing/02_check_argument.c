@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:53:07 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/05 16:34:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:40:52 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	check_argument(int i)
 {
 	if (i != 2)
-		message_error("Usage : ./cub3d <map_file.cub>");
+		message_error("Usage : ./cub3d <map_file.cub>", NULL);
 }
 
 //check .cub
@@ -26,7 +26,7 @@ void	check_fileextension(char *filename)
 
 	dot = ft_strrchr(filename, '.');
 	if (dot == NULL || *(dot + 1) == '\0' || ft_strcmp(dot + 1, "cub") != 0)
-		message_error("Invalid file extension. The file must have a .cub");
+		message_error("Invalid file extension. The file must have .cub", NULL);
 }
 
 //check fichier existe
@@ -39,14 +39,14 @@ void	check_file(char *filename)
 
 	dot = ft_strrchr(filename, '.');
 	if (dot == NULL || *(dot + 1) == '\0' || ft_strcmp(dot + 1, "cub") != 0)
-		message_error("Invalid file extension. The file must have a .cub");
+		message_error("Invalid file extension. The file must have .cub", NULL);
 	file = open(filename, O_RDONLY);
 	if (file == -1)
-		message_error("Failed to open file");
+		message_error("Failed to open file", NULL);
 	if (read(file, buffer, 1) == 0)
 	{
 		close(file);
-		message_error("The file is empty");
+		message_error("The file is empty", NULL);
 	}
 	close(file);
 }

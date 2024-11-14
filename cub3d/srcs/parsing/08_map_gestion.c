@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:49:02 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 13:49:30 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:44:27 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	init_map_space(char *filename, t_game *game)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to open file");
+		message_error("Failed to open file", game);
 	game->map->height = count_map_lines(fd);
 	close(fd);
 	game->map->tab = (char **)malloc((game->map->height + 1) * sizeof(char *));
 	if (!game->map->tab)
-		message_error("Memory allocation failed for map");
+		message_error("Memory allocation failed for map", game);
 }
 
 void	copy_map_line(t_game *game, char *line, int i, int fd)
@@ -33,7 +33,7 @@ void	copy_map_line(t_game *game, char *line, int i, int fd)
 	{
 		free(line);
 		close(fd);
-		message_error("Memory allocation failed for map line");
+		message_error("Memory allocation failed for map line", game);
 	}
 }
 
@@ -69,7 +69,7 @@ void	copy_map(char *filename, t_game *game)
 	init_map_space(filename, game);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to reopen file");
+		message_error("Failed to reopen file", game);
 	fill_map_tab(fd, game);
 	close(fd);
 }
@@ -80,12 +80,12 @@ void	check_adjacent(char **tab, int x, int y, int height)
 
 	width = ft_strlen(tab[y]);
 	if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
-		message_error("Map is not surrounded by walls");
+		message_error("Map is not surrounded by walls", NULL);
 	if (tab[y][x - 1] == ' ' || tab[y][x + 1] == ' '
 		|| tab[y - 1][x] == ' ' || tab[y + 1][x] == ' '
 		|| tab[y][x - 1] == '\t' || tab[y][x + 1] == '\t'
 		|| tab[y - 1][x] == '\t' || tab[y + 1][x] == '\t'
 		|| tab[y][x - 1] == '\0' || tab[y][x + 1] == '\0'
 		|| tab[y - 1][x] == '\0' || tab[y + 1][x] == '\0')
-		message_error("Map is not surrounded by walls");
+		message_error("Map is not surrounded by walls", NULL);
 }

@@ -6,9 +6,13 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:25 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 17:02:38 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:05:26 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
+void	gameplay(t_event_list *game)
+{
+	(void)game;
+}

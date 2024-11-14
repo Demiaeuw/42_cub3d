@@ -1,47 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_parsing_error.c                                 :+:      :+:    :+:   */
+/*   03_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 14:49:24 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:53:32 by acabarba         ###   ########.fr       */
+/*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
+/*   Updated: 2024/11/14 19:59:17 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
-void	message_error(char *str, t_game *game)
+void	cleanup_and_exit(t_game *game)
 {
-	write(2, "\n\033[31mError\033[0m\n\n", 18);
-	write(2, str, ft_strlen(str));
-	write(2, "\n\n", 2);
-	error_clean_exit(game);
-	exit(EXIT_FAILURE);
-}
-
-void	free_map_tab(t_map *map)
-{
-	int	i;
-
-	if (map && map->tab)
-	{
-		i = 0;
-		while (i < map->height)
-		{
-			free(map->tab[i]);
-			i++;
-		}
-		free(map->tab);
-	}
-}
-
-void	error_clean_exit(t_game *game)
-{
-	if (!game)
-		return ;
-	if (game && game->infos)
+	if (game->infos)
 	{
 		free(game->infos->path_north);
 		free(game->infos->path_south);
@@ -49,13 +22,19 @@ void	error_clean_exit(t_game *game)
 		free(game->infos->path_west);
 		free(game->infos);
 	}
-	if (game && game->map)
+	if (game->map)
 	{
 		free_map_tab(game->map);
 		free(game->map);
 	}
-	if (game && game->player)
+	if (game->player)
 		free(game->player);
-	if (game)
-		free(game);
+
+	// Libération de la fenêtre avec MinilibX
+	// if (game->mlx_ptr && game->win_ptr)
+	// {
+	//     mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	// }
+	free(game);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:53:35 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 14:05:27 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:46:42 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	map_gestion(char *filename, t_game *game)
 {
-	check_map_characters(filename);
+	check_map_characters(filename, game);
 	copy_map(filename, game);
 	check_map_surrounded_by_walls(game);
-	check_player_position(game->map);
-	validate_and_save_player_position(game->map);
+	check_player_position(game);
+	validate_and_save_player_position(game);
 }
 
 int	is_valid_map_character(char c)
@@ -28,7 +28,7 @@ int	is_valid_map_character(char c)
 		|| c == '\n' || c == '\0');
 }
 
-void	validate_map_line(char *line)
+void	validate_map_line(char *line, t_game *game)
 {
 	int	i;
 
@@ -38,13 +38,13 @@ void	validate_map_line(char *line)
 		if (!is_valid_map_character(line[i]))
 		{
 			free(line);
-			message_error("Invalid character in map");
+			message_error("Invalid character in map", game);
 		}
 		i++;
 	}
 }
 
-void	check_map_characters(char *filename)
+void	check_map_characters(char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
@@ -53,7 +53,7 @@ void	check_map_characters(char *filename)
 	is_map_section = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		message_error("Failed to open file");
+		message_error("Failed to open file", game);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -61,7 +61,7 @@ void	check_map_characters(char *filename)
 				|| *line == ' ' || *line == '\t'))
 			is_map_section = 1;
 		if (is_map_section)
-			validate_map_line(line);
+			validate_map_line(line, game);
 		free(line);
 		line = get_next_line(fd);
 	}
