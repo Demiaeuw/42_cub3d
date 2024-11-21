@@ -5,6 +5,7 @@ SRCS	=	main.c\
 			srcs/gameplay/01_deplacements.c\
 			srcs/gameplay/02_aim.c\
 			srcs/gameplay/03_exit.c\
+			srcs/minilibx/00_init_mlx.c\
 			srcs/parsing/00_parsing_error.c\
 			srcs/parsing/01_parsing.c\
 			srcs/parsing/02_check_argument.c\
@@ -41,7 +42,7 @@ all: $(LIBFT) $(MLX_LIB) $(NAME)
 	@echo "✅ Compilation terminée avec succès pour $(NAME)"
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR)/srcs/parsing $(OBJDIR)/srcs/utils $(OBJDIR)/srcs/gameplay
+	@mkdir -p $(OBJDIR)/srcs/parsing $(OBJDIR)/srcs/utils $(OBJDIR)/srcs/gameplay $(OBJDIR)/srcs/minilibx
 
 
 $(OBJS): $(OBJDIR)/%.o : %.c | $(OBJDIR)

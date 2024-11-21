@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/07 16:56:38 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:23:46 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
 
+/**
+ * - Affiche les chemins des textures (North, South, East, West).
+ * - Indique "(null)" si un chemin n'est pas défini.
+ * - Ajoute un titre coloré "Infos:" en vert.
+ */
 void	print_info(t_info *infos)
 {
 	printf(GREEN "Infos:\n" RESET);
@@ -37,6 +42,11 @@ void	print_info(t_info *infos)
 	printf("\n");
 }
 
+/**
+ * - Affiche chaque ligne du tableau de la carte.
+ * - Parcourt le tableau jusqu'à rencontrer une valeur NULL.
+ * - Indente chaque ligne affichée pour améliorer la lisibilité.
+ */
 void	print_map_layout(char **tab)
 {
 	int	i;
@@ -49,6 +59,12 @@ void	print_map_layout(char **tab)
 	}
 }
 
+/**
+ * - Affiche les informations du joueur.
+ * - Montre les coordonnées X et Y de la position du joueur.
+ * - Affiche les composantes X et Y de la direction du joueur.
+ * - Ajoute un titre coloré "Player:" en vert.
+ */
 void	print_player(t_player *player)
 {
 	printf(GREEN "Player:\n" RESET);
@@ -59,6 +75,16 @@ void	print_player(t_player *player)
 	printf("\n");
 }
 
+/**
+ * - Affiche les informations générales de la carte :
+ *   - Hauteur.
+ *   - Couleurs du sol et du plafond.
+ *   - Nombre de joueurs détectés.
+ *   - Direction de départ.
+ *   - Position de départ (X, Y).
+ * - Affiche le contenu du tableau de la carte si disponible.
+ * - Ajoute un titre coloré "Map:" en vert.
+ */
 void	print_map(t_map *map)
 {
 	printf(GREEN "Map:\n" RESET);
@@ -84,6 +110,15 @@ void	print_map(t_map *map)
 	printf("\n\n");
 }
 
+/**
+ * - Affiche les adresses des structures principales (`infos`, `map`, `player`).
+ * - Si les structures sont non nulles, affiche leurs contenus en utilisant :
+ *   - `print_info` pour les textures.
+ *   - `print_player` pour les informations du joueur.
+ *   - `print_map` pour les détails de la carte.
+ * - Ajoute des titres colorés ("Game:", "Infos:", "Player:", "Map:") pour une
+ *   meilleure lisibilité.
+ */
 void	print_game_info(t_game *game)
 {
 	printf(GREEN "Game:\n" RESET);

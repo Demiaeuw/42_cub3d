@@ -6,12 +6,20 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:49:02 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:44:27 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:19:35 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
+/**
+ * Initialise l'espace mémoire pour la carte dans la structure `t_map`.
+ * Compte le nombre de lignes dans la section de la carte du fichier pour
+ * définir sa hauteur, puis alloue un tableau de chaînes de caractères
+ * avec une ligne supplémentaire pour marquer la fin. Affiche un message
+ * d'erreur et quitte le programme en cas d'échec d'ouverture du fichier
+ * ou d'allocation de mémoire.
+ */
 void	init_map_space(char *filename, t_game *game)
 {
 	int	fd;
@@ -26,6 +34,12 @@ void	init_map_space(char *filename, t_game *game)
 		message_error("Memory allocation failed for map", game);
 }
 
+/**
+ * Copie une ligne de la carte dans le tableau `tab` de la structure `t_map`.
+ * Alloue dynamiquement la mémoire pour la ligne avec `strdup`. Si l'allocation
+ * échoue, libère la ligne, ferme le fichier et affiche un message d'erreur
+ * avant de quitter le programme.
+ */
 void	copy_map_line(t_game *game, char *line, int i, int fd)
 {
 	game->map->tab[i] = strdup(line);
@@ -37,6 +51,17 @@ void	copy_map_line(t_game *game, char *line, int i, int fd)
 	}
 }
 
+/**
+ * Remplit le tableau `tab` de la structure `t_map` 
+ * avec les lignes de la carte
+ * extraites du fichier. Identifie le début de la section de 
+ * la carte en recherchant
+ * des lignes commençant par '1', '0', un espace ou une 
+ * tabulation. Chaque ligne de
+ * la carte est copiée dans le tableau via `copy_map_line`.
+ *  Ajoute un pointeur NULL
+ * à la fin du tableau pour marquer sa fin.
+ */
 void	fill_map_tab(int fd, t_game *game)
 {
 	char	*line;
@@ -62,6 +87,13 @@ void	fill_map_tab(int fd, t_game *game)
 	game->map->tab[i] = NULL;
 }
 
+/**
+ * Copie les lignes de la carte d'un fichier dans la structure `t_map`.
+ * Initialise l'espace mémoire pour la carte avec `init_map_space`, rouvre
+ * le fichier pour lire la carte, et remplit le tableau `tab` avec 
+ * `fill_map_tab`. Affiche un message d'erreur et quitte le programme en
+ * cas d'échec lors de la réouverture du fichier.
+ */
 void	copy_map(char *filename, t_game *game)
 {
 	int	fd;
@@ -74,6 +106,12 @@ void	copy_map(char *filename, t_game *game)
 	close(fd);
 }
 
+/**
+ * Vérifie que la case (x, y) de la carte est correctement entourée de murs.
+ * Si la case est sur le bord de la carte ou adjacente à un espace, une
+ * tabulation ou un caractère de fin de ligne, affiche un message d'erreur
+ * et quitte le programme, indiquant que la carte n'est pas entourée de murs.
+ */
 void	check_adjacent(char **tab, int x, int y, int height)
 {
 	int		width;

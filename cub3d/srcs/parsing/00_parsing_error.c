@@ -6,12 +6,16 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:49:24 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:53:32 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:09:29 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
+/**
+ * Affiche un message d'erreur en rouge, libère les ressources,
+ * et quitte le programme proprement.
+ */
 void	message_error(char *str, t_game *game)
 {
 	write(2, "\n\033[31mError\033[0m\n\n", 18);
@@ -20,6 +24,11 @@ void	message_error(char *str, t_game *game)
 	error_clean_exit(game);
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * Libère la mémoire allouée pour le tableau de la carte 
+ * ainsi que chaque ligne qu'il contient.
+ */
 
 void	free_map_tab(t_map *map)
 {
@@ -36,6 +45,11 @@ void	free_map_tab(t_map *map)
 		free(map->tab);
 	}
 }
+
+/**
+ * Libère toutes les ressources allouées associées à la structure `t_game`
+ * et à ses sous-structures en cas d'erreur.
+ */
 
 void	error_clean_exit(t_game *game)
 {

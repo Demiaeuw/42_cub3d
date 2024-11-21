@@ -6,20 +6,28 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:53:07 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:40:52 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:10:31 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
-//check nombre d'argument
+/**
+ * Vérifie que le programme reçoit exactement deux arguments.
+ * Affiche un message d'erreur et quitte si ce n'est pas le cas.
+ */
+
 void	check_argument(int i)
 {
 	if (i != 2)
 		message_error("Usage : ./cub3d <map_file.cub>", NULL);
 }
 
-//check .cub
+/**
+ * Vérifie que le fichier possède une extension valide `.cub`.
+ * Affiche un message d'erreur et quitte si l'extension est incorrecte.
+ */
+
 void	check_fileextension(char *filename)
 {
 	char	*dot;
@@ -29,8 +37,11 @@ void	check_fileextension(char *filename)
 		message_error("Invalid file extension. The file must have .cub", NULL);
 }
 
-//check fichier existe
-//check fichier vide
+/**
+ * Vérifie que le fichier est accessible, possède une extension `.cub` valide,
+ * et n'est pas vide. Affiche un message d'erreur et quitte en cas d'échec.
+ */
+
 void	check_file(char *filename)
 {
 	int		file;

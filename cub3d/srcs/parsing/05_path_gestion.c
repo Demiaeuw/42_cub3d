@@ -6,12 +6,16 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:42:40 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:42:18 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:26:35 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
+/**
+ * Vérifie si le chemin de fichier donné possède l'extension `.xpm`.
+ * Retourne 1 si l'extension est valide, 0 sinon.
+ */
 int	check_extension(char *path)
 {
 	int	len;
@@ -22,6 +26,12 @@ int	check_extension(char *path)
 	return (1);
 }
 
+/**
+ * Définit le chemin d'une texture en dupliquant la chaîne `path` 
+ * et en la stockant dans `destination`. Libère la mémoire précédente
+ * si `destination` contient déjà une valeur. En cas d'échec d'allocation,
+ * affiche un message d'erreur et quitte le programme.
+ */
 void	set_texture_path(char **destination, char *path, t_game *game)
 {
 	if (*destination != NULL)
@@ -35,6 +45,10 @@ void	set_texture_path(char **destination, char *path, t_game *game)
 	}
 }
 
+/**
+ * Supprime le caractère de nouvelle ligne (`\n`) à la fin de la chaîne `line`,
+ * si celui-ci est présent.
+ */
 void	remove_newline(char *line)
 {
 	int	len;
@@ -44,6 +58,14 @@ void	remove_newline(char *line)
 		line[len - 1] = '\0';
 }
 
+/**
+ * Gère les chemins des textures en lisant le fichier de configuration.
+ * Identifie les lignes correspondant aux textures (NO, SO, EA, WE) et 
+ * vérifie si leurs chemins possèdent une extension valide `.xpm`.
+ * Définit les chemins dans la structure `t_game` à l'aide de `set_texture_path`.
+ * Affiche une erreur et quitte si un chemin de
+ * texture est manquant ou si le fichier est inaccessible.
+ */
 void	path_gestion(char *filename, t_game *game)
 {
 	int		fd;

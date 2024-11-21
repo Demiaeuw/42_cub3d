@@ -4,6 +4,7 @@
 		"cub.h": "c",
 		"memory_resource": "c",
 		"random": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"x.h": "c"
 	}
 }

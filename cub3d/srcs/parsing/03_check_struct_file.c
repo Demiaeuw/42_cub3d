@@ -6,13 +6,17 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:55:45 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:41:03 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:10:53 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
-//check que la map est bien le dernier element du fichier
+/**
+ * Vérifie que la carte est le dernier élément du fichier `.cub`.
+ * Si des éléments sont présents après la carte ou si aucune carte n'est trouvée,
+ * affiche un message d'erreur et quitte le programme.
+ */
 void	check_struct_file(char *filename)
 {
 	int		fd;

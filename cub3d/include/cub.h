@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 20:05:39 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:32:48 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include "../srcs/utils/libft/libft.h"
 # include "minilibx-linux/mlx_int.h"
+# include "minilibx-linux/mlx.h"
 
 # ifdef __linux__
 #  include <X11/X.h>
@@ -34,6 +35,7 @@
 #  define KEY_RIGHT 65363
 #  define KEY_UP 65362
 #  define KEY_DOWN 65364
+#  define KEY_ESC 65307
 # elif __APPLE__
 #  include <ApplicationServices/ApplicationServices.h>
 #  define KEY_W 13
@@ -44,6 +46,7 @@
 #  define KEY_RIGHT
 #  define KEY_UP
 #  define KEY_DOWN
+#  define KEY_ESC 53
 # endif
 
 # define BUFFER_SIZE 1024
@@ -83,7 +86,8 @@ typedef struct s_game
 	t_info		*infos;
 	t_map		*map;
 	t_player	*player;
-	// ajout mlx
+	void		*mlx;
+	void		*win;
 }	t_game;
 
 //GAMEPLAY
@@ -92,7 +96,13 @@ void		move_player(t_player *player, float delta_x, float delta_y);
 void		handle_movement(int keycode, t_game *game);
 void		rotate_camera(t_player *player, float angle);
 void		handle_camera_rotation(int keycode, t_game *game);
+void		cleanup_resources(t_game *game);
 void		cleanup_and_exit(t_game *game);
+int 		handle_keypress(int keycode, t_game *game);
+int 		handle_close(t_game *game);
+
+//MINILIBX
+int	init_mlx_and_window(t_game *game);
 
 //PARSING
 void		message_error(char *str, t_game *game);
@@ -105,8 +115,8 @@ void		check_file(char *filename);
 void		check_struct_file(char *filename);
 t_info		*init_info(void);
 t_map		*init_map(void);
-t_game		*init_game(void);
 t_player	*init_player(void);
+t_game		*init_game(void);
 int			check_extension(char *path);
 void		set_texture_path(char **destination, char *path, t_game *game);
 void		remove_newline(char *line);

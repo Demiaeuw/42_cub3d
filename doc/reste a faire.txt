@@ -1,11 +1,13 @@
 Plan d’implémentation pour la suite
 
+    ok
     Initialisation de la MinilibX et Création de la Fenêtre
         - Initialisez la bibliothèque MinilibX pour gérer l’affichage de la fenêtre.
         - Créez la fenêtre principale dans laquelle le rendu se fera.
         - Vérifiez que l’initialisation est réussie et affichez une erreur claire en cas de problème.
         - Ajoutez une fonction de nettoyage pour libérer la mémoire et fermer la fenêtre.
 
+    pas ok
     Implémentation du Ray-Casting
         - Étape de préparation : Initialisez les paramètres du ray-casting, notamment les positions et directions initiales du joueur (déjà stockées dans t_player).
         - Calcul des rayons : Pour chaque pixel horizontal de la fenêtre, calculez le rayon correspondant en utilisant la direction du joueur.
@@ -13,24 +15,29 @@ Plan d’implémentation pour la suite
         - Projection murale : Calculez la hauteur du mur à afficher en fonction de la distance du rayon, et dessinez une ligne verticale.
         - Texturage des murs : Utilisez les chemins des textures (stockés dans t_info) pour afficher la texture correcte sur chaque mur en fonction de la direction de la face (N, S, E, W).
 
+    pas ok
     Gestion des Textures et des Couleurs
         - Chargez les textures depuis les fichiers indiqués dans t_info en utilisant les fonctions de MinilibX.
         - Implémentez un système pour différencier les faces du mur en fonction de la direction (Nord, Sud, Est, Ouest) et appliquez la bonne texture.
         - Intégrez les couleurs pour le plafond et le sol, en remplissant la partie supérieure et inférieure de l’écran respectivement avec color_ceiling et color_floor de t_map.
 
+    pas ok
     Gestion des Événements Utilisateur
         - Déplacements du joueur (W, A, S, D) : Implémentez les mouvements avant/arrière et latéraux en fonction de la direction du joueur. Vérifiez que le joueur ne traverse pas les murs.
         - Rotation de la caméra (flèches gauche/droite) : Implémentez les rotations pour changer la direction du joueur sans déplacer sa position.
         - Fermeture de la fenêtre (ESC et croix rouge) : Ajoutez les événements pour fermer proprement le programme et libérer la mémoire allouée.
 
+    pas ok
     Gestion des collisions
         - Ajoutez des vérifications dans les déplacements pour détecter les murs. Empêchez le joueur de traverser les 1 dans la map.
         - Si la carte contient des zones inaccessibles, assurez-vous que le joueur ne peut pas y accéder.
 
+    pas ok
     Optimisations et Corrections
         - Testez différentes cartes pour vérifier la robustesse du ray-casting, la gestion des collisions, et l’affichage des textures.
         - Optimisez le code pour réduire l'usage de la CPU (évitez les calculs redondants, et gardez les valeurs répétées en cache si nécessaire).
 
+    pas ok
     Affichage des Informations de Debugging (Facultatif)
         - Ajoutez des fonctions pour afficher en temps réel les informations de position et de direction du joueur dans le terminal ou dans 
 		une zone de la fenêtre. Cela aidera à vérifier la bonne gestion des déplacements et des rotations.

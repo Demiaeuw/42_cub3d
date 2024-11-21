@@ -6,11 +6,18 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/14 19:38:51 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/21 05:09:42 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
+
+/**
+ * Effectue le parsing principal du fichier de configuration `.cub`.
+ * Vérifie la validité des arguments et du fichier, initialise les structures du jeu,
+ * et remplit les données nécessaires, notamment les textures, les couleurs,
+ * la carte, et les informations du joueur.
+ */
 
 void	main_parsing(int ac, char **av, t_game **game)
 {
