@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 12:55:37 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:50:54 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int 		handle_keypress(int keycode, t_game *game);
 int 		handle_close(t_game *game);
 
 //MINILIBX
+void	init_dela_mlx(t_game *game);
 int		init_mlx_and_window(t_game *game);
 int		init_game_texture(t_game *game);
 

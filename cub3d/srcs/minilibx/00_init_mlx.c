@@ -6,12 +6,21 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:32:38 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:51:28 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
+void	init_dela_mlx(t_game *game)
+{
+	if (init_mlx_and_window(game) == -1)
+	{
+		cleanup_and_exit(game);
+		return ;
+	}
+	init_game_texture(game);
+}
 /**
  * - Initialise le contexte MinilibX avec `mlx_init`.
  * - Crée une fenêtre principale de 800x600 avec un titre personnalisé.
@@ -45,7 +54,8 @@ int	init_mlx_and_window(t_game *game)
  * - Remplit chaque élément de ce tableau avec les données des fichiers `.xpm`
  *   pour les directions North, South, East et West.
  * - Utilise `xpm_to_image` pour charger chaque texture.
- * - Quitte avec un message d'erreur via `message_error` si une allocation ou un chargement échoue.
+ * - Quitte avec un message d'erreur via `message_error` si une allocation
+ * ou un chargement échoue.
  * - Les ressources de `game->texture` doivent être libérées ultérieurement avec
  *   une fonction appropriée (comme `free_game_texture`).
  */
@@ -85,14 +95,16 @@ int	init_game_texture(t_game *game)
             printf("Error: Failed to load image from path: %s\n", paths[i]);
             return (-1);
         }
-        game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel, &size_line, &endian);
+        game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel,
+            &size_line, &endian);
         if (!game->texture[i])
         {
-            printf("Error: Failed to get data address for image at path: %s\n", paths[i]);
+            printf("Error: Failed to get data address for image at path: %s\n",
+                paths[i]);
             mlx_destroy_image(game->mlx, image);
             return (-1);
         }
-        mlx_destroy_image(game->mlx, image); // Détruire l'image après extraction
+        mlx_destroy_image(game->mlx, image);
         i++;
     }
     return (0);

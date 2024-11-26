@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:30:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:49:07 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	main_parsing(int ac, char **av, t_game **game)
 	map_gestion(av[1], *game);
 	//maj des infos du player (position / direction)							ok
 	player_struct_start(*game);
-	init_game_texture(*game);
+
 }

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:31:48 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:50:36 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,6 @@ t_game	*init_game(void)
 	game->player = init_player();
 	game->texture = NULL; // a free
 	if (!game->infos || !game->map || !game->player)
-	{
-		cleanup_and_exit(game);
-		return (NULL);
-	}
-	if (init_mlx_and_window(game) == -1)
 	{
 		cleanup_and_exit(game);
 		return (NULL);
