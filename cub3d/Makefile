@@ -17,7 +17,8 @@ SRCS	=	main.c\
 			srcs/parsing/08_map_gestion.c\
 			srcs/parsing/09_map_gestion.c\
 			srcs/parsing/10_player_gestion.c\
-			srcs/parsing/100_print_struct.c
+			srcs/parsing/100_print_struct.c\
+			srcs/parsing/101_print_struct.c
 
 OBJDIR	= objets
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)

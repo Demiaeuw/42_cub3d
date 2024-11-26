@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:32:48 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:23:00 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,9 @@ void		player_struct_start(t_game *game);
 
 void 		print_info(t_info *infos);
 void		print_map_layout(char **tab);
+void		print_player(t_player *player);
 void 		print_map(t_map *map);
 void 		print_game_info(t_game *game);
-void		print_player(t_player *player);
+void		print_game_infos_two(t_game *game);
 
 #endif
