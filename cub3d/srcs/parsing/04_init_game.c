@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 12:01:46 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:20:30 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,18 @@ t_info	*init_info(void)
 	infos->path_south = NULL;
 	infos->path_east = NULL;
 	infos->path_west = NULL;
+
+	// Ajoutez ici le code pour extraire les chemins du fichier .cub
+	// Exemple de débogage
+	printf("Debug: Initializing paths in init_info.\n");
+	printf("Path North: %s\n", infos->path_north);
+	printf("Path South: %s\n", infos->path_south);
+	printf("Path East: %s\n", infos->path_east);
+	printf("Path West: %s\n", infos->path_west);
+
 	return (infos);
 }
+
 
 /**
  * Initialise la structure `t_map` pour stocker les informations de la carte.
@@ -81,28 +91,6 @@ t_player	*init_player(void)
 }
 
 /**
- * Initialise la structure `t_wallstruct` pour stocker les informations
- * liées aux textures des murs. Tous les pointeurs sont initialisés à NULL
- * et les valeurs numériques à 0.
- * 
- * Retourne un pointeur vers la structure initialisée ou NULL en cas d'échec.
- */
-t_wallstruct	*init_wallstruct(void)
-{
-	t_wallstruct	*wall;
-
-	wall = (t_wallstruct *)malloc(sizeof(t_wallstruct));
-	if (!wall)
-		return (NULL);
-	wall->image = NULL;
-	wall->pixel = NULL;
-	wall->bit_pixel = 0;
-	wall->size_line = 0;
-	wall->endian = 0;
-	return (wall);
-}
-
-/**
  * Initialise la structure `t_game` qui contient toutes les données du jeu,
  * incluant les informations de texture (`t_info`), la carte (`t_map`),
  * et le joueur (`t_player`). Vérifie que chaque sous-structure est correctement
@@ -119,8 +107,8 @@ t_game	*init_game(void)
 	game->infos = init_info();
 	game->map = init_map();
 	game->player = init_player();
-	game->wallstruct = init_wallstruct();
-	if (!game->infos || !game->map || !game->player || !game->wallstruct)
+	game->texture = NULL; // a free
+	if (!game->infos || !game->map || !game->player)
 	{
 		cleanup_and_exit(game);
 		return (NULL);
@@ -130,6 +118,5 @@ t_game	*init_game(void)
 		cleanup_and_exit(game);
 		return (NULL);
 	}
-	game->texture = NULL;
 	return (game);
 }

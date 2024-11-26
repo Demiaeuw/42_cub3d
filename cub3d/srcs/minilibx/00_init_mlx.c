@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 12:19:42 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:26:02 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
  */
 int	init_mlx_and_window(t_game *game)
 {
+	init_game_texture(game);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
@@ -49,40 +50,62 @@ int	init_mlx_and_window(t_game *game)
  * - Les ressources de `game->texture` doivent être libérées ultérieurement avec
  *   une fonction appropriée (comme `free_game_texture`).
  */
-void	init_game_texture(t_game *game)
+int	init_game_texture(t_game *game)
 {
-	game->texture = ft_calloc(5, sizeof * (game->texture)); // a free
-	if (!game->texture)
-		message_error("init texture tab", game);
-	xpm_to_image(game, &game->texture[0], game->infos->path_north);
-	xpm_to_image(game, &game->texture[1], game->infos->path_south);
-	xpm_to_image(game, &game->texture[2], game->infos->path_east);
-	xpm_to_image(game, &game->texture[3], game->infos->path_west);
+    void	*image;
+    int		i;
+    int		width;
+    int		height;
+    int		bits_per_pixel;
+    int		size_line;
+    int		endian;
+
+    // Allocation pour le tableau des textures
+    game->texture = ft_calloc(5, sizeof(int *));
+    if (!game->texture)
+    {
+        printf("Error: Failed to allocate memory for textures.\n");
+        return (-1);
+    }
+
+    // Chemins des textures
+    char	*paths[4] = {
+        game->infos->path_north,
+        game->infos->path_south,
+        game->infos->path_east,
+        game->infos->path_west
+    };
+
+    // Chargement des textures
+    i = 0;
+    while (i < 4)
+    {
+        printf("Debug: Attempting to load texture[%d] from path: %s\n", i, paths[i]);
+        image = mlx_xpm_file_to_image(game->mlx, paths[i], &width, &height);
+        if (!image)
+        {
+            printf("Error: Failed to load image from path: %s\n", paths[i]);
+            return (-1);
+        }
+
+        game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel, &size_line, &endian);
+        if (!game->texture[i])
+        {
+            printf("Error: Failed to get data address for image at path: %s\n", paths[i]);
+            mlx_destroy_image(game->mlx, image);
+            return (-1);
+        }
+
+        printf("Debug: Texture[%d] loaded successfully. Address: %p, Width: %d, Height: %d\n",
+               i, (void *)game->texture[i], width, height);
+
+        mlx_destroy_image(game->mlx, image); // Détruire l'image après extraction
+        i++;
+    }
+    return (0);
 }
 
-/**
- * - Charge un fichier d'image `.xpm` et stocke ses informations dans une
- *   structure `t_wallstruct` passée en paramètre.
- * - Utilise `mlx_xpm_file_to_image` pour charger l'image dans la mémoire
- *   de MinilibX et en obtenir un pointeur.
- * - Récupère les informations des pixels, bits par pixel, taille de ligne,
- *   et endian avec `mlx_get_data_addr`.
- * - Si le chemin est NULL ou si une étape échoue (chargement de l'image,
- *   récupération des données), la fonction affiche un message d'erreur
- *   via `message_error` et quitte le programme.
- * - Ne retourne rien, mais modifie directement la structure `t_wallstruct`.
- */
-void	xpm_to_image(t_game *game, t_wallstruct *wall, char *path)
-{
-	if (!path)
-		message_error("Missing texture path", game);
-	wall->image = mlx_xpm_file_to_image(game->mlx, path, &wall->size_line, &wall->endian);
-	if (!wall->image)
-		message_error("Failed to load texture image", game);
-	wall->pixel = (int *)mlx_get_data_addr(wall->image, &wall->bit_pixel, &wall->size_line, &wall->endian);
-	if (!wall->pixel)
-	{
-		mlx_destroy_image(game->mlx, wall->image);
-		message_error("Failed to retrieve image data", game);
-	}
-}
+
+
+
+
