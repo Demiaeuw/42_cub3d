@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05_path_gestion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:42:40 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:34:13 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:32:04 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	path_gestion(char *filename, t_game *game)
 			set_texture_path(&game->infos->path_east, line + 3, game);
 		else if (ft_strncmp(line, "WE ", 3) == 0 && check_extension(line + 3))
 			set_texture_path(&game->infos->path_west, line + 3, game);
-
-
 		free(line);
 		line = get_next_line(fd);
 	}
