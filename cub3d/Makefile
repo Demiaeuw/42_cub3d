@@ -63,6 +63,8 @@ $(MLX_LIB):
 	@$(MAKE) -C $(MLX_DIR) > /dev/null
 	@echo "🎨 MinilibX compilée"
 
+exe : all clean
+
 clean:
 	@$(RM) $(OBJDIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean > /dev/null

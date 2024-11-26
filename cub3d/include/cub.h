@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 11:23:00 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:00:51 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ typedef struct s_info
 	char	*path_west;
 }	t_info;
 
+// stockage des images pour les wall
+typedef struct s_wallstruct
+{
+	void	*image;
+	int		*pixel;
+	int		bit_pixel;
+	int		size_line;
+	int		endian;
+}	t_wallstruct;
+
 // infos de la map
 typedef struct s_map
 {
@@ -73,6 +83,7 @@ typedef struct s_map
 	int		player_count;
 }	t_map;
 
+// infos positions et direction du joueur
 typedef struct s_player
 {
 	float	x;
@@ -80,14 +91,17 @@ typedef struct s_player
 	float	direction_x;
 	float	direction_y;
 }	t_player;
+
 // structure principale 
 typedef struct s_game
 {
-	t_info		*infos;
-	t_map		*map;
-	t_player	*player;
-	void		*mlx;
-	void		*win;
+	t_info			*infos;
+	t_map			*map;
+	t_player		*player;
+	t_wallstruct	*wallstruct;
+	void			*mlx;
+	void			*win;
+	int				**texture;
 }	t_game;
 
 //GAMEPLAY
@@ -96,6 +110,7 @@ void		move_player(t_player *player, float delta_x, float delta_y);
 void		handle_movement(int keycode, t_game *game);
 void		rotate_camera(t_player *player, float angle);
 void		handle_camera_rotation(int keycode, t_game *game);
+void		free_wallstruct(t_wallstruct *wall);
 void		cleanup_resources(t_game *game);
 void		cleanup_and_exit(t_game *game);
 int 		handle_keypress(int keycode, t_game *game);
@@ -105,50 +120,52 @@ int 		handle_close(t_game *game);
 int	init_mlx_and_window(t_game *game);
 
 //PARSING
-void		message_error(char *str, t_game *game);
-void		free_map_tab(t_map *map);
-void		error_clean_exit(t_game *game);
-void		main_parsing(int ac, char **av, t_game **game);
-void		check_argument(int i);
-void		check_fileextension(char *filename);
-void		check_file(char *filename);
-void		check_struct_file(char *filename);
-t_info		*init_info(void);
-t_map		*init_map(void);
-t_player	*init_player(void);
-t_game		*init_game(void);
-int			check_extension(char *path);
-void		set_texture_path(char **destination, char *path, t_game *game);
-void		remove_newline(char *line);
-void		path_gestion(char *filename, t_game *game);
-int			convert_rgb_to_hex(int r, int g, int b);
-void		trim_trailing_whitespace(char *str);
-int			validate_and_parse_color(char *color_str);
-void		check_set_color(char *line, int *color, int *is_set, char *type);
-void		color_gestion(char *filename, t_game *game);
-void		map_gestion(char *filename, t_game *game);
-int			is_valid_map_character(char c);
-void		validate_map_line(char *line, t_game *game);
-void		check_map_characters(char *filename, t_game *game);
-int			count_map_lines(int fd);
-void		init_map_space(char *filename, t_game *game);
-void		copy_map_line(t_game *game, char *line, int i, int fd);
-void		fill_map_tab(int fd, t_game *game);
-void		copy_map(char *filename, t_game *game);
-void		check_adjacent(char **tab, int x, int y, int height);
-void		check_map_surrounded_by_walls(t_game *game);
-int			is_player_character(char c);
-void		check_player_position(t_game *game);
-void		update_player_position(char c, int x, int y, t_game *game);
-void		validate_and_save_player_position(t_game *game);
-void		validate_and_save_player_position(t_game *game);
-void		player_struct_start(t_game *game);
+void			message_error(char *str, t_game *game);
+void			free_map_tab(t_map *map);
+void			error_clean_exit(t_game *game);
+void			main_parsing(int ac, char **av, t_game **game);
+void			check_argument(int i);
+void			check_fileextension(char *filename);
+void			check_file(char *filename);
+void			check_struct_file(char *filename);
+t_info			*init_info(void);
+t_map			*init_map(void);
+t_player		*init_player(void);
+t_wallstruct	*init_wallstruct(void);
+t_game			*init_game(void);
+int				check_extension(char *path);
+void			set_texture_path(char **destination, char *path, t_game *game);
+void			remove_newline(char *line);
+void			path_gestion(char *filename, t_game *game);
+int				convert_rgb_to_hex(int r, int g, int b);
+void			trim_trailing_whitespace(char *str);
+int				validate_and_parse_color(char *color_str);
+void			check_set_color(char *line, int *color, int *is_set, char *type);
+void			color_gestion(char *filename, t_game *game);
+void			map_gestion(char *filename, t_game *game);
+int				is_valid_map_character(char c);
+void			validate_map_line(char *line, t_game *game);
+void			check_map_characters(char *filename, t_game *game);
+int				count_map_lines(int fd);
+void			init_map_space(char *filename, t_game *game);
+void			copy_map_line(t_game *game, char *line, int i, int fd);
+void			fill_map_tab(int fd, t_game *game);
+void			copy_map(char *filename, t_game *game);
+void			check_adjacent(char **tab, int x, int y, int height);
+void			check_map_surrounded_by_walls(t_game *game);
+int				is_player_character(char c);
+void			check_player_position(t_game *game);
+void			update_player_position(char c, int x, int y, t_game *game);
+void			validate_and_save_player_position(t_game *game);
+void			validate_and_save_player_position(t_game *game);
+void			player_struct_start(t_game *game);
 
-void 		print_info(t_info *infos);
-void		print_map_layout(char **tab);
-void		print_player(t_player *player);
-void 		print_map(t_map *map);
-void 		print_game_info(t_game *game);
-void		print_game_infos_two(t_game *game);
+void 			print_info(t_info *infos);
+void			print_map_layout(char **tab);
+void			print_player(t_player *player);
+void 			print_map(t_map *map);
+void			print_wallstruct(t_wallstruct *wall);
+void 			print_game_info(t_game *game);
+void			print_game_infos_two(t_game *game);
 
 #endif

@@ -6,11 +6,32 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:33:20 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:58:40 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
+
+/**
+ * - Libère les ressources associées à la structure `t_wallstruct`.
+ * - Vérifie si la structure ou ses champs sont non NULL avant de libérer.
+ * - N'affecte pas la structure principale `t_game`, cette fonction se concentre
+ *   uniquement sur `t_wallstruct`.
+ */
+void	free_wallstruct(t_wallstruct *wall)
+{
+	if (!wall)
+		return;
+	if (wall->image)
+	{
+		// Si vous utilisez MinilibX, ajoutez la fonction pour détruire l'image.
+		// Exemple : mlx_destroy_image(mlx_ptr, wall->image);
+		// Remplacez `mlx_ptr` par le pointeur correct de votre contexte MLX.
+		// mlx_destroy_image(mlx_ptr, wall->image);
+		wall->image = NULL;
+	}
+	free(wall);
+}
 
 /**
  * - Libère toutes les ressources associées à la structure `t_game`.
@@ -37,6 +58,8 @@ void	cleanup_resources(t_game *game)
 	}
 	if (game->player)
 		free(game->player);
+	if (game->wallstruct)
+		free_wallstruct(game->wallstruct);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

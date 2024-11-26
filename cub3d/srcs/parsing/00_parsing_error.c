@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:49:24 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:09:29 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:59:44 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	error_clean_exit(t_game *game)
 	}
 	if (game && game->player)
 		free(game->player);
+	if (game->wallstruct)
+		free_wallstruct(game->wallstruct);
 	if (game)
 		free(game);
 }

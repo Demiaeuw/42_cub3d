@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 11:24:38 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:53:57 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
+
+/**
+ * - Affiche les informations de la structure `t_wallstruct`.
+ * - Montre les valeurs des champs : `image`, `pixel`, `bit_pixel`,
+ *   `size_line`, et `endian`.
+ * - Ajoute un titre coloré "Wallstruct:" en vert.
+ */
+void	print_wallstruct(t_wallstruct *wall)
+{
+	printf(GREEN "Wallstruct:\n" RESET);
+	if (wall != NULL)
+	{
+		printf("  Image: %p\n", wall->image);
+		printf("  Pixel: %p\n", wall->pixel);
+		printf("  Bit per Pixel: %d\n", wall->bit_pixel);
+		printf("  Size Line: %d\n", wall->size_line);
+		printf("  Endian: %d\n", wall->endian);
+	}
+	else
+	{
+		printf("  Wallstruct: (null)\n");
+	}
+	printf("\n");
+}
 
 /**
  * - Affiche les adresses des structures principales (`infos`, `map`, `player`).
@@ -39,6 +63,10 @@ void	print_game_info(t_game *game)
 		printf("  Player Address: %p\n", (void *)game->player);
 	else
 		printf("  Player Address: (null)\n");
+	if (game->wallstruct != NULL)
+		printf("  Wallstruct Address: %p\n", (void *)game->wallstruct);
+	else
+		printf("  Wallstruct Address: (null)\n");
 	printf("\n");
 	print_game_infos_two(game);
 }
@@ -53,6 +81,10 @@ void	print_game_infos_two(t_game *game)
 		print_player(game->player);
 	else
 		printf(GREEN "Player:\n" RESET "  Player: (null)\n");
+	if (game->wallstruct != NULL)
+		print_wallstruct(game->wallstruct);
+	else
+		printf(GREEN "Wallstruct:\n" RESET "  Wallstruct: (null)\n");
 	if (game->map != NULL)
 		print_map(game->map);
 	else
