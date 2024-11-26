@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 12:56:43 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:37:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	print_texture_info(t_game *game)
 	if (game->texture != NULL)
 	{
 		i = 0;
-		while (i < 4) // Afficher les 4 textures : N, S, E, W
+		while (i < 4)
 		{
 			if (game->texture[i] != NULL)
-				printf("  Texture[%d] Address: %p\n", i, (void *)game->texture[i]);
+				printf("  Texture[%d] Address: %p\n",
+					i, (void *)game->texture[i]);
 			else
 				printf("  Texture[%d] Address: (null)\n", i);
 			i++;

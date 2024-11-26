@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:42:40 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:23:15 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:34:13 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,39 +78,20 @@ void	path_gestion(char *filename, t_game *game)
 	while (line)
 	{
 		remove_newline(line);
-		printf("Debug: Reading line: '%s'\n", line); // Ajout de débogage
-
 		if (ft_strncmp(line, "NO ", 3) == 0 && check_extension(line + 3))
-		{
 			set_texture_path(&game->infos->path_north, line + 3, game);
-			printf("Debug: Set path_north: %s\n", game->infos->path_north);
-		}
 		else if (ft_strncmp(line, "SO ", 3) == 0 && check_extension(line + 3))
-		{
 			set_texture_path(&game->infos->path_south, line + 3, game);
-			printf("Debug: Set path_south: %s\n", game->infos->path_south);
-		}
 		else if (ft_strncmp(line, "EA ", 3) == 0 && check_extension(line + 3))
-		{
 			set_texture_path(&game->infos->path_east, line + 3, game);
-			printf("Debug: Set path_east: %s\n", game->infos->path_east);
-		}
 		else if (ft_strncmp(line, "WE ", 3) == 0 && check_extension(line + 3))
-		{
 			set_texture_path(&game->infos->path_west, line + 3, game);
-			printf("Debug: Set path_west: %s\n", game->infos->path_west);
-		}
-		else
-		{
-			printf("Debug: Skipping line: '%s'\n", line); // Si aucune condition n'est remplie
-		}
+
 
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-
-	// Vérification finale
 	if (!game->infos->path_north || !game->infos->path_south
 		|| !game->infos->path_east || !game->infos->path_west)
 		message_error("Missing one or more texture paths", game);

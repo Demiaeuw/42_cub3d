@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:26:02 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:32:38 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
  */
 int	init_mlx_and_window(t_game *game)
 {
-	init_game_texture(game);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
@@ -80,14 +79,12 @@ int	init_game_texture(t_game *game)
     i = 0;
     while (i < 4)
     {
-        printf("Debug: Attempting to load texture[%d] from path: %s\n", i, paths[i]);
         image = mlx_xpm_file_to_image(game->mlx, paths[i], &width, &height);
         if (!image)
         {
             printf("Error: Failed to load image from path: %s\n", paths[i]);
             return (-1);
         }
-
         game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel, &size_line, &endian);
         if (!game->texture[i])
         {
@@ -95,10 +92,6 @@ int	init_game_texture(t_game *game)
             mlx_destroy_image(game->mlx, image);
             return (-1);
         }
-
-        printf("Debug: Texture[%d] loaded successfully. Address: %p, Width: %d, Height: %d\n",
-               i, (void *)game->texture[i], width, height);
-
         mlx_destroy_image(game->mlx, image); // Détruire l'image après extraction
         i++;
     }

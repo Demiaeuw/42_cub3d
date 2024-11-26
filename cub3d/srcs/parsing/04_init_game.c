@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:20:30 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:31:48 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ t_info	*init_info(void)
 	infos->path_south = NULL;
 	infos->path_east = NULL;
 	infos->path_west = NULL;
-
-	// Ajoutez ici le code pour extraire les chemins du fichier .cub
-	// Exemple de débogage
-	printf("Debug: Initializing paths in init_info.\n");
-	printf("Path North: %s\n", infos->path_north);
-	printf("Path South: %s\n", infos->path_south);
-	printf("Path East: %s\n", infos->path_east);
-	printf("Path West: %s\n", infos->path_west);
-
 	return (infos);
 }
 
