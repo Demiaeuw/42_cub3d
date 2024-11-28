@@ -6,11 +6,12 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:28:20 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:01:27 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
+
 
 /**
  * - Déplace le joueur en ajustant ses coordonnées X et Y.
@@ -31,21 +32,33 @@ void	move_player(t_player *player, float delta_x, float delta_y)
  * en ajustant la direction.
  * - Utilise une vitesse de déplacement définie par `move_speed`.
  */
-void	handle_movement(int keycode, t_game *game)
+void	process_mouvement(t_game *game)
 {
 	float	move_speed;
 
 	move_speed = 0.1;
-	if (keycode == KEY_W || keycode == KEY_UP)
+	if (game->player->w || game->player->up)
+	{
 		move_player(game->player, game->player->direction_x * move_speed,
 			game->player->direction_y * move_speed);
-	else if (keycode == 'S' || keycode == KEY_DOWN)
+		printf("le player avance\n");
+	}
+	if (game->player->s || game->player->down)
+	{
 		move_player(game->player, -game->player->direction_x * move_speed,
 			-game->player->direction_y * move_speed);
-	else if (keycode == 'A')
+		printf("le player recul\n");
+	}
+	if (game->player->a)
+	{
 		move_player(game->player, -game->player->direction_y * move_speed,
 			game->player->direction_x * move_speed);
-	else if (keycode == 'D')
+		printf("le player straff a gauche\n");
+	}
+	if (game->player->d)
+	{
 		move_player(game->player, game->player->direction_y * move_speed,
 			-game->player->direction_x * move_speed);
+		printf("le player straffe a droite\n");
+	}
 }

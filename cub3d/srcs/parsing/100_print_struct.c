@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 11:24:07 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:07:19 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,16 @@ void	print_player(t_player *player)
 	printf("  Position X: %.2f\n", player->x);
 	printf("  Position Y: %.2f\n", player->y);
 	printf("  Direction X: %.2f\n", player->direction_x);
-	printf("  Direction Y: %.2f\n", player->direction_y);
+	printf("  Direction Y: %.2f\n\n", player->direction_y);
+	printf(GREEN"  Statuts mouvements:\n" RESET);
+	printf("  Key w		-	-	%d\n", player->w);
+	printf("  Key a		-	-	%d\n", player->a);
+	printf("  Key s		-	-	%d\n", player->s);
+	printf("  Key d		-	-	%d\n", player->d);
+	printf("  Key up	-	-	%d\n", player->up);
+	printf("  Key left	-	-	%d\n", player->left);
+	printf("  Key down	-	-	%d\n", player->down);
+	printf("  Key right		-	%d\n", player->right);
 	printf("\n");
 }
 
@@ -97,15 +106,15 @@ void	print_map(t_map *map)
 	else
 		printf("  Direction Start: -\n");
 	printf("  Position Start X: %d\n", map->position_start_x);
-	printf("  Position Start Y: %d\n", map->position_start_y);
+	printf("  Position Start Y: %d\n\n", map->position_start_y);
 	if (map->tab != NULL)
 	{
-		printf("  Map Layout:\n");
+		printf(GREEN "  Map Layout:\n" RESET);
 		print_map_layout(map->tab);
 	}
 	else
 	{
-		printf("  Map Layout: (null)\n");
+		printf(GREEN "  Map Layout: (null)\n" RESET);
 	}
 	printf("\n\n");
 }

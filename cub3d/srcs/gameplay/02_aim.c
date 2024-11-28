@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:06:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:29:21 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:58:31 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	rotate_camera(t_player *player, float angle)
  * - Fait pivoter la caméra vers la droite (KEY_RIGHT) avec un angle positif.
  * - Utilise une vitesse de rotation définie par `rotation_speed`.
  */
-void	handle_camera_rotation(int keycode, t_game *game)
+void	handle_camera_rotation(t_game *game)
 {
 	float	rotation_speed;
 
 	rotation_speed = 0.05;
-	if (keycode == KEY_LEFT)
+	if (game->player->left)
 		rotate_camera(game->player, -rotation_speed);
-	else if (keycode == KEY_RIGHT)
+	else if (game->player->right)
 		rotate_camera(game->player, rotation_speed);
 }

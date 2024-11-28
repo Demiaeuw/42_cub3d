@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:50:36 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:20:52 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ t_player	*init_player(void)
 	player->y = 0.0;
 	player->direction_x = 1.0;
 	player->direction_y = 0.0;
+	player->w = 0;
+	player->a = 0;
+	player->s = 0;
+	player->d = 0;
+	player->up = 0;
+	player->left = 0;
+	player->down = 0;
+	player->right = 0;
 	return (player);
 }
 
@@ -99,6 +107,8 @@ t_game	*init_game(void)
 	game->map = init_map();
 	game->player = init_player();
 	game->texture = NULL; // a free
+	game->win = NULL;
+	game->mlx = NULL;
 	if (!game->infos || !game->map || !game->player)
 	{
 		cleanup_and_exit(game);

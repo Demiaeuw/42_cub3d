@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 13:49:34 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:03:59 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	main(int ac, char **av)
 	print_game_info(game);
 	mlx_key_hook(game->win, handle_keypress, game);
 	mlx_hook(game->win, 17, 0, handle_close, game);
+	// ????? il manque un truc sur les keypress ????
+	// mlx_hook(window, KEY_PRESS, 0, handle_key_press, &input);
+	// mlx_hook(window, KEY_RELEASE, 0, handle_key_release, &input);
 	mlx_loop(game->mlx);
 	cleanup_and_exit(game);
 	return (EXIT_SUCCESS);

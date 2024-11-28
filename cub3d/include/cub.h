@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 14:56:46 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:05:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,14 @@ typedef struct s_player
 	float	y;
 	float	direction_x;
 	float	direction_y;
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		up;
+	int		left;
+	int		down;
+	int		right;
 }	t_player;
 
 // structure principale 
@@ -95,10 +103,12 @@ typedef struct s_game
 
 //GAMEPLAY
 void		gameplay(t_event_list *game);
+ void		handle_key_press(int keycode, t_game *game);
+ void		handle_key_release(int keycode, t_game *game);
 void		move_player(t_player *player, float delta_x, float delta_y);
-void		handle_movement(int keycode, t_game *game);
+void		process_mouvement_movement(int keycode, t_game *game);
 void		rotate_camera(t_player *player, float angle);
-void		handle_camera_rotation(int keycode, t_game *game);
+void		handle_camera_rotation(t_game *game);
 void		cleanup_resources(t_game *game);
 void		cleanup_and_exit(t_game *game);
 int			handle_keypress(int keycode, t_game *game);
