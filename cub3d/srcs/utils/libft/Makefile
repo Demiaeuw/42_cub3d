@@ -74,7 +74,7 @@ OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 # Commandes
 CC = cc
 RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fPIC
 
 # Règle par défaut
 all: $(NAME)
