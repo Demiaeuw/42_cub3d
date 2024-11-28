@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 12:46:11 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:48:35 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	cleanup_resources(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
+	if (game->texture)
+		free(game->texture);
 }
 
 /**

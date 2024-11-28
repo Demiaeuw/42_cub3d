@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/26 14:38:28 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:56:46 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void		init_map_space(char *filename, t_game *game);
 void		copy_map_line(t_game *game, char *line, int i, int fd);
 void		fill_map_tab(int fd, t_game *game);
 void		copy_map(char *filename, t_game *game);
-void		check_adjacent(char **tab, int x, int y, int height);
+int			check_adjacent(char **tab, int x, int y, int height);
 void		check_map_surrounded_by_walls(t_game *game);
 int			is_player_character(char c);
 void		check_player_position(t_game *game);

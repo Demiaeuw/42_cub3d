@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:49:02 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:19:35 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:55:50 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,18 +112,19 @@ void	copy_map(char *filename, t_game *game)
  * tabulation ou un caractère de fin de ligne, affiche un message d'erreur
  * et quitte le programme, indiquant que la carte n'est pas entourée de murs.
  */
-void	check_adjacent(char **tab, int x, int y, int height)
+int	check_adjacent(char **tab, int x, int y, int height)
 {
 	int		width;
 
 	width = ft_strlen(tab[y]);
 	if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
-		message_error("Map is not surrounded by walls", NULL);
+		return (1);
 	if (tab[y][x - 1] == ' ' || tab[y][x + 1] == ' '
 		|| tab[y - 1][x] == ' ' || tab[y + 1][x] == ' '
 		|| tab[y][x - 1] == '\t' || tab[y][x + 1] == '\t'
 		|| tab[y - 1][x] == '\t' || tab[y + 1][x] == '\t'
 		|| tab[y][x - 1] == '\0' || tab[y][x + 1] == '\0'
 		|| tab[y - 1][x] == '\0' || tab[y + 1][x] == '\0')
-		message_error("Map is not surrounded by walls", NULL);
+		return (1);
+	return (0);
 }

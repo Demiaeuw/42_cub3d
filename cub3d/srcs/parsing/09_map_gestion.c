@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:49:43 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/21 05:21:16 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:57:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	check_map_surrounded_by_walls(t_game *game)
 			if (game->map->tab[y][x] == '0' || game->map->tab[y][x] == 'N'
 				|| game->map->tab[y][x] == 'S' || game->map->tab[y][x] == 'E'
 				|| game->map->tab[y][x] == 'W')
-				check_adjacent(game->map->tab, x, y, game->map->height);
+				if (check_adjacent(game->map->tab, x, y, game->map->height))
+					message_error("Map is not surrounded by walls", game);
 			x++;
 		}
 		y++;
