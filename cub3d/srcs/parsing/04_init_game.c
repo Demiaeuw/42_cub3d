@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:20:52 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:20:50 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_info	*init_info(void)
 	return (infos);
 }
 
-
 /**
  * Initialise la structure `t_map` pour stocker les informations de la carte.
  * Les valeurs par défaut sont définies (NULL pour `tab`, -1 pour les couleurs,
@@ -51,7 +50,7 @@ t_map	*init_map(void)
 	map->height = 0;
 	map->color_floor = -1;
 	map->color_ceiling = -1;
-	map->direction_start = '\0';
+	map->dir_start = '\0';
 	map->position_start_x = -1;
 	map->position_start_y = -1;
 	map->player_count = 0;
@@ -76,8 +75,8 @@ t_player	*init_player(void)
 	}
 	player->x = 0.0;
 	player->y = 0.0;
-	player->direction_x = 1.0;
-	player->direction_y = 0.0;
+	player->dir_x = 1.0;
+	player->dir_y = 0.0;
 	player->w = 0;
 	player->a = 0;
 	player->s = 0;

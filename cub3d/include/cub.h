@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:05:55 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:20:23 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@
 # endif
 
 # define BUFFER_SIZE 1024
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 // infos des textures
 typedef struct s_info
@@ -67,7 +70,7 @@ typedef struct s_map
 	int		height;
 	int		color_floor;
 	int		color_ceiling;
-	char	direction_start;
+	char	dir_start;
 	int		position_start_x;
 	int		position_start_y;
 	int		player_count;
@@ -78,8 +81,10 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	direction_x;
-	float	direction_y;
+	float	dir_x;
+	float	dir_y;
+	float	cam_x;
+	float	cam_y;
 	int		w;
 	int		a;
 	int		s;
@@ -118,7 +123,6 @@ int			handle_close(t_game *game);
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
 int			init_game_texture(t_game *game);
-
 
 //PARSING
 void		message_error(char *str, t_game *game);
@@ -159,6 +163,7 @@ void		update_player_position(char c, int x, int y, t_game *game);
 void		validate_and_save_player_position(t_game *game);
 void		validate_and_save_player_position(t_game *game);
 void		player_struct_start(t_game *game);
+void		player_set_fov(t_player *player, float fov);
 
 void		print_info(t_info *infos);
 void		print_map_layout(char **tab);
