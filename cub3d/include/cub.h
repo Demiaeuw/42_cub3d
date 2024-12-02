@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 17:20:23 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 00:40:25 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,25 @@ typedef struct s_player
 	int		right;
 }	t_player;
 
+typedef struct s_dda
+{
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		side;
+}	t_dda;
+
+typedef struct s_column_data
+{
+	float	ray_dir_x;
+	float	ray_dir_y;
+	int		column;
+}	t_column_data;
 // structure principale 
 typedef struct s_game
 {
@@ -104,12 +123,15 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	int				**texture;
+	int				screen_width;
+	int				screen_height;
+	int				**buffer;
 }	t_game;
 
 //GAMEPLAY
 void		gameplay(t_event_list *game);
- void		handle_key_press(int keycode, t_game *game);
- void		handle_key_release(int keycode, t_game *game);
+void		handle_key_press(int keycode, t_game *game);
+void		handle_key_release(int keycode, t_game *game);
 void		move_player(t_player *player, float delta_x, float delta_y);
 void		process_mouvement_movement(int keycode, t_game *game);
 void		rotate_camera(t_player *player, float angle);
@@ -172,4 +194,19 @@ void		print_map(t_map *map);
 void		print_game_info(t_game *game);
 void		print_game_infos_two(t_game *game);
 
+// RAYCASTING 
+// Calculate and Render.c
+void		calculate_perp_dist(t_game *game, t_dda *dda,
+				t_column_data *col_data);
+void		render_column(t_game *game, int column, float perp_dist, int side);
+void		calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y,
+				t_dda *dda);
+// Raycasting.c
+void		raycasting(t_game *game);
+void		init_dda(t_game *game, float ray_dir_x,
+				float ray_dir_y, t_dda *dda);
+void		perform_dda(t_game *game, t_dda *dda);
+void		cast_single_ray(t_game *game, float ray_dir_x,
+				float ray_dir_y);
+void		vertical_line(int x, int start, int end, int color);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:15:14 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 17:17:48 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:20:24 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	player_set_fov(t_player *player, float fov)
 	float	cam_length;
 
 	cam_length = tan(fov / 2.0);
-
 	if (player->dir_x == 0 && player->dir_y == -1)
 	{
 		player->cam_x = cam_length;

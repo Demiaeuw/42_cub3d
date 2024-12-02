@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_print_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:07:19 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:01:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	print_player(t_player *player)
 	printf(GREEN "Player:\n" RESET);
 	printf("  Position X: %.2f\n", player->x);
 	printf("  Position Y: %.2f\n", player->y);
-	printf("  Direction X: %.2f\n", player->direction_x);
-	printf("  Direction Y: %.2f\n\n", player->direction_y);
+	printf("  Direction X: %.2f\n", player->dir_x);
+	printf("  Direction Y: %.2f\n\n", player->dir_y);
 	printf(GREEN"  Statuts mouvements:\n" RESET);
 	printf("  Key w		-	-	%d\n", player->w);
 	printf("  Key a		-	-	%d\n", player->a);
@@ -101,8 +101,8 @@ void	print_map(t_map *map)
 	printf("  Color Floor: %d\n", map->color_floor);
 	printf("  Color Ceiling: %d\n", map->color_ceiling);
 	printf("  Player count : %d\n", map->player_count);
-	if (map->direction_start != '\0')
-		printf("  Direction Start: %c\n", map->direction_start);
+	if (map->dir_start != '\0')
+		printf("  Direction Start: %c\n", map->dir_start);
 	else
 		printf("  Direction Start: -\n");
 	printf("  Position Start X: %d\n", map->position_start_x);

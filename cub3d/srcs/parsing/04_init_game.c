@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 17:20:50 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 00:46:05 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,13 @@ t_game	*init_game(void)
 	game->infos = init_info();
 	game->map = init_map();
 	game->player = init_player();
-	game->texture = NULL; // a free
+	game->texture = NULL;
+	game->screen_width = 800;
+	game->screen_height = 600;
 	game->win = NULL;
 	game->mlx = NULL;
+	// init struct DDA
+	// init column
 	if (!game->infos || !game->map || !game->player)
 	{
 		cleanup_and_exit(game);

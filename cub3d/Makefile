@@ -18,7 +18,9 @@ SRCS	=	main.c\
 			srcs/parsing/09_map_gestion.c\
 			srcs/parsing/10_player_gestion.c\
 			srcs/parsing/100_print_struct.c\
-			srcs/parsing/101_print_struct.c
+			srcs/parsing/101_print_struct.c\
+			srcs/raycasting/raycasting.c\
+			srcs/raycasting/calculate_render.c
 
 OBJDIR	= objets
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)
@@ -43,7 +45,7 @@ all: $(LIBFT) $(MLX_LIB) $(NAME)
 	@echo "✅ Compilation terminée avec succès pour $(NAME)"
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR)/srcs/parsing $(OBJDIR)/srcs/utils $(OBJDIR)/srcs/gameplay $(OBJDIR)/srcs/minilibx
+	@mkdir -p $(OBJDIR)/srcs/parsing $(OBJDIR)/srcs/utils $(OBJDIR)/srcs/gameplay $(OBJDIR)/srcs/raycasting $(OBJDIR)/srcs/minilibx
 
 
 $(OBJS): $(OBJDIR)/%.o : %.c | $(OBJDIR)

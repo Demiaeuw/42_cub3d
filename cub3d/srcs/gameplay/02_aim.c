@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   02_aim.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:06:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 15:58:31 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:42:35 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
 /**
- * - Fait pivoter la caméra du joueur en modifiant sa direction.
+ * - Fait pivoter la caméra du joueur en modifiant sa dir.
  * - Applique une rotation à l'aide d'un angle donné.
- * - Calcule la nouvelle direction X et Y à l'aide des formules trigonométriques
+ * - Calcule la nouvelle dir X et Y à l'aide des formules trigonométriques
  *   (cosinus et sinus).
  */
 void	rotate_camera(t_player *player, float angle)
@@ -24,11 +24,11 @@ void	rotate_camera(t_player *player, float angle)
 	float	rotation_speed;
 
 	rotation_speed = angle;
-	old_dir_x = player->direction_x;
-	player->direction_x = player->direction_x * cos(rotation_speed)
-		- player->direction_y * sin(rotation_speed);
-	player->direction_y = old_dir_x * sin(rotation_speed)
-		+ player->direction_y * cos(rotation_speed);
+	old_dir_x = player->dir_x;
+	player->dir_x = player->dir_x * cos(rotation_speed)
+		- player->dir_y * sin(rotation_speed);
+	player->dir_y = old_dir_x * sin(rotation_speed)
+		+ player->dir_y * cos(rotation_speed);
 }
 
 /**

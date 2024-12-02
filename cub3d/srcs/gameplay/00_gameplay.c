@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_gameplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:25 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 15:54:33 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:42:54 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	gameplay(t_event_list *game)
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
  * de l'appuie d'une touche
  */
- void	handle_key_press(int keycode, t_game *game)
- {
+void	handle_key_press(int keycode, t_game *game)
+{
 	if (keycode == KEY_W)
 		game->player->w = 1;
 	else if (keycode == KEY_A)
@@ -39,14 +39,14 @@ void	gameplay(t_event_list *game)
 		game->player->down = 1;
 	else if (keycode == KEY_RIGHT)
 		game->player->right = 1;
- }
+}
 
 /**
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
  * du relachement d'une touche
 */
- void	handle_key_release(int keycode, t_game *game)
- {
+void	handle_key_release(int keycode, t_game *game)
+{
 	if (keycode == KEY_W)
 		game->player->w = 0;
 	else if (keycode == KEY_A)
@@ -63,4 +63,4 @@ void	gameplay(t_event_list *game)
 		game->player->down = 0;
 	else if (keycode == KEY_RIGHT)
 		game->player->right = 0;
- }
+}

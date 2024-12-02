@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:01:27 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:42:17 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	move_player(t_player *player, float delta_x, float delta_y)
 /**
  * - Gère le déplacement du joueur en fonction de la touche pressée.
  * - Se déplace vers l'avant (W/UP) ou vers l'arrière (S/DOWN)
- * selon la direction actuelle.
+ * selon la dir actuelle.
  * - Se déplace latéralement à gauche (A) ou à droite (D)
- * en ajustant la direction.
+ * en ajustant la dir.
  * - Utilise une vitesse de déplacement définie par `move_speed`.
  */
 void	process_mouvement(t_game *game)
@@ -39,26 +39,26 @@ void	process_mouvement(t_game *game)
 	move_speed = 0.1;
 	if (game->player->w || game->player->up)
 	{
-		move_player(game->player, game->player->direction_x * move_speed,
-			game->player->direction_y * move_speed);
+		move_player(game->player, game->player->dir_x * move_speed,
+			game->player->dir_y * move_speed);
 		printf("le player avance\n");
 	}
 	if (game->player->s || game->player->down)
 	{
-		move_player(game->player, -game->player->direction_x * move_speed,
-			-game->player->direction_y * move_speed);
+		move_player(game->player, -game->player->dir_x * move_speed,
+			-game->player->dir_y * move_speed);
 		printf("le player recul\n");
 	}
 	if (game->player->a)
 	{
-		move_player(game->player, -game->player->direction_y * move_speed,
-			game->player->direction_x * move_speed);
+		move_player(game->player, -game->player->dir_y * move_speed,
+			game->player->dir_x * move_speed);
 		printf("le player straff a gauche\n");
 	}
 	if (game->player->d)
 	{
-		move_player(game->player, game->player->direction_y * move_speed,
-			-game->player->direction_x * move_speed);
+		move_player(game->player, game->player->dir_y * move_speed,
+			-game->player->dir_x * move_speed);
 		printf("le player straffe a droite\n");
 	}
 }
