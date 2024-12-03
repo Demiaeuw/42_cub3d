@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 01:45:48 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:49:00 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	print_col_info(t_col_data *col_data)
 	printf("  X: %.2f\n", col_data->ray_dir_x);
 	printf("  Y: %.2f\n\n", col_data->ray_dir_y);
 }
-
 
 /**
  * - Affiche les adresses des structures principales (`infos`, `map`, `player`).

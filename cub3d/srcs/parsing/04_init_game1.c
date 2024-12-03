@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_init_game.c                                     :+:      :+:    :+:   */
+/*   04_init_game1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 01:28:39 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:48:12 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,14 @@ t_player	*init_player(void)
 	return (player);
 }
 
+/**
+ * Initialise la structure `t_dda` pour stocker les données nécessaires
+ * au calcul du Digital Differential Analysis (DDA).
+ * Les valeurs par défaut sont définies à zéro pour les coordonnées,
+ * les distances et les étapes, garantissant un état initial neutre.
+ * Retourne un pointeur vers la structure initialisée ou affiche une erreur
+ * en cas d'échec d'allocation mémoire.
+ */
 t_dda	*init_dda(void)
 {
 	t_dda	*dda;
@@ -110,6 +118,16 @@ t_dda	*init_dda(void)
 	return (dda);
 }
 
+/**
+ * Initialise la structure `t_col_data` pour stocker
+ * les informations d'une colonne
+ * dans le contexte du raycasting.
+ * Les valeurs initiales définissent la colonne à 0 et les
+ * composantes directionnelles
+ * du rayon à 0.0, garantissant un état initial neutre.
+ * Retourne un pointeur vers la structure initialisée ou affiche une erreur
+ * en cas d'échec d'allocation mémoire.
+ */
 t_col_data	*init_col_data(void)
 {
 	t_col_data	*col_data;
@@ -124,36 +142,4 @@ t_col_data	*init_col_data(void)
 	col_data->ray_dir_x = 0.0;
 	col_data->ray_dir_y = 0.0;
 	return (col_data);
-}
-
-/**
- * Initialise la structure `t_game` qui contient toutes les données du jeu,
- * incluant les informations de texture (`t_info`), la carte (`t_map`),
- * et le joueur (`t_player`). Vérifie que chaque sous-structure est correctement
- * allouée et initialise également MinilibX et la fenêtre. En cas d'erreur
- * d'initialisation ou d'allocation, libère les ressources et retourne NULL.
- */
-t_game	*init_game(void)
-{
-	t_game	*game;
-
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game->infos = init_info();
-	game->map = init_map();
-	game->player = init_player();
-	game->dda = init_dda();
-	game->col_data = init_col_data();
-	game->texture = NULL;
-	game->screen_width = 800;
-	game->screen_height = 600;
-	game->win = NULL;
-	game->mlx = NULL;
-	if (!game->infos || !game->map || !game->player)
-	{
-		cleanup_and_exit(game);
-		return (NULL);
-	}
-	return (game);
 }

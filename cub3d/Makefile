@@ -10,7 +10,8 @@ SRCS	=	main.c\
 			srcs/parsing/01_parsing.c\
 			srcs/parsing/02_check_argument.c\
 			srcs/parsing/03_check_struct_file.c\
-			srcs/parsing/04_init_game.c\
+			srcs/parsing/04_init_game1.c\
+			srcs/parsing/04_init_game2.c\
 			srcs/parsing/05_path_gestion.c\
 			srcs/parsing/06_color_gestion.c\
 			srcs/parsing/07_map_gestion.c\

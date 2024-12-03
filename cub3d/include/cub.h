@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 01:44:29 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:36:31 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-// infos des textures
 typedef struct s_info
 {
 	char	*path_north;
@@ -63,7 +62,6 @@ typedef struct s_info
 	char	*path_west;
 }	t_info;
 
-// infos de la map
 typedef struct s_map
 {
 	char	**tab;
@@ -76,7 +74,6 @@ typedef struct s_map
 	int		player_count;
 }	t_map;
 
-// infos positions et direction du joueur
 typedef struct s_player
 {
 	float	x;
@@ -114,7 +111,7 @@ typedef struct s_col_data
 	float	ray_dir_x;
 	float	ray_dir_y;
 }	t_col_data;
-// structure principale 
+
 typedef struct s_game
 {
 	t_info			*infos;

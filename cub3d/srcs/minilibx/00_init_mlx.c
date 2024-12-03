@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 01:08:55 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:53:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,53 +62,44 @@ int	init_mlx_and_window(t_game *game)
  */
 int	init_game_texture(t_game *game)
 {
-    void	*image;
-    int		i;
-    int		width;
-    int		height;
-    int		bits_per_pixel;
-    int		size_line;
-    int		endian;
+	void	*image;
+	int		i;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 
-    // Allocation pour le tableau des textures
-    game->texture = ft_calloc(5, sizeof(int *));
-    if (!game->texture)
-    {
-        printf("Error: Failed to allocate memory for textures.\n");
-        return (-1);
-    }
-
-    // Chemins des textures
-    char	*paths[4] = {
-        game->infos->path_north,
-        game->infos->path_south,
-        game->infos->path_east,
-        game->infos->path_west
-    };
-
-    // Chargement des textures
-    i = 0;
-    while (i < 4)
-    {
-        image = mlx_xpm_file_to_image(game->mlx, paths[i], &width, &height);
-        if (!image)
-        {
-            printf("Error: Failed to load image from path: %s\n", paths[i]);
-            return (-1);
-        }
-        game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel,
-            &size_line, &endian);
-        if (!game->texture[i])
-        {
-            printf("Error: Failed to get data address for image at path: %s\n",
-                paths[i]);
-            mlx_destroy_image(game->mlx, image);
-            return (-1);
-        }
-        mlx_destroy_image(game->mlx, image);
-        i++;
-    }
-    return (0);
+	game->texture = ft_calloc(5, sizeof(int *));
+	if (!game->texture)
+	{
+		printf("Error: Failed to allocate memory for textures.\n");
+		return (-1);
+	}
+	char	*paths[4] = {game->infos->path_north, game->infos->path_south,
+		game->infos->path_east, game->infos->path_west};
+	i = 0;
+	while (i < 4)
+	{
+		image = mlx_xpm_file_to_image(game->mlx, paths[i], &width, &height);
+		if (!image)
+		{
+			printf("Error: Failed to load image from path: %s\n", paths[i]);
+			return (-1);
+		}
+		game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel,
+			&size_line, &endian);
+		if (!game->texture[i])
+		{
+			printf("Error: Failed to get data address for image at path: %s\n",
+				paths[i]);
+			mlx_destroy_image(game->mlx, image);
+			return (-1);
+		}
+		mlx_destroy_image(game->mlx, image);
+		i++;
+	}
+	return (0);
 }
 
 

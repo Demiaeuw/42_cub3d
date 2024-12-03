@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/02 14:42:17 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:45:19 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
 
 /**
  * - Déplace le joueur en ajustant ses coordonnées X et Y.
@@ -41,24 +40,24 @@ void	process_mouvement(t_game *game)
 	{
 		move_player(game->player, game->player->dir_x * move_speed,
 			game->player->dir_y * move_speed);
-		printf("le player avance\n");
+		printf("le player avance\n");			//test
 	}
 	if (game->player->s || game->player->down)
 	{
 		move_player(game->player, -game->player->dir_x * move_speed,
 			-game->player->dir_y * move_speed);
-		printf("le player recul\n");
+		printf("le player recul\n");			//test
 	}
 	if (game->player->a)
 	{
 		move_player(game->player, -game->player->dir_y * move_speed,
 			game->player->dir_x * move_speed);
-		printf("le player straff a gauche\n");
+		printf("le player straff a gauche\n");	//test
 	}
 	if (game->player->d)
 	{
 		move_player(game->player, game->player->dir_y * move_speed,
 			-game->player->dir_x * move_speed);
-		printf("le player straffe a droite\n");
+		printf("le player straffe a droite\n");	//test
 	}
 }
