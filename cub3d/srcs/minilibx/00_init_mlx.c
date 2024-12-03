@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:20:05 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:08:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	init_mlx_and_window(t_game *game)
 		ft_putstr_fd("Error\nMinilibX initialization failed\n", 2);
 		return (-1);
 	}
-	game->win = mlx_new_window(game->mlx, 800, 600, "Cub3D by Demia & Middle");
+	game->win = mlx_new_window(game->mlx, game->screen_width,
+					game->screen_height, "Cub3D by Demia & Middle");
 	if (!game->win)
 	{
 		ft_putstr_fd("Error\nWindow creation failed\n", 2);

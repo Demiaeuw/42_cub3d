@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_render.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:10:51 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/03 00:40:17 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:37:47 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@
  * @param col_data Pointeur vers la structure contenant les données 
  * du rayon actuel
  */
-void	calculate_perp_dist(t_game *game, t_dda *dda, t_column_data *col_data)
+void	calculate_perp_dist(t_game *game)
 {
 	float	perp_dist;
 
-	if (dda->side == 0)
-		perp_dist = (dda->map_x - game->player->x
-				+ (1 - dda->step_x) / 2) / col_data->ray_dir_x;
+	if (game->dda->side == 0)
+		perp_dist = (game->dda->map_x - game->player->x
+				+ (1 - game->dda->step_x) / 2) / game->col_data->ray_dir_x;
 	else
-		perp_dist = (dda->map_y - game->player->y
-				+ (1 - dda->step_y) / 2) / col_data->ray_dir_y;
-	render_column(game, col_data->column, perp_dist, dda->side);
+		perp_dist = (game->dda->map_y - game->player->y
+				+ (1 - game->dda->step_y) / 2) / game->col_data->ray_dir_y;
+	render_column(game, game->col_data->column, perp_dist, game->dda->side);
 }
 
 /**
@@ -54,8 +54,10 @@ void	render_column(t_game *game, int column, float perp_dist, int side)
 	int	line_height;
 	int	draw_start;
 	int	draw_end;
-	int	color;
+	// int	color;
 
+	(void)column;
+	(void)side;
 	line_height = (int)(game->screen_height / perp_dist);
 	draw_start = -line_height / 2 + game->screen_height / 2;
 	if (draw_start < 0)
@@ -63,11 +65,11 @@ void	render_column(t_game *game, int column, float perp_dist, int side)
 	draw_end = line_height / 2 + game->screen_height / 2;
 	if (draw_end >= game->screen_height)
 		draw_end = game->screen_height - 1;
-	if (side == 0)
-		color = 0xFFFFFF;
-	else
-		color = 0xAAAAAA;
-	vertical_line(column, draw_start, draw_end, color);
+	// if (side == 0)
+	// 	color = 0xFFFFFF;
+	// else
+	// 	color = 0xAAAAAA;
+	// vertical_line(column, draw_start, draw_end, color);
 }
 
 /**
@@ -80,29 +82,28 @@ void	render_column(t_game *game, int column, float perp_dist, int side)
  * @param dda Pointeur vers la structure DDA pour stocker 
  * les étapes et distances.
  */
-void	calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y,
-	t_dda *dda)
+void	calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y)
 {
 	if (ray_dir_x < 0)
 	{
-		dda->step_x = -1;
-		dda->side_dist_x = (game->player->x - dda->map_x) * dda->delta_dist_x;
+		game->dda->step_x = -1;
+		game->dda->side_dist_x = (game->player->x - game->dda->map_x) * game->dda->delta_dist_x;
 	}
 	else
 	{
-		dda->step_x = 1;
-		dda->side_dist_x = (dda->map_x + 1.0 - game->player->x)
-			* dda->delta_dist_x;
+		game->dda->step_x = 1;
+		game->dda->side_dist_x = (game->dda->map_x + 1.0 - game->player->x)
+			* game->dda->delta_dist_x;
 	}
 	if (ray_dir_y < 0)
 	{
-		dda->step_y = -1;
-		dda->side_dist_y = (game->player->y - dda->map_y) * dda->delta_dist_y;
+		game->dda->step_y = -1;
+		game->dda->side_dist_y = (game->player->y - game->dda->map_y) * game->dda->delta_dist_y;
 	}
 	else
 	{
-		dda->step_y = 1;
-		dda->side_dist_y = (dda->map_y + 1.0 - game->player->y)
-			* dda->delta_dist_y;
+		game->dda->step_y = 1;
+		game->dda->side_dist_y = (game->dda->map_y + 1.0 - game->player->y)
+			* game->dda->delta_dist_y;
 	}
 }

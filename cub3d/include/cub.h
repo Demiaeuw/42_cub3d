@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 00:40:25 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:44:29 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,20 @@ typedef struct s_dda
 	int		side;
 }	t_dda;
 
-typedef struct s_column_data
+typedef struct s_col_data
 {
+	int		column;
 	float	ray_dir_x;
 	float	ray_dir_y;
-	int		column;
-}	t_column_data;
+}	t_col_data;
 // structure principale 
 typedef struct s_game
 {
 	t_info			*infos;
 	t_map			*map;
 	t_player		*player;
+	t_dda			*dda;
+	t_col_data		*col_data;
 	void			*mlx;
 	void			*win;
 	int				**texture;
@@ -159,6 +161,8 @@ t_info		*init_info(void);
 t_map		*init_map(void);
 t_player	*init_player(void);
 t_game		*init_game(void);
+t_dda		*init_dda(void);
+t_col_data	*init_col_data(void);
 int			check_extension(char *path);
 void		set_texture_path(char **destination, char *path, t_game *game);
 void		remove_newline(char *line);
@@ -191,22 +195,21 @@ void		print_info(t_info *infos);
 void		print_map_layout(char **tab);
 void		print_player(t_player *player);
 void		print_map(t_map *map);
+void		print_texture_info(t_game *game);
+void		print_dda(t_dda *dda);
+void		print_col_info(t_col_data *col_data);
 void		print_game_info(t_game *game);
 void		print_game_infos_two(t_game *game);
 
 // RAYCASTING 
 // Calculate and Render.c
-void		calculate_perp_dist(t_game *game, t_dda *dda,
-				t_column_data *col_data);
+void		calculate_perp_dist(t_game *game);
 void		render_column(t_game *game, int column, float perp_dist, int side);
-void		calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y,
-				t_dda *dda);
+void		calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y);
 // Raycasting.c
 void		raycasting(t_game *game);
-void		init_dda(t_game *game, float ray_dir_x,
-				float ray_dir_y, t_dda *dda);
-void		perform_dda(t_game *game, t_dda *dda);
-void		cast_single_ray(t_game *game, float ray_dir_x,
-				float ray_dir_y);
-void		vertical_line(int x, int start, int end, int color);
+void		set_dda(t_game *game, float ray_dir_x, float ray_dir_y);
+void		perform_dda(t_game *game);
+void		cast_single_ray(t_game *game, float ray_dir_x, float ray_dir_y);
+// void		vertical_line(int x, int start, int end, int color);
 #endif

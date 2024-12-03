@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:03:59 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:50:51 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int ac, char **av)
 	main_parsing(ac, av, &game);
 	init_dela_mlx(game);
 	print_game_info(game);
+	set_dda(game, game->player->dir_x, game->player->dir_y);		// a delete pour affichage de test
+	print_dda(game->dda);											// a delete pour affichage de test
 	mlx_key_hook(game->win, handle_keypress, game);
 	mlx_hook(game->win, 17, 0, handle_close, game);
 	// ????? il manque un truc sur les keypress ????

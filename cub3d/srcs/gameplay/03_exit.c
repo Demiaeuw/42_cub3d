@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/11/28 16:21:13 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:24:42 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ void	cleanup_resources(t_game *game)
 		free(game->texture);
 }
 
+void	cleanup_ressources_two(t_game *game)
+{
+	if (game->dda)
+		free(game->dda);
+	if (game->col_data)
+		free(game->col_data);
+}
+
 /**
  * - Vérifie si la structure `game` est NULL, 
  * quitte avec un échec si c'est le cas.
@@ -60,6 +68,7 @@ void	cleanup_and_exit(t_game *game)
 	if (!game)
 		exit(EXIT_FAILURE);
 	cleanup_resources(game);
+	cleanup_ressources_two(game);
 	free(game);
 	exit(EXIT_SUCCESS);
 }

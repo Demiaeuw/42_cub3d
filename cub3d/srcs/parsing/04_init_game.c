@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_init_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 00:46:05 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 01:28:39 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,44 @@ t_player	*init_player(void)
 	return (player);
 }
 
+t_dda	*init_dda(void)
+{
+	t_dda	*dda;
+
+	dda = malloc(sizeof(t_dda));
+	if (!dda)
+	{
+		message_error("allocation mémoire pour DDA", NULL);
+		return (NULL);
+	}
+	dda->map_x = 0;
+	dda->map_y = 0;
+	dda->delta_dist_x = 0;
+	dda->delta_dist_y = 0;
+	dda->step_x = 0;
+	dda->step_y = 0;
+	dda->side_dist_x = 0.0;
+	dda->side_dist_y = 0.0;
+	dda->side = 0;
+	return (dda);
+}
+
+t_col_data	*init_col_data(void)
+{
+	t_col_data	*col_data;
+
+	col_data = malloc(sizeof(t_col_data));
+	if (!col_data)
+	{
+		message_error("allocation mémoire pour la colonne", NULL);
+		return (NULL);
+	}
+	col_data->column = 0;
+	col_data->ray_dir_x = 0.0;
+	col_data->ray_dir_y = 0.0;
+	return (col_data);
+}
+
 /**
  * Initialise la structure `t_game` qui contient toutes les données du jeu,
  * incluant les informations de texture (`t_info`), la carte (`t_map`),
@@ -105,13 +143,13 @@ t_game	*init_game(void)
 	game->infos = init_info();
 	game->map = init_map();
 	game->player = init_player();
+	game->dda = init_dda();
+	game->col_data = init_col_data();
 	game->texture = NULL;
 	game->screen_width = 800;
 	game->screen_height = 600;
 	game->win = NULL;
 	game->mlx = NULL;
-	// init struct DDA
-	// init column
 	if (!game->infos || !game->map || !game->player)
 	{
 		cleanup_and_exit(game);
