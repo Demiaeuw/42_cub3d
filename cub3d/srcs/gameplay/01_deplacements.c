@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 15:24:23 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:33:22 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ int	can_move_to(t_map *map, float new_x, float new_y)
  * - Ajoute `delta_x` à la position X.
  * - Ajoute `delta_y` à la position Y.
  */
-void	move_player(t_player *player, float delta_x, float delta_y)
+void	move_player(t_game *game, float delta_x, float delta_y)
 {
 	float	new_x;
 	float	new_y;
 
 	new_x = game->player->x + delta_x;
 	new_y = game->player->y + delta_y;
-	if (can_move_to(game->map, new_x, new_x))
+	if (can_move_to(game->map, new_x, new_y))
 	{
-		player->x += delta_x;
-		player->y += delta_y;	
+		game->player->x += delta_x;
+		game->player->y += delta_y;	
 	}
 	else																		// pour test
 		printf("Collision détectée : impossible de se déplacer\n");				// a delete
@@ -68,25 +68,25 @@ void	process_mouvement(t_game *game)
 	move_speed = 0.1;
 	if (game->player->w || game->player->up)
 	{
-		move_player(game->player, game->player->dir_x * move_speed,
+		move_player(game, game->player->dir_x * move_speed,
 			game->player->dir_y * move_speed);
 		printf("le player avance\n");			// pour test a delete
 	}
 	if (game->player->s || game->player->down)
 	{
-		move_player(game->player, -game->player->dir_x * move_speed,
+		move_player(game, -game->player->dir_x * move_speed,
 			-game->player->dir_y * move_speed);
 		printf("le player recul\n");			// pour test a delete
 	}
 	if (game->player->a)
 	{
-		move_player(game->player, -game->player->dir_y * move_speed,
+		move_player(game, -game->player->dir_y * move_speed,
 			game->player->dir_x * move_speed);
 		printf("le player straff a gauche\n");	// pour test a delete
 	}
 	if (game->player->d)
 	{
-		move_player(game->player, game->player->dir_y * move_speed,
+		move_player(game, game->player->dir_y * move_speed,
 			-game->player->dir_x * move_speed);
 		printf("le player straffe a droite\n");	// pour test a delete
 	} 
