@@ -21,13 +21,13 @@ Plan d’implémentation pour la suite
         - Implémentez un système pour différencier les faces du mur en fonction de la direction (Nord, Sud, Est, Ouest) et appliquez la bonne texture.
         - Intégrez les couleurs pour le plafond et le sol, en remplissant la partie supérieure et inférieure de l’écran respectivement avec color_ceiling et color_floor de t_map.
 
-    pas ok
+    ok		A TEST
     Gestion des Événements Utilisateur
         - Déplacements du joueur (W, A, S, D) : Implémentez les mouvements avant/arrière et latéraux en fonction de la direction du joueur. Vérifiez que le joueur ne traverse pas les murs.
         - Rotation de la caméra (flèches gauche/droite) : Implémentez les rotations pour changer la direction du joueur sans déplacer sa position.
         - Fermeture de la fenêtre (ESC et croix rouge) : Ajoutez les événements pour fermer proprement le programme et libérer la mémoire allouée.
 
-    pas ok
+    ok      A TEST
     Gestion des collisions
         - Ajoutez des vérifications dans les déplacements pour détecter les murs. Empêchez le joueur de traverser les 1 dans la map.
         - Si la carte contient des zones inaccessibles, assurez-vous que le joueur ne peut pas y accéder.
