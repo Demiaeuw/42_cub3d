@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 14:53:03 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:03:12 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	init_dela_mlx(t_game *game)
 {
 	if (init_mlx_and_window(game) == -1)
+	{
+		cleanup_and_exit(game);
+		return ;
+	}
+	if (init_minimap(game) == -1)
 	{
 		cleanup_and_exit(game);
 		return ;
@@ -47,6 +52,59 @@ int	init_mlx_and_window(t_game *game)
 	}
 	return (0);
 }
+
+/**
+ * - Initialise une fenêtre de minimap avec MinilibX.
+ * - La taille par défaut est de 200x200 pixels avec un titre "Minimap".
+ * - Retourne -1 en cas d'échec et libère les ressources.
+ * - Retourne 0 si l'initialisation réussit.
+ */
+int	init_minimap(t_game *game)
+{
+	int	minimap_width;
+	int	minimap_height;
+	int	tile_size;
+	int	max_line_length;
+	int	i;
+
+	tile_size = 20; // Taille d'une case sur la minimap
+	minimap_height = game->map->height * tile_size;
+
+	// Trouver la ligne la plus longue en excluant les caractères inutiles
+	max_line_length = 0;
+	i = 0;
+	while (i < game->map->height)
+	{
+		int	line_length;
+
+		line_length = strlen(game->map->tab[i]);
+		// Ignorez les espaces en fin de ligne s'ils sont présents
+		while (line_length > 0 && game->map->tab[i][line_length - 1] == ' ')
+			line_length--;
+		if (line_length > max_line_length)
+			max_line_length = line_length;
+		i++;
+	}
+	minimap_width = (max_line_length - 1) * tile_size;
+
+	// Créer la fenêtre de la minimap
+	game->win_minimap = mlx_new_window(game->mlx, minimap_width,
+						minimap_height, "Minimap");
+	if (!game->win_minimap)
+	{
+		ft_putstr_fd("Error\nMinimap window creation failed\n", 2);
+		if (game->mlx)
+		{
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+		}
+		return (-1);
+	}
+	return (0);
+}
+
+
+
 
 /**
  * - Initialise les textures du jeu en chargeant les fichiers `.xpm`

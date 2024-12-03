@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 17:51:13 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:11:49 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_game
 	t_col_data		*col_data;
 	void			*mlx;
 	void			*win;
+	void			*win_minimap;
 	int				**texture;
 	int				screen_width;
 	int				screen_height;
@@ -131,8 +132,9 @@ typedef struct s_game
 void		gameplay(t_event_list *game);
 void		handle_key_press(int keycode, t_game *game);
 void		handle_key_release(int keycode, t_game *game);
+int			can_move_to(t_map *map, float new_x, float new_y);
 void		move_player(t_game *game, float delta_x, float delta_y);
-void		process_mouvement_movement(int keycode, t_game *game);
+void		process_mouvement(t_game *game);
 void		rotate_camera(t_player *player, float angle);
 void		handle_camera_rotation(t_game *game);
 void		cleanup_resources(t_game *game);
@@ -140,10 +142,14 @@ void		cleanup_ressources_two(t_game *game);
 void		cleanup_and_exit(t_game *game);
 int			handle_keypress(int keycode, t_game *game);
 int			handle_close(t_game *game);
+void		draw_square(void *mlx, void *win, int x, int y, int size, int color);
+void		render_minimap(t_game *game);
+int			render(t_game *game);
 
 //MINILIBX
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
+int			init_minimap(t_game *game);
 int			init_game_texture(t_game *game);
 
 //PARSING

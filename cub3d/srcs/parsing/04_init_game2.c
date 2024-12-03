@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:47:32 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 14:48:15 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:43:33 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_game	*init_game(void)
 	game->screen_width = 800;
 	game->screen_height = 600;
 	game->win = NULL;
+	game->win_minimap = NULL;
 	game->mlx = NULL;
 	if (!game->infos || !game->map || !game->player)
 	{
