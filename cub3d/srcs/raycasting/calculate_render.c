@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_render.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:10:51 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/03 01:37:47 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:46:09 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	render_column(t_game *game, int column, float perp_dist, int side)
 	int	line_height;
 	int	draw_start;
 	int	draw_end;
-	// int	color;
+	int	color;
 
 	(void)column;
 	(void)side;
@@ -65,11 +65,11 @@ void	render_column(t_game *game, int column, float perp_dist, int side)
 	draw_end = line_height / 2 + game->screen_height / 2;
 	if (draw_end >= game->screen_height)
 		draw_end = game->screen_height - 1;
-	// if (side == 0)
-	// 	color = 0xFFFFFF;
-	// else
-	// 	color = 0xAAAAAA;
-	// vertical_line(column, draw_start, draw_end, color);
+	if (side == 0)
+		color = 0xFFFFFF;
+	else
+		color = 0xAAAAAA;
+	vertical_line(column, line_height, color, game);
 }
 
 /**
@@ -87,7 +87,8 @@ void	calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y)
 	if (ray_dir_x < 0)
 	{
 		game->dda->step_x = -1;
-		game->dda->side_dist_x = (game->player->x - game->dda->map_x) * game->dda->delta_dist_x;
+		game->dda->side_dist_x = (game->player->x - game->dda->map_x)
+			* game->dda->delta_dist_x;
 	}
 	else
 	{
@@ -98,7 +99,8 @@ void	calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y)
 	if (ray_dir_y < 0)
 	{
 		game->dda->step_y = -1;
-		game->dda->side_dist_y = (game->player->y - game->dda->map_y) * game->dda->delta_dist_y;
+		game->dda->side_dist_y = (game->player->y - game->dda->map_y)
+			* game->dda->delta_dist_y;
 	}
 	else
 	{

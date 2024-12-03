@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 15:34:21 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:51:13 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,5 +209,5 @@ void		raycasting(t_game *game);
 void		set_dda(t_game *game, float ray_dir_x, float ray_dir_y);
 void		perform_dda(t_game *game);
 void		cast_single_ray(t_game *game, float ray_dir_x, float ray_dir_y);
-// void		vertical_line(int x, int start, int end, int color);
+void		vertical_line(int x, int line_height, int color, t_game *game);
 #endif

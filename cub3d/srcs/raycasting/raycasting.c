@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:49:04 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/03 01:48:03 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:49:40 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	perform_dda(t_game *game)
 void	cast_single_ray(t_game *game, float ray_dir_x, float ray_dir_y)
 {
 	set_dda(game, ray_dir_x, ray_dir_y);
-	printf("\n\n\n");					// a delete pour affichage de test
+	printf("\n\n\n");				// a delete pour affichage de test
 	print_col_info(game->col_data);		// a delete pour affichage de test
 	calculate_steps(game, ray_dir_x, ray_dir_y);
 	perform_dda(game);
@@ -109,26 +109,33 @@ void	cast_single_ray(t_game *game, float ray_dir_x, float ray_dir_y)
 }
 
 /**
- * @brief Dessine une ligne verticale sur une image ou une fenêtre.
+ * @brief Dessine une ligne verticale sur une fenêtre en utilisant MinilibX.
+ *        La hauteur de la ligne est calculée à partir de sa position centrale.
  * 
- * @param x Position X de la colonne.
- * @param start Position Y de départ de la ligne.
- * @param end Position Y de fin de la ligne.
- * @param color Couleur de la ligne (format hexadécimal).
+ * @param x Position X de la colonne (coordonnée horizontale à l'écran).
+ * @param line_height Hauteur de la ligne à dessiner (en pixels).
+ * @param color Couleur de la ligne (format hexadécimal, par exemple 
+ * 0xFFFFFF pour blanc).
+ * @param game Pointeur vers la structure principale contenant 
+ * les données du jeu 
+ *             et le contexte graphique (MinilibX).
  */
-// void	vertical_line(int x, int start, int end, int color)
-// {
-// 	t_game	*game;
-// 	int		y;
+void	vertical_line(int x, int line_height, int color, t_game *game)
+{
+	int	y;
+	int	start;
+	int	end;
 
-// 	if (start < 0)
-// 		start = 0;
-// 	if (end >= game->screen_height)
-// 		end = game->screen_height - 1;
-// 	y = start;
-// 	while (y <= end)
-// 	{
-// 		mlx_xpm_file_to_image(game, x, y, color);
-// 		y++;
-// 	}
-// }
+	start = -line_height / 2 + game->screen_height / 2;
+	end = line_height / 2 + game->screen_height / 2;
+	if (start < 0)
+		start = 0;
+	if (end >= game->screen_height)
+		end = game->screen_height - 1;
+	y = start;
+	while (y <= end)
+	{
+		mlx_pixel_put(game->mlx, game->win, x, y, color);
+		y++;
+	}
+}
