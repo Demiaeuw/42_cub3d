@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_print_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/02 14:01:09 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:56:40 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	print_player(t_player *player)
 	printf("  Position X: %.2f\n", player->x);
 	printf("  Position Y: %.2f\n", player->y);
 	printf("  Direction X: %.2f\n", player->dir_x);
-	printf("  Direction Y: %.2f\n\n", player->dir_y);
+	printf("  Direction Y: %.2f\n", player->dir_y);
+	printf("  Cam X: %.2f\n", player->cam_x);
+	printf("  Cam Y: %.2f\n\n", player->cam_y);
 	printf(GREEN"  Statuts mouvements:\n" RESET);
 	printf("  Key w		-	-	%d\n", player->w);
 	printf("  Key a		-	-	%d\n", player->a);
@@ -80,8 +82,7 @@ void	print_player(t_player *player)
 	printf("  Key up	-	-	%d\n", player->up);
 	printf("  Key left	-	-	%d\n", player->left);
 	printf("  Key down	-	-	%d\n", player->down);
-	printf("  Key right		-	%d\n", player->right);
-	printf("\n");
+	printf("  Key right		-	%d\n\n", player->right);
 }
 
 /**

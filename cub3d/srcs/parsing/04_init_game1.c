@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 14:48:12 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:53:14 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ t_player	*init_player(void)
 	player->y = 0.0;
 	player->dir_x = 1.0;
 	player->dir_y = 0.0;
+	player->cam_x = 0.0;
+	player->cam_y = 0.0;
 	player->w = 0;
 	player->a = 0;
 	player->s = 0;
