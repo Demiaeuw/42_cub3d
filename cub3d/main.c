@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:29:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 18:10:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:13:03 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,31 @@ int	main(int ac, char **av)
 
 	main_parsing(ac, av, &game);
 	init_dela_mlx(game);
+
+	// Vérification des fenêtres
+	if (!game->win)
+	{
+		fprintf(stderr, "Error: Failed to create windows.\n");
+		cleanup_and_exit(game);
+		return (EXIT_FAILURE);
+	}
+
+	// Debugging - affichage des infos de jeu (à supprimer plus tard)
 	print_game_info(game);
-	set_dda(game, game->player->dir_x, game->player->dir_y);		// a delete pour affichage de test
-	print_dda(game->dda);											// a delete pour affichage de test
-	mlx_key_hook(game->win, handle_keypress, game);
-	mlx_hook(game->win, 17, 0, handle_close, game);
-	mlx_key_hook(game->win_minimap, handle_keypress, game);
-	mlx_hook(game->win_minimap, 17, 0, handle_close, game);
+
+	// Ajout des hooks pour les événements
+	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game); 			// KEY_PRESS
+	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game); 			// KEY_RELEASE
+	mlx_hook(game->win, 17, 0, handle_close, game); 					// Événement de fermeture
+
+	// Boucle principale de rendu
 	mlx_loop_hook(game->mlx, render, game);
-	// ????? il manque un truc sur les keypress ????
-	// mlx_hook(window, KEY_PRESS, 0, handle_key_press, &input);
-	// mlx_hook(window, KEY_RELEASE, 0, handle_key_release, &input);
+
+	// Lancement de la boucle MinilibX
 	mlx_loop(game->mlx);
+
+	// Libération des ressources en cas de sortie
 	cleanup_and_exit(game);
 	return (EXIT_SUCCESS);
 }
+

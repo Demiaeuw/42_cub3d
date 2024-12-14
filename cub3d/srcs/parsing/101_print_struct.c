@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 14:49:00 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:05:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	print_col_info(t_col_data *col_data)
 	printf(GREEN "Column:\n" RESET);
 	printf("  Column: %d\n", col_data->column);
 	printf("  X: %.2f\n", col_data->ray_dir_x);
-	printf("  Y: %.2f\n\n", col_data->ray_dir_y);
+	printf("  Y: %.2f\n", col_data->ray_dir_y);
+	printf("  perp_dist: %.2f\n\n", col_data->perp_dist);
 }
 
 /**

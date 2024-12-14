@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 18:11:49 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:17:28 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_col_data
 	int		column;
 	float	ray_dir_x;
 	float	ray_dir_y;
+	float	perp_dist;
 }	t_col_data;
 
 typedef struct s_game
@@ -121,7 +122,6 @@ typedef struct s_game
 	t_col_data		*col_data;
 	void			*mlx;
 	void			*win;
-	void			*win_minimap;
 	int				**texture;
 	int				screen_width;
 	int				screen_height;
@@ -130,8 +130,8 @@ typedef struct s_game
 
 //GAMEPLAY
 void		gameplay(t_event_list *game);
-void		handle_key_press(int keycode, t_game *game);
-void		handle_key_release(int keycode, t_game *game);
+int			handle_key_press(int keycode, void *param);
+int			handle_key_release(int keycode, void *param);
 int			can_move_to(t_map *map, float new_x, float new_y);
 void		move_player(t_game *game, float delta_x, float delta_y);
 void		process_mouvement(t_game *game);
@@ -142,14 +142,10 @@ void		cleanup_ressources_two(t_game *game);
 void		cleanup_and_exit(t_game *game);
 int			handle_keypress(int keycode, t_game *game);
 int			handle_close(t_game *game);
-void		draw_square(void *mlx, void *win, int x, int y, int size, int color);
-void		render_minimap(t_game *game);
-int			render(t_game *game);
 
 //MINILIBX
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
-int			init_minimap(t_game *game);
 int			init_game_texture(t_game *game);
 
 //PARSING
@@ -206,14 +202,13 @@ void		print_game_info(t_game *game);
 void		print_game_infos_two(t_game *game);
 
 // RAYCASTING 
-// Calculate and Render.c
-void		calculate_perp_dist(t_game *game);
-void		render_column(t_game *game, int column, float perp_dist, int side);
-void		calculate_steps(t_game *game, float ray_dir_x, float ray_dir_y);
-// Raycasting.c
-void		raycasting(t_game *game);
-void		set_dda(t_game *game, float ray_dir_x, float ray_dir_y);
-void		perform_dda(t_game *game);
-void		cast_single_ray(t_game *game, float ray_dir_x, float ray_dir_y);
-void		vertical_line(int x, int line_height, int color, t_game *game);
+
+int	render(void *param);
+void	raycasting(t_game *game);
+void	init_ray(t_game *game, int column);
+void	render_column(t_game *game, int column, float perp_dist, int side);
+void	init_step_and_side_dist(t_game *game);
+void	perform_dda(t_game *game);
+void	calculate_perp_dist(t_game *game);
+
 #endif

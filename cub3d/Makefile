@@ -5,9 +5,7 @@ SRCS	=	main.c\
 			srcs/gameplay/01_deplacements.c\
 			srcs/gameplay/02_aim.c\
 			srcs/gameplay/03_exit.c\
-			srcs/gameplay/04_minimap.c\
 			srcs/minilibx/00_init_mlx.c\
-			srcs/minilibx/01_render.c\
 			srcs/parsing/00_parsing_error.c\
 			srcs/parsing/01_parsing.c\
 			srcs/parsing/02_check_argument.c\
@@ -22,8 +20,10 @@ SRCS	=	main.c\
 			srcs/parsing/10_player_gestion.c\
 			srcs/parsing/100_print_struct.c\
 			srcs/parsing/101_print_struct.c\
-			srcs/raycasting/raycasting.c\
-			srcs/raycasting/calculate_render.c
+			srcs/raycasting/00_render.c\
+			srcs/raycasting/01_rayon.c\
+			srcs/raycasting/02_dda.c
+
 
 OBJDIR	= objets
 OBJS	= $(SRCS:%.c=$(OBJDIR)/%.o)

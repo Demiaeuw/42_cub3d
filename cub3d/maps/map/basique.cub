@@ -1,7 +1,7 @@
-NO maps/textures/basique/north.xpm
-SO maps/textures/basique/south.xpm
-WE maps/textures/basique/west.xpm
-EA maps/textures/basique/east.xpm
+NO maps/textures/basique16/north.xpm
+SO maps/textures/basique16/south.xpm
+WE maps/textures/basique16/west.xpm
+EA maps/textures/basique16/east.xpm
 
 F 220,100,000
 C 225,030,000

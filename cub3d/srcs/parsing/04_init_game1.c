@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:32:15 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 15:53:14 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:03:47 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ t_col_data	*init_col_data(void)
 	col_data->column = 0;
 	col_data->ray_dir_x = 0.0;
 	col_data->ray_dir_y = 0.0;
+	col_data->perp_dist = 0.0;
 	return (col_data);
 }

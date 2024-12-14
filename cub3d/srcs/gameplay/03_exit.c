@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 17:44:36 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 02:49:00 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	cleanup_resources(t_game *game)
 		free(game->player);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	if (game->win_minimap)
-		mlx_destroy_window(game->mlx, game->win_minimap);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

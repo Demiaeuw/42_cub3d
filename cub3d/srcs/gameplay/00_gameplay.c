@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_gameplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:25 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/02 14:42:54 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/14 03:15:33 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,18 @@ void	gameplay(t_event_list *game)
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
  * de l'appuie d'une touche
  */
-void	handle_key_press(int keycode, t_game *game)
+int	handle_key_press(int keycode, void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (keycode == KEY_ESC)
+	{
+		printf("Escape pressed. Exiting...\n");
+		cleanup_and_exit(game);
+		exit(EXIT_SUCCESS);
+	}
+	game = (t_game *)param;
 	if (keycode == KEY_W)
 		game->player->w = 1;
 	else if (keycode == KEY_A)
@@ -39,14 +49,19 @@ void	handle_key_press(int keycode, t_game *game)
 		game->player->down = 1;
 	else if (keycode == KEY_RIGHT)
 		game->player->right = 1;
+	return (0);
 }
+
 
 /**
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
  * du relachement d'une touche
 */
-void	handle_key_release(int keycode, t_game *game)
+int	handle_key_release(int keycode, void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
 	if (keycode == KEY_W)
 		game->player->w = 0;
 	else if (keycode == KEY_A)
@@ -63,4 +78,5 @@ void	handle_key_release(int keycode, t_game *game)
 		game->player->down = 0;
 	else if (keycode == KEY_RIGHT)
 		game->player->right = 0;
+	return (0);
 }
