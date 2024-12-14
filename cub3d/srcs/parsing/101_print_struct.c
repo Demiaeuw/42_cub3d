@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 03:05:55 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:44:05 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,19 @@ void	print_col_info(t_col_data *col_data)
 	printf("  perp_dist: %.2f\n\n", col_data->perp_dist);
 }
 
+void	print_game(t_game *game)
+{
+	printf(GREEN "GAME:\n" RESET);
+	
+	printf("  Adresse fenetre: %p\n", (void *)game->win);
+	printf("  Hauteur fenetre: %d\n", game->screen_height);
+	printf("  Largeur fenetre: %d\n", game->screen_width);
+	printf("  Adresse image du premier calque: %p\n", (void *)game->img);
+	printf("  bits par pixel: %d\n", game->bpp);
+	printf("  Line length: %d\n", game->line_length);
+	printf("  Endian: %d\n\n", game->endian);
+}
+
 /**
  * - Affiche les adresses des structures principales (`infos`, `map`, `player`).
  * - Si les structures sont non nulles, affiche leurs contenus en utilisant :
@@ -122,6 +135,7 @@ void	print_game_infos_two(t_game *game)
 	else
 		printf(GREEN "Player:\n" RESET "  Player: (null)\n");
 	print_texture_info(game);
+	print_game(game);
 	if (game->map != NULL)
 		print_map(game->map);
 	else

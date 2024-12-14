@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:47:32 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 02:48:31 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:32:04 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,15 @@ t_game	*init_game(void)
 		cleanup_and_exit(game);
 		return (NULL);
 	}
+	init_game_two(game);
 	return (game);
+}
+
+void	init_game_two(t_game *game)
+{
+	game->img = NULL;
+	game->addr = NULL;
+	game->bpp = 0;
+	game->line_length = 0;
+	game->endian = 0;
 }

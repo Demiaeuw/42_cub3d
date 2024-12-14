@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 02:49:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:46:30 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_dela_mlx(t_game *game)
 		cleanup_and_exit(game);
 		return ;
 	}
-
+	init_image(game);
 	init_game_texture(game);
 }
 /**

@@ -41,3 +41,18 @@ Plan d’implémentation pour la suite
     Affichage des Informations de Debugging (Facultatif)
         - Ajoutez des fonctions pour afficher en temps réel les informations de position et de direction du joueur dans le terminal ou dans 
 		une zone de la fenêtre. Cela aidera à vérifier la bonne gestion des déplacements et des rotations.
+
+
+
+1
+    1.verifier les mouvements
+    2.
+2
+ok  1. afficher plafond et sol 
+    2. genere l'affichage des mur en raycasting
+    3. petit reglage pour que ca rende bien
+3
+    1. Une couleur par direction de mur
+4
+    1. puis ajout des texture a charger
+    2. recuperer texture github JB (noth south .... les basqiues)

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 02:49:00 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:49:49 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	cleanup_resources(t_game *game)
 	}
 	if (game->player)
 		free(game->player);
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -44,7 +46,6 @@ void	cleanup_resources(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-
 }
 
 void	cleanup_ressources_two(t_game *game)

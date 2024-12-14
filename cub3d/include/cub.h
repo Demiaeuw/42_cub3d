@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 03:17:28 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:18:40 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ typedef struct s_game
 	int				screen_width;
 	int				screen_height;
 	int				**buffer;
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				line_length;
+	int				endian;
 }	t_game;
 
 //GAMEPLAY
@@ -161,6 +166,7 @@ t_info		*init_info(void);
 t_map		*init_map(void);
 t_player	*init_player(void);
 t_game		*init_game(void);
+void		init_game_two(t_game *game);
 t_dda		*init_dda(void);
 t_col_data	*init_col_data(void);
 int			check_extension(char *path);
@@ -198,17 +204,21 @@ void		print_map(t_map *map);
 void		print_texture_info(t_game *game);
 void		print_dda(t_dda *dda);
 void		print_col_info(t_col_data *col_data);
+void		print_game(t_game *game);
 void		print_game_info(t_game *game);
 void		print_game_infos_two(t_game *game);
 
 // RAYCASTING 
-
 int	render(void *param);
-void	raycasting(t_game *game);
+void	init_image(t_game *game);
+void	draw_floor_and_ceiling(t_game *game);
+
+
+void	render_walls(t_game *game);
+void	render_column(t_game *game, int column);
 void	init_ray(t_game *game, int column);
-void	render_column(t_game *game, int column, float perp_dist, int side);
 void	init_step_and_side_dist(t_game *game);
-void	perform_dda(t_game *game);
 void	calculate_perp_dist(t_game *game);
+void	perform_dda(t_game *game);
 
 #endif
