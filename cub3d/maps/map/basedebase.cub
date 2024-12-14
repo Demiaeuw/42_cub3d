@@ -1,0 +1,13 @@
+NO maps/textures/basique16/north.xpm
+SO maps/textures/basique16/south.xpm
+WE maps/textures/basique16/west.xpm
+EA maps/textures/basique16/east.xpm
+
+F 220,100,000
+C 225,030,000
+
+1111111
+1000001
+100S001
+1000001
+1111111

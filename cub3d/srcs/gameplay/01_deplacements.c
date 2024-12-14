@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 15:05:46 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:36:15 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	can_move_to(char **map, float new_x, float new_y)
  */
 void	move_player(t_game *game, float delta_x, float delta_y)
 {
-	float	new_x;
-	float	new_y;
+	// float	new_x;
+	// float	new_y;
 
 	new_x = game->player->x + delta_x;
 	new_y = game->player->y + delta_y;
@@ -72,7 +72,7 @@ void	process_mouvement(t_game *game)
 {
 	float	move_speed;
 
-	move_speed = 0.1;
+	move_speed = 0.01;
 	if (game->player->w || game->player->up)
 	{
 		move_player(game, game->player->dir_x * move_speed,
