@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 02:30:34 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 18:12:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:49:12 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,20 @@ int	render(void *param)
 
 	game = (t_game *)param;
 
-	// Dessiner le premier calque (sol et plafond)
+	// Gère les mouvements du joueur
+	process_mouvement(game);
+
+	// Gère la rotation de la caméra
+	handle_camera_rotation(game);
+
+	// Dessiner le premier calque (plafond + sol)
 	draw_floor_and_ceiling(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 
 	// Dessiner les murs par-dessus
 	render_walls(game);
+
+	// Afficher l'image dans la fenêtre
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 
 	return (0);
 }
