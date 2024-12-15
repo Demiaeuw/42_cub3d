@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:49:24 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 14:39:00 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:27:53 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	message_error(char *str, t_game *game)
 	write(2, "\n\033[31mError\033[0m\n\n", 18);
 	write(2, str, ft_strlen(str));
 	write(2, "\n\n", 2);
-	// error_clean_exit(game);
 	cleanup_resources(game);
 	cleanup_ressources_two(game);
 	free(game);

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 19:58:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:39:58 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ typedef struct s_game
 }	t_game;
 
 //GAMEPLAY
-void		gameplay(t_event_list *game);
 int			handle_key_press(int keycode, void *param);
+void		handle_movement_keys(int keycode, t_game *game);
 int			handle_key_release(int keycode, void *param);
 int			can_move_to(char **map, float new_x, float new_y);
 void		move_player(t_game *game, float delta_x, float delta_y);

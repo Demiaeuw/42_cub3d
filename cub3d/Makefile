@@ -20,6 +20,7 @@ SRCS	=	main.c\
 			srcs/parsing/10_player_gestion.c\
 			srcs/parsing/100_print_struct.c\
 			srcs/parsing/101_print_struct.c\
+			srcs/parsing/102_print_struct.c\
 			srcs/raycasting/00_render.c\
 			srcs/raycasting/01_premier_calque.c\
 			srcs/raycasting/02_second_calque.c

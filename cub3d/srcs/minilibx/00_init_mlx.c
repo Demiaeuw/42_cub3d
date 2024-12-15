@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 17:46:30 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:31:45 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_dela_mlx(t_game *game)
 	init_image(game);
 	init_game_texture(game);
 }
+
 /**
  * - Initialise le contexte MinilibX avec `mlx_init`.
  * - Crée une fenêtre principale de 800x600 avec un titre personnalisé.
@@ -38,7 +39,7 @@ int	init_mlx_and_window(t_game *game)
 		return (-1);
 	}
 	game->win = mlx_new_window(game->mlx, game->screen_width,
-					game->screen_height, "Cub3D by Demia & Middle");
+			game->screen_height, "Cub3D by Demia & Middle");
 	if (!game->win)
 	{
 		ft_putstr_fd("Error\nWindow creation failed\n", 2);
@@ -102,8 +103,3 @@ int	init_game_texture(t_game *game)
 	}
 	return (0);
 }
-
-
-
-
-

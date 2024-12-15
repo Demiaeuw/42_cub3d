@@ -6,16 +6,11 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:25 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 03:15:33 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:40:53 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
-void	gameplay(t_event_list *game)
-{
-	(void)game;
-}
 
 /**
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
@@ -32,7 +27,12 @@ int	handle_key_press(int keycode, void *param)
 		cleanup_and_exit(game);
 		exit(EXIT_SUCCESS);
 	}
-	game = (t_game *)param;
+	handle_movement_keys(keycode, game);
+	return (0);
+}
+
+void	handle_movement_keys(int keycode, t_game *game)
+{
 	if (keycode == KEY_W)
 		game->player->w = 1;
 	else if (keycode == KEY_A)
@@ -49,9 +49,7 @@ int	handle_key_press(int keycode, void *param)
 		game->player->down = 1;
 	else if (keycode == KEY_RIGHT)
 		game->player->right = 1;
-	return (0);
 }
-
 
 /**
  * Fonction qui permet de modifier la valeur de 0 / 1 lors
