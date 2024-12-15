@@ -23,7 +23,9 @@ SRCS	=	main.c\
 			srcs/parsing/102_print_struct.c\
 			srcs/raycasting/00_render.c\
 			srcs/raycasting/01_premier_calque.c\
-			srcs/raycasting/02_second_calque.c
+			srcs/raycasting/02_second_calque.c\
+			srcs/raycasting/03_second_calque.c \
+			srcs/raycasting/04_second_calque.c
 
 
 

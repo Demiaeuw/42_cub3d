@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 21:14:11 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:30:02 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,13 @@ void		draw_ceiling(t_game *game);
 void		render_walls(t_game *game);
 void		render_column(t_game *game, int column);
 void		init_ray(t_game *game, int column);
-void		init_step_and_side_dist(t_game *game);
 void		calculate_perp_dist(t_game *game);
+
+void		update_dda_side_dist(t_dda *dda);
+void		set_hit_direction(t_game *game);
 void		perform_dda(t_game *game);
 
+void		init_step_and_side_dist_x(t_game *game);
+void		init_step_and_side_dist_y(t_game *game);
+void		init_step_and_side_dist(t_game *game);
 #endif
