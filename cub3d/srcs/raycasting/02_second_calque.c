@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:12:43 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 19:58:47 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:21:59 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,17 @@ void	init_ray(t_game *game, int column)
 {
 	float	camera_x;
 
-	// Calcul de la position du rayon sur le plan caméra
+
 	camera_x = 2 * ((float)column / (float)game->screen_width) - 1;
 
-	// Direction du rayon
+
 	game->col_data->ray_dir_x = game->player->dir_x + game->player->cam_x * camera_x;
 	game->col_data->ray_dir_y = game->player->dir_y + game->player->cam_y * camera_x;
 
-	// Position initiale dans la grille
 	game->dda->map_x = (int)game->player->x;
 	game->dda->map_y = (int)game->player->y;
 }
+
 
 void	init_step_and_side_dist(t_game *game)
 {

@@ -50,9 +50,9 @@ ok  2. Probleme avec les straff mais a voir avec le reglage cam
 2
 ok  1. afficher plafond et sol 
 ok  2. genere l'affichage des mur en raycasting
-    3. petit reglage pour que ca rende bien, prebleme avec la rotation de la cam
+    3. petit reglage pour que ca rende bien, probleme avec la rotation de la cam
 3
-    1. Une couleur par direction de mur
+ok  1. Une couleur par direction de mur
 4
     1. puis ajout des texture a charger
-    2. recuperer texture github JB (noth south .... les basqiues)
+    2. recuperer texture github JB (noth south .... les basiques)
