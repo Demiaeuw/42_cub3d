@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:39:58 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:06:22 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,16 +210,16 @@ void		print_game_info(t_game *game);
 void		print_game_infos_two(t_game *game);
 
 // RAYCASTING 
-int	render(void *param);
-void	init_image(t_game *game);
-void	draw_floor_and_ceiling(t_game *game);
+int			render(void *param);
 
+void		init_image(t_game *game);
+void		draw_floor_and_ceiling(t_game *game);
 
-void	render_walls(t_game *game);
-void	render_column(t_game *game, int column);
-void	init_ray(t_game *game, int column);
-void	init_step_and_side_dist(t_game *game);
-void	calculate_perp_dist(t_game *game);
-void	perform_dda(t_game *game);
+void		render_walls(t_game *game);
+void		render_column(t_game *game, int column);
+void		init_ray(t_game *game, int column);
+void		init_step_and_side_dist(t_game *game);
+void		calculate_perp_dist(t_game *game);
+void		perform_dda(t_game *game);
 
 #endif
