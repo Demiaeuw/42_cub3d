@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 15:33:22 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:05:46 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@
  * return 0 quand c'est une limite de map ou un mur
  * sinon return 1
  */
-int	can_move_to(t_map *map, float new_x, float new_y)
+int	can_move_to(char **map, float new_x, float new_y)
 {
-	int	grid_x;
-	int	grid_y;
-	
-	grid_x = (int)new_x;
-	grid_y = (int)new_y;
-	if (grid_x < 0 || grid_x >= map->height || grid_y < 0
-		|| grid_y >= (int)ft_strlen(map->tab[grid_x]))
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)new_x;
+	map_y = (int)new_y;
+
+	printf("Checking position: (%d, %d)\n", map_x, map_y);
+	if (map[map_y][map_x] == '1')
+	{
+		printf("Collision at: (%d, %d)\n", map_x, map_y);
 		return (0);
-	if (map->tab[grid_x][grid_y] == '1')
-		return (0);
+	}
 	return (1);
 }
- 
+
 /**
  * - Déplace le joueur en ajustant ses coordonnées X et Y.
  * - Ajoute `delta_x` à la position X.
@@ -44,13 +46,18 @@ void	move_player(t_game *game, float delta_x, float delta_y)
 
 	new_x = game->player->x + delta_x;
 	new_y = game->player->y + delta_y;
-	if (can_move_to(game->map, new_x, new_y))
+
+	printf("Trying to move to: (%f, %f)\n", new_x, new_y);
+	if (can_move_to(game->map->tab, new_x, new_y))
 	{
 		game->player->x += delta_x;
-		game->player->y += delta_y;	
+		game->player->y += delta_y;
+		printf("Move successful to: (%f, %f)\n", game->player->x, game->player->y);
 	}
-	else																		// pour test
-		printf("Collision détectée : impossible de se déplacer\n");				// a delete
+	else
+	{
+		printf("Collision détectée : impossible de se déplacer\n");
+	}
 }
 
 /**

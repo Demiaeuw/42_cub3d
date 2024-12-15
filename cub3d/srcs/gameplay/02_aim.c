@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:06:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/02 14:42:35 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/15 13:31:45 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
  * - Calcule la nouvelle dir X et Y à l'aide des formules trigonométriques
  *   (cosinus et sinus).
  */
+
 void	rotate_camera(t_player *player, float angle)
 {
 	float	old_dir_x;
 	float	rotation_speed;
+	float	magnitude;
 
 	rotation_speed = angle;
 	old_dir_x = player->dir_x;
@@ -29,6 +31,13 @@ void	rotate_camera(t_player *player, float angle)
 		- player->dir_y * sin(rotation_speed);
 	player->dir_y = old_dir_x * sin(rotation_speed)
 		+ player->dir_y * cos(rotation_speed);
+	magnitude = sqrt(player->dir_x * player->dir_x
+			+ player->dir_y * player->dir_y);
+	if (magnitude != 0)
+	{
+		player->dir_x /= magnitude;
+		player->dir_y /= magnitude;
+	}
 }
 
 /**
@@ -41,7 +50,7 @@ void	handle_camera_rotation(t_game *game)
 {
 	float	rotation_speed;
 
-	rotation_speed = 0.05;
+	rotation_speed = 0.0010;
 	if (game->player->left)
 		rotate_camera(game->player, -rotation_speed);
 	else if (game->player->right)

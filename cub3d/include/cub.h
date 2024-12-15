@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 18:18:40 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:07:31 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct s_game
 void		gameplay(t_event_list *game);
 int			handle_key_press(int keycode, void *param);
 int			handle_key_release(int keycode, void *param);
-int			can_move_to(t_map *map, float new_x, float new_y);
+int			can_move_to(char **map, float new_x, float new_y);
 void		move_player(t_game *game, float delta_x, float delta_y);
 void		process_mouvement(t_game *game);
 void		rotate_camera(t_player *player, float angle);
