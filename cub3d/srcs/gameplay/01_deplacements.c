@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 19:36:15 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:54:16 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	can_move_to(char **map, float new_x, float new_y)
 	map_x = (int)new_x;
 	map_y = (int)new_y;
 
-	printf("Checking position: (%d, %d)\n", map_x, map_y);
+	printf("Checking position: (%d, %d)\n", map_x, map_y);						// a delete pour test
 	if (map[map_y][map_x] == '1')
 	{
-		printf("Collision at: (%d, %d)\n", map_x, map_y);
+		printf("Collision at: (%d, %d)\n", map_x, map_y);						// a delete pour test
 		return (0);
 	}
 	return (1);
@@ -41,8 +41,8 @@ int	can_move_to(char **map, float new_x, float new_y)
  */
 void	move_player(t_game *game, float delta_x, float delta_y)
 {
-	// float	new_x;
-	// float	new_y;
+	float	new_x;
+	float	new_y;
 
 	new_x = game->player->x + delta_x;
 	new_y = game->player->y + delta_y;
@@ -52,11 +52,11 @@ void	move_player(t_game *game, float delta_x, float delta_y)
 	{
 		game->player->x += delta_x;
 		game->player->y += delta_y;
-		printf("Move successful to: (%f, %f)\n", game->player->x, game->player->y);
+		printf("Move successful to: (%f, %f)\n", game->player->x, game->player->y);	// a delete pour test
 	}
 	else
 	{
-		printf("Collision détectée : impossible de se déplacer\n");
+		printf("Collision détectée : impossible de se déplacer\n");				// a delete pour test
 	}
 }
 
@@ -72,7 +72,7 @@ void	process_mouvement(t_game *game)
 {
 	float	move_speed;
 
-	move_speed = 0.01;
+	move_speed = 0.05;
 	if (game->player->w || game->player->up)
 	{
 		move_player(game, game->player->dir_x * move_speed,
@@ -85,16 +85,16 @@ void	process_mouvement(t_game *game)
 			-game->player->dir_y * move_speed);
 		printf("le player recul\n");			// pour test a delete
 	}
-	if (game->player->a)
-	{
-		move_player(game, -game->player->dir_y * move_speed,
-			game->player->dir_x * move_speed);
-		printf("le player straff a gauche\n");	// pour test a delete
-	}
-	if (game->player->d)
+	if (game->player->a) // strafe à gauche
 	{
 		move_player(game, game->player->dir_y * move_speed,
 			-game->player->dir_x * move_speed);
+		printf("le player straff a gauche\n");	// pour test a delete
+	}
+	if (game->player->d) // strafe à droite
+	{
+		move_player(game, -game->player->dir_y * move_speed,
+			game->player->dir_x * move_speed);
 		printf("le player straffe a droite\n");	// pour test a delete
 	} 
 }
