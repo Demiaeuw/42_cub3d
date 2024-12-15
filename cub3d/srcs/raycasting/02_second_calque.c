@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_second_calque.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:12:43 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 13:40:19 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:58:47 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,29 @@ void	perform_dda(t_game *game)
 			game->dda->side = 1; // Rayon touche un mur horizontal
 		}
 
-		// Vérifie si on a touché un mur (par exemple, une case '1' dans la map)
+		// Vérifie si on a touché un mur
 		if (game->map->tab[game->dda->map_y][game->dda->map_x] == '1')
+		{
 			hit = 1;
+			// Détecte la direction du mur touché
+			if (game->dda->side == 0) // Mur vertical
+			{
+				if (game->col_data->ray_dir_x > 0)
+					game->dda->hit_direction = 'W'; // Mur Ouest
+				else
+					game->dda->hit_direction = 'E'; // Mur Est
+			}
+			else // Mur horizontal
+			{
+				if (game->col_data->ray_dir_y > 0)
+					game->dda->hit_direction = 'N'; // Mur Nord
+				else
+					game->dda->hit_direction = 'S'; // Mur Sud
+			}
+		}
 	}
 }
+
 
 
 void	render_column(t_game *game, int column)
@@ -99,8 +117,15 @@ void	render_column(t_game *game, int column)
 	if (draw_end >= game->screen_height)
 		draw_end = game->screen_height - 1;
 
-	// Choisir une couleur pour le mur (provisoire)
-	color = (game->dda->side == 0) ? 0xFFFFFF : 0xAAAAAA;
+	// Choisir la couleur en fonction de la direction du mur touché
+	if (game->dda->hit_direction == 'N') // Nord
+		color = 0xADD8E6; // Bleu ciel
+	else if (game->dda->hit_direction == 'S') // Sud
+		color = 0x00008B; // Bleu nuit
+	else if (game->dda->hit_direction == 'E') // Est
+		color = 0x90EE90; // Vert clair
+	else if (game->dda->hit_direction == 'W') // Ouest
+		color = 0x006400; // Vert foncé
 
 	// Dessiner la colonne dans l'image (buffer)
 	y = draw_start;
@@ -110,6 +135,7 @@ void	render_column(t_game *game, int column)
 		y++;
 	}
 }
+
 
 
 void	init_ray(t_game *game, int column)

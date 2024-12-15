@@ -45,8 +45,8 @@ Plan d’implémentation pour la suite
 
 
 1
-    1. verifier les mouvements
-    2. Probleme avec les straff mais a voir avec le reglage cam
+ok  1. verifier les mouvements
+ok  2. Probleme avec les straff mais a voir avec le reglage cam
 2
 ok  1. afficher plafond et sol 
 ok  2. genere l'affichage des mur en raycasting

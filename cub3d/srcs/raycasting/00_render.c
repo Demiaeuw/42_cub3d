@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 02:30:34 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 20:32:59 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 19:55:38 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	render(void *param)
 	// Dessiner le premier calque (plafond + sol)
 	draw_floor_and_ceiling(game);
 
-	// // Dessiner les murs par-dessus
+	// Dessiner les murs par-dessus
 	render_walls(game);
 
-	printf("  Position X: %.2f\n", game->player->x);
-	printf("  Position Y: %.2f\n", game->player->y);
+	printf("  Position X: %.2f\n", game->player->x);							// a delete pour test
+	printf("  Position Y: %.2f\n", game->player->y);							// a delete pour test
 
-	// // Afficher l'image dans la fenêtre
+	// Afficher l'image dans la fenêtre
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 
 	return (0);

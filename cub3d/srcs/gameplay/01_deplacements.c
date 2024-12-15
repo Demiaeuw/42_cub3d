@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 19:54:16 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:00:50 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	process_mouvement(t_game *game)
 {
 	float	move_speed;
 
-	move_speed = 0.05;
+	move_speed = 0.01;
 	if (game->player->w || game->player->up)
 	{
 		move_player(game, game->player->dir_x * move_speed,
