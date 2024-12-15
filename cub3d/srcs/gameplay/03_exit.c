@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 17:49:49 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:02:25 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	cleanup_resources(t_game *game)
 
 void	cleanup_ressources_two(t_game *game)
 {
-
 	if (game->texture)
 		free(game->texture);
 	if (game->dda)

@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:06:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:20:23 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/15 21:02:08 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
  * - Calcule la nouvelle dir X et Y à l'aide des formules trigonométriques
  *   (cosinus et sinus).
  */
-
 void	rotate_camera(t_player *player, float angle)
 {
 	float	old_dir_x;
@@ -28,18 +27,15 @@ void	rotate_camera(t_player *player, float angle)
 	rotation_speed = angle;
 	old_dir_x = player->dir_x;
 	old_cam_x = player->cam_x;
-
 	player->dir_x = player->dir_x * cos(rotation_speed)
 		- player->dir_y * sin(rotation_speed);
 	player->dir_y = old_dir_x * sin(rotation_speed)
 		+ player->dir_y * cos(rotation_speed);
-
 	player->cam_x = player->cam_x * cos(rotation_speed)
 		- player->cam_y * sin(rotation_speed);
 	player->cam_y = old_cam_x * sin(rotation_speed)
 		+ player->cam_y * cos(rotation_speed);
 }
-
 
 /**
  * - Gère la rotation de la caméra en fonction des touches fléchées.
