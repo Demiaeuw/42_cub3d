@@ -26,7 +26,8 @@ SRCS	=	main.c\
 			srcs/raycasting/01_premier_calque.c\
 			srcs/raycasting/02_second_calque.c\
 			srcs/raycasting/03_second_calque.c \
-			srcs/raycasting/04_second_calque.c
+			srcs/raycasting/04_second_calque.c\
+			srcs/raycasting/05_render_colomn_data.c
 
 
 

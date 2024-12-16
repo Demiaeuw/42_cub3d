@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 17:02:33 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:15:40 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,25 +121,41 @@ typedef struct s_col_data
 	float	perp_dist;
 }	t_col_data;
 
+typedef struct s_render_colomn_data
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	int		texture_id;
+	float	wall_hit;
+	float	step;
+	float	tex_pos;
+	int		color;
+}	t_render_colomn_data;
+
 typedef struct s_game
 {
-	t_info			*infos;
-	t_map			*map;
-	t_player		*player;
-	t_dda			*dda;
-	t_col_data		*col_data;
-	void			*mlx;
-	void			*win;
-	void			**images;
-	int				**texture;
-	int				screen_width;
-	int				screen_height;
-	int				**buffer;
-	void			*img;
-	char			*addr;
-	int				bpp;
-	int				line_length;
-	int				endian;
+	t_info					*infos;
+	t_map					*map;
+	t_player				*player;
+	t_dda					*dda;
+	t_col_data				*col_data;
+	t_render_colomn_data	*rendcoldata;
+	void					*mlx;
+	void					*win;
+	void					**images;
+	int						**texture;
+	int						screen_width;
+	int						screen_height;
+	int						**buffer;
+	void					*img;
+	char					*addr;
+	int						bpp;
+	int						line_length;
+	int						endian;
 }	t_game;
 
 //GAMEPLAY
@@ -181,6 +197,7 @@ void		check_struct_file(char *filename);
 t_info		*init_info(void);
 t_map		*init_map(void);
 t_player	*init_player(void);
+t_render_colomn_data	*init_render_colomn_data(void);
 t_game		*init_game(void);
 void		init_game_two(t_game *game);
 t_dda		*init_dda(void);
@@ -233,7 +250,12 @@ void		draw_floor(t_game *game);
 void		draw_ceiling(t_game *game);
 
 void		render_walls(t_game *game);
-void		render_column(t_game *game, int column);
+void calculate_column_height(t_game *game);
+void determine_texture_id(t_game *game);
+void calculate_wall_hit(t_game *game);
+void calculate_texture_coordinates(t_game *game);
+void draw_column(t_game *game, int column);
+void render_column(t_game *game, int column);
 void		init_ray(t_game *game, int column);
 void		calculate_perp_dist(t_game *game);
 
