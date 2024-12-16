@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:31:45 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:59:59 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	init_mlx_and_window(t_game *game)
  * - Les ressources de `game->texture` doivent être libérées ultérieurement avec
  *   une fonction appropriée (comme `free_game_texture`).
  */
+/*
 int	init_game_texture(t_game *game)
 {
 	void	*image;
@@ -102,4 +103,74 @@ int	init_game_texture(t_game *game)
 		i++;
 	}
 	return (0);
+}
+*/
+// Fonction pour libérer les textures en cas d'échec
+void free_textures(t_game *game, int count) {
+    for (int i = 0; i < count; i++) {
+        if (game->texture[i]) {
+            free(game->texture[i]);
+        }
+    }
+    free(game->texture);
+    game->texture = NULL;
+}
+#include <fcntl.h>
+#include <unistd.h>
+int init_game_texture(t_game *game) {
+    void    *image;
+    int     width, height;
+    int     bits_per_pixel, size_line, endian;
+
+    // Allocation mémoire pour les textures
+    game->texture = ft_calloc(5, sizeof(int *));
+    if (!game->texture) {
+        printf("Error: Failed to allocate memory for texture array.\n");
+        return (-1);
+    }
+
+    // Chemins des textures
+    char *paths[4] = {game->infos->path_north, game->infos->path_south,
+                      game->infos->path_east, game->infos->path_west};
+
+    for (int i = 0; i < 4; i++) {
+        // Afficher le chemin de la texture actuelle
+        printf("Loading texture from path: %s\n", paths[i]);
+
+        // Vérification que le chemin n'est pas NULL
+        if (!paths[i]) {
+            printf("Error: Texture path %d is NULL.\n", i);
+            free_textures(game, i);
+            return (-1);
+        }
+
+        // Vérification que le fichier existe
+        if (access(paths[i], F_OK) != 0) {
+            printf("Error: File not found at path: %s\n", paths[i]);
+            free_textures(game, i);
+            return (-1);
+        }
+
+        // Chargement de l'image
+        image = mlx_xpm_file_to_image(game->mlx, paths[i], &width, &height);
+        if (!image) {
+            printf("Error: Failed to load image from path: %s\n", paths[i]);
+            free_textures(game, i);
+            return (-1);
+        }
+
+        // Récupération de l'adresse des données de l'image
+        game->texture[i] = (int *)mlx_get_data_addr(image, &bits_per_pixel, &size_line, &endian);
+        if (!game->texture[i]) {
+            printf("Error: Failed to get data address for image at path: %s\n", paths[i]);
+            mlx_destroy_image(game->mlx, image);
+            free_textures(game, i);
+            return (-1);
+        }
+
+        // Ne pas détruire l'image ici
+        // mlx_destroy_image(game->mlx, image);
+    }
+
+    return (0);
 }

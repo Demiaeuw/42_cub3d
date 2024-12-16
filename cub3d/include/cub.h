@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 21:30:02 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:02:40 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@
 #  define KEY_DOWN
 #  define KEY_ESC 53
 # endif
+
+# define TEXTURE_WIDTH 256
+# define TEXTURE_HEIGHT 256
 
 # define BUFFER_SIZE 1024
 # ifndef M_PI
@@ -153,6 +156,7 @@ int			handle_close(t_game *game);
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
 int			init_game_texture(t_game *game);
+void 		free_textures(t_game *game, int count);
 
 //PARSING
 void		message_error(char *str, t_game *game);
