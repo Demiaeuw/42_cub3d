@@ -1,7 +1,7 @@
-NO ../../textures/basique/north.xpm
-SO ../textures/basique/south.xpm
-WE ../textures/basique/west.xpm
-EA ../textures/basique/east.xpm
+NO maps/textures/base/withe_wall.xpm
+SO maps/textures/base/grey_wall.xpm
+WE maps/textures/base/red_wall.xpm
+EA maps/textures/base/brown_wall.xpm
 
 F 220,100,0
 C 225,30,0
