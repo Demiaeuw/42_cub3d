@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 21:02:25 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:41:13 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void	cleanup_resources(t_game *game)
 void	cleanup_ressources_two(t_game *game)
 {
 	if (game->texture)
+	{
 		free(game->texture);
+	}
 	if (game->dda)
 		free(game->dda);
 	if (game->col_data)

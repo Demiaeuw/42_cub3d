@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 15:26:25 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:52:41 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_game
 	t_col_data		*col_data;
 	void			*mlx;
 	void			*win;
+	void			**images;
 	int				**texture;
 	int				screen_width;
 	int				screen_height;
@@ -159,8 +160,14 @@ int			handle_close(t_game *game);
 //MINILIBX
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
+int			print_error(char *message);
+int			store_texture_data(t_game *game, int index, void *image);
+void		free_textures(int **tab);
 int			init_game_texture(t_game *game);
-void 		free_textures(t_game *game, int count);
+char		*get_texture_path(t_game *game, int index);
+int			store_texture(t_game *game, int index, void *image);
+int			load_texture(t_game *game, int index);
+void		*load_image(t_game *game, int index, int *width, int *height);
 
 //PARSING
 void		message_error(char *str, t_game *game);

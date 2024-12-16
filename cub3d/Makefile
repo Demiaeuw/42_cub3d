@@ -6,6 +6,7 @@ SRCS	=	main.c\
 			srcs/gameplay/02_aim.c\
 			srcs/gameplay/03_exit.c\
 			srcs/minilibx/00_init_mlx.c\
+			srcs/minilibx/01_init_mlx.c\
 			srcs/parsing/00_parsing_error.c\
 			srcs/parsing/01_parsing.c\
 			srcs/parsing/02_check_argument.c\
