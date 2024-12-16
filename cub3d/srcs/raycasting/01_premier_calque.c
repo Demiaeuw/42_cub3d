@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_premier_calque.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:29:14 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:56:17 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:17:50 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	init_image(t_game *game)
 		cleanup_and_exit(game);
 		exit(EXIT_FAILURE);
 	}
-	printf("Image initialized successfully: Address = %p, BPP = %d, Line Length = %d, Endian = %d\n",
-		game->addr, game->bpp, game->line_length, game->endian); // a delete 
 }
 
 void	draw_ceiling(t_game *game)

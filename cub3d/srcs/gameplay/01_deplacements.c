@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 15:25:43 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:19:28 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,18 @@ int can_move_to(char **map, float new_x, float new_y) {
     return 1;
 }
 
-void move_player(t_game *game, float delta_x, float delta_y) {
-    float new_x;
-    float new_y;
+void	move_player(t_game *game, float delta_x, float delta_y)
+{
+	float new_x;
+	float new_y;
 
-    // Calcul des nouvelles coordonnées
-    new_x = game->player->x + delta_x;
-    new_y = game->player->y + delta_y;
-
-    printf("Trying to move to: (%f, %f)\n", new_x, new_y);
-
-    // Vérifie si le joueur peut se déplacer à la nouvelle position
-    if (can_move_to(game->map->tab, new_x, new_y)) {
-        game->player->x += delta_x;
-        game->player->y += delta_y;
-    } else {
-        printf("Blocked! Collision detected.\n");
-    }
+	new_x = game->player->x + delta_x;
+	new_y = game->player->y + delta_y;
+	if (can_move_to(game->map->tab, new_x, new_y))
+	{
+		game->player->x += delta_x;
+		game->player->y += delta_y;
+	}
 }
 
 

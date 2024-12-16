@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_aim.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:06:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 15:25:29 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:21:05 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	handle_camera_rotation(t_game *game)
 {
 	float	rotation_speed;
 
-	rotation_speed = 0.0010;
+	rotation_speed = 0.0050;
 	if (game->player->left)
 		rotate_camera(game->player, -rotation_speed);
 	else if (game->player->right)
