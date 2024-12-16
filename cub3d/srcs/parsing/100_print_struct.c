@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   100_print_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:35:12 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/03 15:56:40 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:26:11 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
-#define GREEN "\033[32m"
-#define RESET "\033[0m"
 
 /**
  * - Affiche les chemins des textures (North, South, East, West).

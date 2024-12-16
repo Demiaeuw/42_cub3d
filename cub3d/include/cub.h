@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 15:02:40 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:26:25 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@
 
 # define TEXTURE_WIDTH 256
 # define TEXTURE_HEIGHT 256
+# define PADDING 0.3
+# define GREEN "\033[32m"
+# define RESET "\033[0m"
+
 
 # define BUFFER_SIZE 1024
 # ifndef M_PI

@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   102_print_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 20:28:25 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:29:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:26:37 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
-#define GREEN "\033[32m"
-#define RESET "\033[0m"
 
 /**
  * - Affiche les adresses des structures principales (`infos`, `map`, `player`).

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_deplacements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:02:52 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 21:04:12 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:25:43 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,43 @@
  * return 0 quand c'est une limite de map ou un mur
  * sinon return 1
  */
-int	can_move_to(char **map, float new_x, float new_y)
-{
-	int	map_x;
-	int	map_y;
 
-	map_x = (int)new_x;
-	map_y = (int)new_y;
-	if (map[map_y][map_x] == '1')
-		return (0);
-	return (1);
+int can_move_to(char **map, float new_x, float new_y) {
+    int map_x1, map_x2, map_y1, map_y2;
+
+    // Vérifie les coins du joueur avec la marge (padding)
+    map_x1 = (int)(new_x - PADDING);
+    map_x2 = (int)(new_x + PADDING);
+    map_y1 = (int)(new_y - PADDING);
+    map_y2 = (int)(new_y + PADDING);
+
+    // Si l'un des coins touche un mur ('1'), le mouvement est bloqué
+    if (map[map_y1][map_x1] == '1' || map[map_y1][map_x2] == '1' ||
+        map[map_y2][map_x1] == '1' || map[map_y2][map_x2] == '1') {
+        return 0;
+    }
+    return 1;
 }
 
-/**
- * - Déplace le joueur en ajustant ses coordonnées X et Y.
- * - Ajoute `delta_x` à la position X.
- * - Ajoute `delta_y` à la position Y.
- */
-void	move_player(t_game *game, float delta_x, float delta_y)
-{
-	float	new_x;
-	float	new_y;
+void move_player(t_game *game, float delta_x, float delta_y) {
+    float new_x;
+    float new_y;
 
-	new_x = game->player->x + delta_x;
-	new_y = game->player->y + delta_y;
-	printf("Trying to move to: (%f, %f)\n", new_x, new_y);
-	if (can_move_to(game->map->tab, new_x, new_y))
-	{
-		game->player->x += delta_x;
-		game->player->y += delta_y;
-	}
+    // Calcul des nouvelles coordonnées
+    new_x = game->player->x + delta_x;
+    new_y = game->player->y + delta_y;
+
+    printf("Trying to move to: (%f, %f)\n", new_x, new_y);
+
+    // Vérifie si le joueur peut se déplacer à la nouvelle position
+    if (can_move_to(game->map->tab, new_x, new_y)) {
+        game->player->x += delta_x;
+        game->player->y += delta_y;
+    } else {
+        printf("Blocked! Collision detected.\n");
+    }
 }
+
 
 /**
  * - Gère le déplacement du joueur en fonction de la touche pressée.

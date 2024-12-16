@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   101_print_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:23:44 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/15 20:30:02 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:26:31 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
-#define GREEN "\033[32m"
-#define RESET "\033[0m"
 
 void	print_texture_info(t_game *game)
 {
