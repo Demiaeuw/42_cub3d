@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 16:52:41 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:02:33 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ char		*get_texture_path(t_game *game, int index);
 int			store_texture(t_game *game, int index, void *image);
 int			load_texture(t_game *game, int index);
 void		*load_image(t_game *game, int index, int *width, int *height);
-
+int	exit_on_texture_failure(t_game *game, int loaded_count);
 //PARSING
 void		message_error(char *str, t_game *game);
 void		free_map_tab(t_map *map);

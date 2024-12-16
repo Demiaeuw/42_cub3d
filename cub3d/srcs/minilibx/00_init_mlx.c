@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 04:31:01 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 16:48:50 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:01:50 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,30 @@ int	store_texture(t_game *game, int index, void *image)
 		return (-1);
 	}
 	return (0);
+}
+
+int	exit_on_texture_failure(t_game *game, int loaded_count)
+{
+	if (game)
+	{
+		if (game->texture)
+		{
+			int	i = 0;
+			while (i < loaded_count) // Libère les textures déjà chargées
+			{
+				if (game->texture[i])
+				{
+					mlx_destroy_image(game->mlx, game->texture[i]);
+					game->texture[i] = NULL;
+				}
+				i++;
+			}
+			free(game->texture); // Libère le tableau des textures
+			game->texture = NULL;
+		}
+		cleanup_resources(game); // Libère les autres ressources
+		free(game); // Libère la structure principale
+	}
+	exit(EXIT_FAILURE); // Quitte le programme avec un statut d'échec
+	return (-1); // Retourne une valeur d'erreur pour cohérence
 }

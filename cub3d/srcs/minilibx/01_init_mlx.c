@@ -6,7 +6,7 @@
 /*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:46:37 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/16 16:48:39 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:09:12 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	init_game_texture(t_game *game)
 	while (i < 4)
 	{
 		if (load_texture(game, i) == -1)
-		{
-			free_textures(game->texture);
-			return (-1);
-		}
+			return (exit_on_texture_failure(game, i));
 		i++;
 	}
 	return (0);
@@ -80,7 +77,7 @@ void	*load_image(t_game *game, int index, int *width, int *height)
 	if (!image)
 	{
 		printf("Error: Failed to load image from path: %s\n", path);
-		mlx_destroy_image(game->mlx, image);
+		cleanup_and_exit(game);
 	}
 	return (image);
 }
