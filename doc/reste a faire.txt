@@ -54,5 +54,11 @@ ok  2. genere l'affichage des mur en raycasting
 3
 ok  1. Une couleur par direction de mur
 4
-    1. puis ajout des texture a charger
-    2. recuperer texture github JB (noth south .... les basiques)
+ok  1. puis ajout des texture a charger
+ok  2. recuperer texture github JB (noth south .... les basiques)
+
+a finir
+
+
+metre un message d'erreur si les textures charge pas par ce que atm c'est un segfault
+probleme de leak

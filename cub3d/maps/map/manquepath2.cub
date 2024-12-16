@@ -1,7 +1,8 @@
-NO ../textures/north.xpm
+NO maps/textures/base/white_wall.xpm
 SO 
-WE ../textures/west.xpm
-EA ../textures/east.xpm
+WE maps/textures/base/red_wall.xpm
+EA maps/textures/base/brown_wall.xpm
+
 
 F 220,100,000
 C 225,030,000
