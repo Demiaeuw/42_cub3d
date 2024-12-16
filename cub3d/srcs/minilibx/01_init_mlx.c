@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:46:37 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/16 17:09:12 by kpourcel         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:16:06 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ void	*load_image(t_game *game, int index, int *width, int *height)
 	}
 	image = mlx_xpm_file_to_image(game->mlx, path, width, height);
 	if (!image)
-	{
-		printf("Error: Failed to load image from path: %s\n", path);
-		cleanup_and_exit(game);
-	}
+		message_error("Failed to load image", game);
 	return (image);
 }
 
