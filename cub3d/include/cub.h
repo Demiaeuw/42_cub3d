@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 18:15:40 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:51:05 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ typedef struct s_game
 	t_render_colomn_data	*rendcoldata;
 	void					*mlx;
 	void					*win;
-	void					**images;
-	int						**texture;
+	void					**image_struct; // Tableau pour stocker les images
+	int						**texture;      // Données de texture
 	int						screen_width;
 	int						screen_height;
 	int						**buffer;
@@ -157,6 +157,7 @@ typedef struct s_game
 	int						line_length;
 	int						endian;
 }	t_game;
+
 
 //GAMEPLAY
 int			handle_key_press(int keycode, void *param);
@@ -176,15 +177,16 @@ int			handle_close(t_game *game);
 //MINILIBX
 void		init_dela_mlx(t_game *game);
 int			init_mlx_and_window(t_game *game);
-int			print_error(char *message);
-int			store_texture_data(t_game *game, int index, void *image);
 void		free_textures(int **tab);
-int			init_game_texture(t_game *game);
-char		*get_texture_path(t_game *game, int index);
+int			print_error(char *message);
 int			store_texture(t_game *game, int index, void *image);
-int			load_texture(t_game *game, int index);
-void		*load_image(t_game *game, int index, int *width, int *height);
-int	exit_on_texture_failure(t_game *game, int loaded_count);
+int			exit_on_texture_failure(t_game *game, int loaded_count);
+
+int			init_game_texture(t_game *game);
+int			allocate_texture_resources(t_game *game);
+int			load_single_texture(t_game *game, char *path, int index);
+int			load_all_textures(t_game *game);
+
 //PARSING
 void		message_error(char *str, t_game *game);
 void		free_map_tab(t_map *map);
@@ -250,12 +252,12 @@ void		draw_floor(t_game *game);
 void		draw_ceiling(t_game *game);
 
 void		render_walls(t_game *game);
-void calculate_column_height(t_game *game);
-void determine_texture_id(t_game *game);
-void calculate_wall_hit(t_game *game);
-void calculate_texture_coordinates(t_game *game);
-void draw_column(t_game *game, int column);
-void render_column(t_game *game, int column);
+void 		calculate_column_height(t_game *game);
+void 		determine_texture_id(t_game *game);
+void 		calculate_wall_hit(t_game *game);
+void 		calculate_texture_coordinates(t_game *game);
+void 		draw_column(t_game *game, int column);
+void 		render_column(t_game *game, int column);
 void		init_ray(t_game *game, int column);
 void		calculate_perp_dist(t_game *game);
 
@@ -266,4 +268,5 @@ void		perform_dda(t_game *game);
 void		init_step_and_side_dist_x(t_game *game);
 void		init_step_and_side_dist_y(t_game *game);
 void		init_step_and_side_dist(t_game *game);
+
 #endif

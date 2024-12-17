@@ -6,7 +6,7 @@
 /*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:20:08 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 18:06:43 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:44:55 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@
  */
 void	cleanup_resources(t_game *game)
 {
+	int i;
+
+	// Libérer les images de image_struct
+	if (game->image_struct)
+	{
+		for (i = 0; i < 4; i++)
+		{
+			if (game->image_struct[i])
+			{
+				mlx_destroy_image(game->mlx, game->image_struct[i]);
+				game->image_struct[i] = NULL;
+			}
+		}
+		free(game->image_struct);
+		game->image_struct = NULL;
+	}
+
 	if (game->infos)
 	{
 		free(game->infos->path_north);
@@ -50,10 +67,20 @@ void	cleanup_resources(t_game *game)
 
 void	cleanup_ressources_two(t_game *game)
 {
+	int i;
+
+	// Libérer les textures
 	if (game->texture)
 	{
+		for (i = 0; i < 4; i++)
+		{
+			if (game->texture[i])
+				game->texture[i] = NULL;
+		}
 		free(game->texture);
+		game->texture = NULL;
 	}
+
 	if (game->dda)
 		free(game->dda);
 	if (game->col_data)
@@ -61,6 +88,7 @@ void	cleanup_ressources_two(t_game *game)
 	if (game->rendcoldata)
 		free(game->rendcoldata);
 }
+
 
 /**
  * - Vérifie si la structure `game` est NULL, 
