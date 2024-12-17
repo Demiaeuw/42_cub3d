@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_init_game2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:47:32 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/16 18:09:02 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:50:59 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_render_colomn_data	*init_render_colomn_data(void)
 {
 	t_render_colomn_data	*rend_coldata;
-	
+
 	rend_coldata = (t_render_colomn_data *)malloc(sizeof(t_render_colomn_data));
 	if (!rend_coldata)
 		return (NULL);
@@ -39,6 +39,7 @@ t_render_colomn_data	*init_render_colomn_data(void)
  * allouée et initialise également MinilibX et la fenêtre. En cas d'erreur
  * d'initialisation ou d'allocation, libère les ressources et retourne NULL.
  */
+
 t_game	*init_game(void)
 {
 	t_game	*game;

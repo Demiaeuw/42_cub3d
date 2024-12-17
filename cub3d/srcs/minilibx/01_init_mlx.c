@@ -3,94 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   01_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:46:37 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/17 12:47:06 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:52:17 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
-
-// int	init_game_texture(t_game *game)
-// {
-// 	int	i;
-
-// 	game->texture = ft_calloc(5, sizeof(int *));
-// 	if (!game->texture)
-// 		return (print_error("Failed to allocate memory for texture array"));
-// 	i = 0;
-// 	while (i < 4)
-// 	{
-// 		if (load_texture(game, i) == -1)
-// 			return (exit_on_texture_failure(game, i));
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// int	load_texture(t_game *game, int index)
-// {
-// 	void	*image;
-// 	int		width;
-// 	int		height;
-
-// 	image = load_image(game, index, &width, &height);
-// 	if (!image)
-// 		return (-1);
-// 	if (store_texture_data(game, index, image) == -1)
-// 	{
-// 		mlx_destroy_image(game->mlx, image);
-// 		return (-1);
-// 	}
-// 	return (0);
-// }
-
-// int	store_texture_data(t_game *game, int index, void *image)
-// {
-// 	int	bpp;
-// 	int	size_line;
-// 	int	endian;
-
-// 	game->texture[index] = (int *)mlx_get_data_addr(image, &bpp,
-// 			&size_line, &endian);
-// 	if (!game->texture[index])
-// 	{
-// 		print_error("Failed to get texture data address");
-// 		return (-1);
-// 	}
-// 	return (0);
-// }
-
-// void	*load_image(t_game *game, int index, int *width, int *height)
-// {
-// 	char	*path;
-// 	void	*image;
-
-// 	path = get_texture_path(game, index);
-// 	if (!path)
-// 	{
-// 		print_error("Error: Texture path is NULL");
-// 		return (NULL);
-// 	}
-// 	image = mlx_xpm_file_to_image(game->mlx, path, width, height);
-// 	if (!image)
-// 		message_error("Failed to load image", game);
-// 	return (image);
-// }
-
-// char	*get_texture_path(t_game *game, int index)
-// {
-// 	if (index == 0)
-// 		return (game->infos->path_north);
-// 	if (index == 1)
-// 		return (game->infos->path_south);
-// 	if (index == 2)
-// 		return (game->infos->path_east);
-// 	if (index == 3)
-// 		return (game->infos->path_west);
-// 	return (NULL);
-// }
 
 int	init_game_texture(t_game *game)
 {
@@ -114,12 +34,12 @@ int	load_single_texture(t_game *game, char *path, int index)
 
 	if (!path)
 		return (print_error("Error: Texture path is NULL"));
-	game->image_struct[index] = mlx_xpm_file_to_image(game->mlx, path,
-													  &(int){0}, &(int){0});
+	game->image_struct[index] = mlx_xpm_file_to_image(game->mlx, path, \
+		&(int){0}, &(int){0});
 	if (!game->image_struct[index])
 		return (print_error("Failed to load texture image"));
-	game->texture[index] = (int *)mlx_get_data_addr(game->image_struct[index],
-													&bpp, &size_line, &endian);
+	game->texture[index] = (int *)mlx_get_data_addr(game->image_struct[index], \
+		&bpp, &size_line, &endian);
 	if (!game->texture[index])
 	{
 		mlx_destroy_image(game->mlx, game->image_struct[index]);
@@ -138,7 +58,6 @@ int	load_all_textures(t_game *game)
 	paths[1] = game->infos->path_south;
 	paths[2] = game->infos->path_east;
 	paths[3] = game->infos->path_west;
-
 	if (allocate_texture_resources(game) == -1)
 		return (-1);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/17 12:51:05 by acabarba         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:04:15 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ typedef struct s_game
 	t_render_colomn_data	*rendcoldata;
 	void					*mlx;
 	void					*win;
-	void					**image_struct; // Tableau pour stocker les images
-	int						**texture;      // Données de texture
+	void					**image_struct;
+	int						**texture;
 	int						screen_width;
 	int						screen_height;
 	int						**buffer;
@@ -159,114 +159,141 @@ typedef struct s_game
 }	t_game;
 
 
-//GAMEPLAY
-int			handle_key_press(int keycode, void *param);
-void		handle_movement_keys(int keycode, t_game *game);
-int			handle_key_release(int keycode, void *param);
-int			can_move_to(char **map, float new_x, float new_y);
-void		move_player(t_game *game, float delta_x, float delta_y);
-void		process_mouvement(t_game *game);
-void		rotate_camera(t_player *player, float angle);
-void		handle_camera_rotation(t_game *game);
-void		cleanup_resources(t_game *game);
-void		cleanup_ressources_two(t_game *game);
-void		cleanup_and_exit(t_game *game);
-int			handle_keypress(int keycode, t_game *game);
-int			handle_close(t_game *game);
+/* GAMEPLAY */
+int		handle_key_press(int keycode, void *param);
+void	handle_movement_keys(int keycode, t_game *game);
+int		handle_key_release(int keycode, void *param);
+int		can_move_to(char **map, float new_x, float new_y);
+void	move_player(t_game *game, float delta_x, float delta_y);
+void	process_mouvement(t_game *game);
+void	rotate_camera(t_player *player, float angle);
+void	handle_camera_rotation(t_game *game);
 
-//MINILIBX
-void		init_dela_mlx(t_game *game);
-int			init_mlx_and_window(t_game *game);
-void		free_textures(int **tab);
-int			print_error(char *message);
-int			store_texture(t_game *game, int index, void *image);
-int			exit_on_texture_failure(t_game *game, int loaded_count);
+/* CLEANUP */
+void	cleanup_resources(t_game *game);
+void	cleanup_ressources_two(t_game *game);
+void	cleanup_and_exit(t_game *game);
+void	free_other_resources(t_game *game);
+void	free_texture(t_game *game);
+void	free_images(void *mlx, void **images, int size);
+void	free_infos(t_info *infos);
+void	free_window_and_display(t_game *game);
 
-int			init_game_texture(t_game *game);
-int			allocate_texture_resources(t_game *game);
-int			load_single_texture(t_game *game, char *path, int index);
-int			load_all_textures(t_game *game);
+/* EVENTS */
+int		handle_keypress(int keycode, t_game *game);
+int		handle_close(t_game *game);
 
-//PARSING
-void		message_error(char *str, t_game *game);
-void		free_map_tab(t_map *map);
-void		error_clean_exit(t_game *game);
-void		main_parsing(int ac, char **av, t_game **game);
-void		check_argument(int i);
-void		check_fileextension(char *filename);
-void		check_file(char *filename);
-void		check_struct_file(char *filename);
-t_info		*init_info(void);
-t_map		*init_map(void);
-t_player	*init_player(void);
+
+/* MINILIBX INITIALIZATION */
+void	init_dela_mlx(t_game *game);
+int		init_mlx_and_window(t_game *game);
+void	free_textures(int **tab);
+int		print_error(char *message);
+
+/* TEXTURE HANDLING */
+int		store_texture(t_game *game, int index, void *image);
+int		exit_on_texture_failure(t_game *game, int loaded_count);
+int		init_game_texture(t_game *game);
+int		allocate_texture_resources(t_game *game);
+int		load_single_texture(t_game *game, char *path, int index);
+int		load_all_textures(t_game *game);
+void	free_loaded_textures(void *mlx, void **textures, int count);
+void	exit_cleanup(t_game *game);
+int		exit_on_texture_failure(t_game *game, int loaded_count);
+
+/* PARSING ERRORS */
+void	message_error(char *str, t_game *game);
+void	free_map_tab(t_map *map);
+void	error_clean_exit(t_game *game);
+
+/* PARSING INITIALIZATION */
+void			main_parsing(int ac, char **av, t_game **game);
+t_info			*init_info(void);
+t_map			*init_map(void);
+t_player		*init_player(void);
 t_render_colomn_data	*init_render_colomn_data(void);
-t_game		*init_game(void);
-void		init_game_two(t_game *game);
-t_dda		*init_dda(void);
-t_col_data	*init_col_data(void);
-int			check_extension(char *path);
-void		set_texture_path(char **destination, char *path, t_game *game);
-void		remove_newline(char *line);
-void		path_gestion(char *filename, t_game *game);
-int			convert_rgb_to_hex(int r, int g, int b);
-void		trim_trailing_whitespace(char *str);
-int			validate_and_parse_color(char *color_str);
-void		check_set_color(char *line, int *color, int *is_set, char *type);
-void		color_gestion(char *filename, t_game *game);
-void		map_gestion(char *filename, t_game *game);
-int			is_valid_map_character(char c);
-void		validate_map_line(char *line, t_game *game);
-void		check_map_characters(char *filename, t_game *game);
-int			count_map_lines(int fd);
-void		init_map_space(char *filename, t_game *game);
-void		copy_map_line(t_game *game, char *line, int i, int fd);
-void		fill_map_tab(int fd, t_game *game);
-void		copy_map(char *filename, t_game *game);
-int			check_adjacent(char **tab, int x, int y, int height);
-void		check_map_surrounded_by_walls(t_game *game);
-int			is_player_character(char c);
-void		check_player_position(t_game *game);
-void		update_player_position(char c, int x, int y, t_game *game);
-void		validate_and_save_player_position(t_game *game);
-void		validate_and_save_player_position(t_game *game);
-void		player_struct_start(t_game *game);
-void		player_set_fov(t_player *player, float fov);
+t_game			*init_game(void);
+void			init_game_two(t_game *game);
+t_dda			*init_dda(void);
+t_col_data		*init_col_data(void);
 
-void		print_info(t_info *infos);
-void		print_map_layout(char **tab);
-void		print_player(t_player *player);
-void		print_map(t_map *map);
-void		print_texture_info(t_game *game);
-void		print_dda(t_dda *dda);
-void		print_col_info(t_col_data *col_data);
-void		print_game(t_game *game);
-void		print_game_info(t_game *game);
-void		print_game_infos_two(t_game *game);
 
-// RAYCASTING 
-int			render(void *param);
+/* FILE VALIDATION */
+void	check_argument(int i);
+void	check_fileextension(char *filename);
+void	check_file(char *filename);
+void	check_struct_file(char *filename);
+int		check_extension(char *path);
+void	set_texture_path(char **destination, char *path, t_game *game);
+void	remove_newline(char *line);
+void	path_gestion(char *filename, t_game *game);
 
-void		init_image(t_game *game);
-void		draw_floor_and_ceiling(t_game *game);
-void		draw_floor(t_game *game);
-void		draw_ceiling(t_game *game);
+/* COLOR HANDLING */
+int		convert_rgb_to_hex(int r, int g, int b);
+void	trim_trailing_whitespace(char *str);
+int		validate_and_parse_color(char *color_str);
+void	check_set_color(char *line, int *color, int *is_set, char *type);
+void	color_gestion(char *filename, t_game *game);
 
-void		render_walls(t_game *game);
-void 		calculate_column_height(t_game *game);
-void 		determine_texture_id(t_game *game);
-void 		calculate_wall_hit(t_game *game);
-void 		calculate_texture_coordinates(t_game *game);
-void 		draw_column(t_game *game, int column);
-void 		render_column(t_game *game, int column);
-void		init_ray(t_game *game, int column);
-void		calculate_perp_dist(t_game *game);
+/* MAP HANDLING */
+void	map_gestion(char *filename, t_game *game);
+int		is_valid_map_character(char c);
+void	validate_map_line(char *line, t_game *game);
+void	check_map_characters(char *filename, t_game *game);
+int		count_map_lines(int fd);
+void	init_map_space(char *filename, t_game *game);
+void	copy_map_line(t_game *game, char *line, int i, int fd);
+void	fill_map_tab(int fd, t_game *game);
+void	copy_map(char *filename, t_game *game);
+int		check_adjacent(char **tab, int x, int y, int height);
+void	check_map_surrounded_by_walls(t_game *game);
 
-void		update_dda_side_dist(t_dda *dda);
-void		set_hit_direction(t_game *game);
-void		perform_dda(t_game *game);
+/* PLAYER VALIDATION */
+int		is_player_character(char c);
+void	check_player_position(t_game *game);
+void	update_player_position(char c, int x, int y, t_game *game);
+void	validate_and_save_player_position(t_game *game);
+void	player_struct_start(t_game *game);
+void	player_set_fov(t_player *player, float fov);
 
-void		init_step_and_side_dist_x(t_game *game);
-void		init_step_and_side_dist_y(t_game *game);
-void		init_step_and_side_dist(t_game *game);
+/* DEBUGGING AND PRINTING */
+void	print_info(t_info *infos);
+void	print_map_layout(char **tab);
+void	print_player(t_player *player);
+void	print_map(t_map *map);
+void	print_texture_info(t_game *game);
+void	print_dda(t_dda *dda);
+void	print_col_info(t_col_data *col_data);
+void	print_game(t_game *game);
+void	print_game_info(t_game *game);
+void	print_game_infos_two(t_game *game);
+
+/* RAYCASTING RENDERING */
+int		render(void *param);
+void	init_image(t_game *game);
+void	draw_floor_and_ceiling(t_game *game);
+void	draw_floor(t_game *game);
+void	draw_ceiling(t_game *game);
+
+/* WALL RENDERING */
+void	render_walls(t_game *game);
+void	calculate_column_height(t_game *game);
+void	determine_texture_id(t_game *game);
+void	calculate_wall_hit(t_game *game);
+void	calculate_texture_coordinates(t_game *game);
+void	draw_column(t_game *game, int column);
+void	render_column(t_game *game, int column);
+
+/* RAYCASTING DDA */
+void	init_ray(t_game *game, int column);
+void	calculate_perp_dist(t_game *game);
+void	update_dda_side_dist(t_dda *dda);
+void	set_hit_direction(t_game *game);
+void	perform_dda(t_game *game);
+
+/* STEP AND SIDE DIST */
+void	init_step_and_side_dist_x(t_game *game);
+void	init_step_and_side_dist_y(t_game *game);
+void	init_step_and_side_dist(t_game *game);
 
 #endif
