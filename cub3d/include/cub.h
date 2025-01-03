@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:39:46 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/17 19:37:15 by acabarba         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:39:26 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,8 @@ void					set_texture_path(char **destination, char *path,
 							t_game *game);
 void					remove_newline(char *line);
 void					path_gestion(char *filename, t_game *game);
+int						file_exists(char *path);
+void					check_texture_paths(t_game *game);
 
 /* COLOR HANDLING */
 int						convert_rgb_to_hex(int r, int g, int b);

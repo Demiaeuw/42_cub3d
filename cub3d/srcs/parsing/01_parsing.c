@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
+/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:51:13 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/14 02:32:19 by acabarba         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:35:27 by kpourcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	main_parsing(int ac, char **av, t_game **game)
 	if (!*game)
 		message_error("Failed to initialize game structures", *game);
 	path_gestion(av[1], *game);
+	check_texture_paths(*game);
 	color_gestion(av[1], *game);
 	map_gestion(av[1], *game);
 	player_struct_start(*game);

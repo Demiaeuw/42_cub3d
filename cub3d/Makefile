@@ -17,6 +17,7 @@ SRCS	=	main.c\
 			srcs/parsing/04_init_game1.c\
 			srcs/parsing/04_init_game2.c\
 			srcs/parsing/05_path_gestion.c\
+			srcs/parsing/05_path_gestion2.c\
 			srcs/parsing/06_color_gestion.c\
 			srcs/parsing/07_map_gestion.c\
 			srcs/parsing/08_map_gestion.c\
