@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_init_game2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:47:32 by acabarba          #+#    #+#             */
-/*   Updated: 2024/12/17 15:50:59 by kpourcel         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:55:53 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_render_colomn_data	*init_render_colomn_data(void)
  * allouée et initialise également MinilibX et la fenêtre. En cas d'erreur
  * d'initialisation ou d'allocation, libère les ressources et retourne NULL.
  */
-
 t_game	*init_game(void)
 {
 	t_game	*game;
@@ -53,6 +52,7 @@ t_game	*init_game(void)
 	game->dda = init_dda();
 	game->col_data = init_col_data();
 	game->rendcoldata = init_render_colomn_data();
+	game->image_struct = NULL;
 	game->texture = NULL;
 	game->screen_width = 800;
 	game->screen_height = 600;

@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   04_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kpourcel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acabarba <acabarba@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:21:46 by kpourcel          #+#    #+#             */
-/*   Updated: 2024/12/17 15:22:13 by kpourcel         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:39:58 by acabarba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
-void	free_texture(t_game *game)
+void free_texture(t_game *game)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	if (!game->texture)
-		return ;
-	while (i < 4)
-	{
-		if (game->texture[i])
-			game->texture[i] = NULL;
-		i++;
-	}
-	free(game->texture);
-	game->texture = NULL;
+    if (!game || !game->texture)
+        return;
+
+    i = 0;
+    while (i < 4)
+    {
+        if (game->texture[i])
+        {
+            free(game->texture[i]);
+            game->texture[i] = NULL;
+        }
+        i++;
+    }
+    free(game->texture);
+    game->texture = NULL;
 }
+
 
 void	free_other_resources(t_game *game)
 {
